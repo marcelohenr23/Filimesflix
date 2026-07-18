@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filimesflix</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Ícones oficiais para o botão do Google -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- ANIMAÇÃO INICIAL -->
+    <!-- 1. ANIMAÇÃO INICIAL -->
     <div class="intro" id="animacao">FILIMESFLIX</div>
 
-    <!-- TELA DE LOGIN ESTILIZADA -->
+    <!-- 2. TELA DE LOGIN -->
     <div id="login-area">
         <h1 class="logo-texto">FILIMESFLIX</h1>
         <h2>Faça login ou crie uma conta</h2>
         
-        <!-- Botão no formato oficial do Google -->
-        <button class="btn-google" onclick="alert('Login com Google acionado!')">
+        <button class="btn-google" onclick="irParaPerfis()">
             <i class="fab fa-google"></i> Fazer login com o Google
         </button>
         
@@ -30,16 +28,81 @@
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Senha">
         
-        <button class="btn-entrar" onclick="irParaHome()">Entrar</button>
+        <button class="btn-entrar" onclick="irParaPerfis()">Entrar</button>
     </div>
 
-    <!-- TELA PRINCIPAL (CONTEÚDO) -->
+    <!-- 3. TELA DE ESCOLHA DE PERFIL (ESTILO NETFLIX) -->
+    <div id="perfil-area" style="display: none;">
+        <!-- Banner de Fundo (Destaque) -->
+        <div class="banner-perfil">
+            <div class="banner-gradiente"></div>
+            <div class="banner-info">
+                <span class="tag-netflix">FILIMESFLIX ORIGINAL</span>
+                <h1>A LESTE DO PALÁCIO</h1>
+                <p>Assista à minissérie agora</p>
+            </div>
+        </div>
+
+        <!-- Grade de Perfis -->
+        <div class="container-perfis">
+            <p class="titulo-perfil">Quem está assistindo?</p>
+            
+            <div class="grid-perfis">
+                <div class="card-perfil" onclick="escolherPerfil('Marcelo')">
+                    <div class="avatar azul">
+                        <div class="olhos"></div>
+                        <div class="sorriso"></div>
+                    </div>
+                    <span>Marcelo</span>
+                </div>
+                
+                <div class="card-perfil" onclick="escolherPerfil('Marivania')">
+                    <div class="avatar amarelo">
+                        <div class="olhos"></div>
+                        <div class="sorriso"></div>
+                    </div>
+                    <span>Marivania</span>
+                </div>
+
+                <div class="card-perfil" onclick="escolherPerfil('Maria')">
+                    <div class="avatar vermelho">
+                        <div class="olhos"></div>
+                        <div class="sorriso"></div>
+                    </div>
+                    <span>Maria</span>
+                </div>
+
+                <div class="card-perfil" onclick="escolherPerfil('Infantil')">
+                    <div class="avatar infantil">
+                        <span>Infantil</span>
+                    </div>
+                    <span>Infantil</span>
+                </div>
+
+                <div class="card-perfil acao">
+                    <div class="avatar cinza">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <span>Adicionar</span>
+                </div>
+
+                <div class="card-perfil acao">
+                    <div class="avatar cinza">
+                        <i class="fa-solid fa-pencil"></i>
+                    </div>
+                    <span>Editar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. TELA PRINCIPAL (CATÁLOGO) -->
     <div id="conteudo" style="display: none;">
         <header>
             <span class="header-logo">FILIMESFLIX</span>
+            <span id="nome-perfil-ativo" style="float: right; color: #aaa; font-size: 0.9rem; margin-top: 5px;"></span>
         </header>
 
-        <!-- SEÇÃO DE FILMES -->
         <section class="secao">
             <h2>Filmes Populares</h2>
             <div class="grid-filmes">
@@ -62,7 +125,6 @@
             </div>
         </section>
 
-        <!-- SEÇÃO PRIVADA DE CANAIS -->
         <section class="secao-privada">
             <h2>🔒 Canais ao Vivo (Privado)</h2>
             <p class="aviso-privado">Disponível apenas para assinantes Premium</p>
@@ -84,4 +146,5 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
+    
