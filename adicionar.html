@@ -79,7 +79,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); /* Primeiro boneco padrão inicial */
+            background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); /* Novo padrão inicial melhorado */
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -188,12 +188,12 @@
             transform: scale(0.95);
         }
 
-        /* Seus 5 personagens aplicados nos blocos usando os links diretos */
-        .av-1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
-        .av-2 { background-image: url('https://i.postimg.cc/rDh9R79D/1784404699916.png'); }
-        .av-3 { background-image: url('https://i.postimg.cc/87ybfxbs/1784404700716.png'); }
-        .av-4 { background-image: url('https://i.postimg.cc/zydkH4kL/1784404703767.png'); }
-        .av-5 { background-image: url('https://i.postimg.cc/sMfcX352/1784404743400.png'); }
+        /* Seus 5 novos links atualizados nos quadradinhos */
+        .av-1 { background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); }
+        .av-2 { background-image: url('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg'); }
+        .av-3 { background-image: url('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg'); }
+        .av-4 { background-image: url('https://i.postimg.cc/VShQgGzj/lv-0-20260718172326.jpg'); }
+        .av-5 { background-image: url('https://i.postimg.cc/p9SbCGPm/lv-0-20260718172436.jpg'); }
 
     </style>
 </head>
@@ -236,12 +236,12 @@
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
-                    <!-- Cada quadradinho envia o link direto correto para trocar a foto principal -->
-                    <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/sMnJGbJx/1784404694570.png')"></div>
-                    <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/rDh9R79D/1784404699916.png')"></div>
-                    <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/87ybfxbs/1784404700716.png')"></div>
-                    <div class="icone-opcao av-4" onclick="selecionarAvatar('https://i.postimg.cc/zydkH4kL/1784404703767.png')"></div>
-                    <div class="icone-opcao av-5" onclick="selecionarAvatar('https://i.postimg.cc/sMfcX352/1784404743400.png')"></div>
+                    <!-- Cliques configurados para repassar as novas imagens de alta qualidade -->
+                    <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg')"></div>
+                    <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg')"></div>
+                    <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg')"></div>
+                    <div class="icone-opcao av-4" onclick="selecionarAvatar('https://i.postimg.cc/VShQgGzj/lv-0-20260718172326.jpg')"></div>
+                    <div class="icone-opcao av-5" onclick="selecionarAvatar('https://i.postimg.cc/p9SbCGPm/lv-0-20260718172436.jpg')"></div>
                 </div>
             </div>
         </div>
@@ -260,7 +260,6 @@
 
         function selecionarAvatar(urlImagem) {
             const preview = document.getElementById('preview');
-            // Altera o plano de fundo dinamicamente usando a URL da imagem clicada
             preview.style.backgroundImage = "url('" + urlImagem + "')";
             fecharModal();
         }
