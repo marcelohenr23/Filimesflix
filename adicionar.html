@@ -79,7 +79,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80'); /* Avatar provisório inicial */
+            background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_14.png');
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -173,14 +173,13 @@
             margin-bottom: 20px;
         }
 
-        /* Base dos quadradinhos dos Avatares */
+        /* Base dos quadradinhos dos Avatares usando as fotos individuais */
         .icone-opcao {
             width: 100%;
             aspect-ratio: 1 / 1;
             border-radius: 12px;
             cursor: pointer;
-            background-size: cover; 
-            background-repeat: no-repeat;
+            background-size: cover;
             background-position: center;
             border: 2px solid transparent;
             background-color: #141414; 
@@ -190,12 +189,12 @@
             transform: scale(0.95);
         }
 
-        /* Links diretos para cada uma das 5 imagens recortadas */
-        .av-cinemático-1 { background-image: url('https://i.ibb.co/6JZmYgY/cinematic-1.png'); }
-        .av-cinemático-2 { background-image: url('https://i.ibb.co/vYm6m8j/cinematic-2.png'); }
-        .av-cinemático-3 { background-image: url('https://i.ibb.co/N6mYvX6/cinematic-3.png'); }
-        .av-cinemático-4 { background-image: url('https://i.ibb.co/gST968P/cinematic-4.png'); }
-        .av-cinemático-5 { background-image: url('https://i.ibb.co/wSgX3Xm/cinematic-5.png'); }
+        /* Conectando os links diretos das suas imagens enviadas */
+        .av-1 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_14.png'); }
+        .av-2 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_15.png'); }
+        .av-3 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_16.png'); }
+        .av-4 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_17.png'); }
+        .av-5 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_18.png'); }
 
     </style>
 </head>
@@ -239,11 +238,11 @@
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
-                    <div class="icone-opcao av-cinemático-1" onclick="selecionarAvatar('https://i.ibb.co/6JZmYgY/cinematic-1.png')"></div>
-                    <div class="icone-opcao av-cinemático-2" onclick="selecionarAvatar('https://i.ibb.co/vYm6m8j/cinematic-2.png')"></div>
-                    <div class="icone-opcao av-cinemático-3" onclick="selecionarAvatar('https://i.ibb.co/N6mYvX6/cinematic-3.png')"></div>
-                    <div class="icone-opcao av-cinemático-4" onclick="selecionarAvatar('https://i.ibb.co/gST968P/cinematic-4.png')"></div>
-                    <div class="icone-opcao av-cinemático-5" onclick="selecionarAvatar('https://i.ibb.co/wSgX3Xm/cinematic-5.png')"></div>
+                    <div class="icone-opcao av-1" onclick="selecionarAvatar('image_14.png')"></div>
+                    <div class="icone-opcao av-2" onclick="selecionarAvatar('image_15.png')"></div>
+                    <div class="icone-opcao av-3" onclick="selecionarAvatar('image_16.png')"></div>
+                    <div class="icone-opcao av-4" onclick="selecionarAvatar('image_17.png')"></div>
+                    <div class="icone-opcao av-5" onclick="selecionarAvatar('image_18.png')"></div>
                 </div>
             </div>
         </div>
@@ -260,14 +259,11 @@
             document.getElementById('telaPrincipal').style.display = 'block';
         }
 
-        function selecionarAvatar(urlImagem) {
+        function selecionarAvatar(nomeImagem) {
             const preview = document.getElementById('preview');
-            preview.style.backgroundImage = "url('" + urlImagem + "')";
+            preview.style.backgroundImage = `url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/${nomeImagem}')`;
             fecharModal();
         }
-
-        // Definir a primeira imagem como padrão logo no início
-        document.getElementById('preview').style.backgroundImage = "url('https://i.ibb.co/6JZmYgY/cinematic-1.png')";
 
         function salvarPerfil() {
             const nome = document.getElementById('nomePerfil').value.trim();
