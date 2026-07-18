@@ -2,29 +2,74 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Filmesflix - Login</title>
     <style>
-        /* Design estilo Netflix completo */
-        body { margin: 0; background: url('https://assets.nflxext.com/ffe/siteui/vlv3/login_background.jpg') center/cover; height: 100vh; display: flex; justify-content: center; align-items: center; }
-        .login-box { background: rgba(0,0,0,0.75); padding: 60px; border-radius: 4px; width: 450px; color: #fff; }
-        .logo { color: #E50914; font-size: 3rem; font-weight: 800; margin-bottom: 20px; }
-        input { width: 100%; padding: 15px; margin: 10px 0; background: #333; border: none; color: #fff; border-radius: 4px; }
-        button { width: 100%; padding: 15px; background: #E50914; border: none; color: #fff; font-weight: bold; margin-top: 20px; cursor: pointer; }
-        .options { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.9rem; color: #b3b3b3; }
-        .signup { margin-top: 30px; color: #737373; }
-        .signup a { color: #fff; text-decoration: none; }
+        /* Reset para evitar margens indesejadas */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        
+        body { 
+            background-color: #000; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        /* Container que ocupa quase toda a tela, mas respeita as bordas */
+        .login-box { 
+            width: 92%; /* Ocupa 92% da largura do seu celular */
+            max-width: 400px; 
+            background: #000; 
+            padding: 10px;
+        }
+
+        .logo { 
+            color: #E50914; 
+            font-size: 2.2rem; 
+            font-weight: 800; 
+            margin-bottom: 30px; 
+            text-align: center; 
+        }
+
+        input { 
+            width: 100%; 
+            padding: 18px; /* Padding maior para o dedo clicar fácil */
+            margin-bottom: 15px; 
+            background: #333; 
+            border: none; 
+            color: #fff; 
+            border-radius: 4px; 
+            font-size: 16px; /* 16px evita que o iPhone dê zoom automático ao clicar */
+        }
+
+        button { 
+            width: 100%; 
+            padding: 18px; 
+            background: #E50914; 
+            border: none; 
+            color: #fff; 
+            font-weight: bold; 
+            margin-top: 10px; 
+            cursor: pointer; 
+            border-radius: 4px; 
+            font-size: 16px; 
+        }
+
+        .options { display: flex; justify-content: space-between; margin-top: 15px; font-size: 0.85rem; color: #b3b3b3; }
+        .signup { margin-top: 40px; color: #737373; text-align: center; font-size: 0.9rem; }
+        .signup a { color: #fff; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="login-box">
         <div class="logo">Filmesflix</div>
-        <h2>Entrar</h2>
         <input type="email" placeholder="Email ou número de telefone">
         <input type="password" placeholder="Senha">
         <button onclick="fazerLogin()">Entrar</button>
         <div class="options">
             <label><input type="checkbox"> Lembrar de mim</label>
-            <a href="#">Precisa de ajuda?</a>
+            <a href="#">Ajuda?</a>
         </div>
         <div class="signup">Novo por aqui? <a href="#">Assine agora.</a></div>
     </div>
