@@ -48,7 +48,6 @@
         .cinza { background: #333; color: #aaa; font-size: 1.3rem; }
         .infantil { background: linear-gradient(45deg, #ff007f, #ffaa00, #00aaff); font-weight: bold; font-size: 0.9rem; }
         
-        /* Classes dos avatares customizados por imagem */
         .img-avatar { background-size: cover; background-position: center; }
 
         .olhos { width: 40px; height: 6px; position: absolute; top: 30px; display: flex; justify-content: space-between; }
@@ -86,7 +85,7 @@
         input:checked + .slider { background-color: #fff; }
         input:checked + .slider:before { transform: translateX(20px); background-color: #000; }
 
-        /* TELA ESCOLHA UM ÍCONE (NOVA) */
+        /* TELA ESCOLHA UM ÍCONE */
         #escolha-icone-area { background: #000; min-height: 100vh; padding: 20px; display: none; text-align: left; }
         .topo-icones { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; font-size: 1.2rem; font-weight: bold; }
         .topo-icones i { cursor: pointer; font-size: 1.4rem; }
@@ -186,7 +185,6 @@
         </div>
 
         <div class="avatar-container-add">
-            <!-- Ao clicar no avatar ou no lápis, abre as opções de ícone -->
             <div class="avatar-add" id="avatar-preview-novo" onclick="abrirEscolhaIcone()">
                 <div class="olhos" id="olhos-preview"></div>
                 <div class="sorriso" id="sorriso-preview"></div>
@@ -210,14 +208,13 @@
         </div>
     </div>
 
-    <!-- 3.6 TELA SELEÇÃO DE ÍCONES (ESTILO A FOTO QUE MANDOU) -->
+    <!-- 3.6 TELA SELEÇÃO DE ÍCONES -->
     <div id="escolha-icone-area">
         <div class="topo-icones">
             <i class="fa-solid fa-arrow-left" onclick="fecharEscolhaIcone()"></i>
             <span>Escolha um ícone</span>
         </div>
 
-        <!-- Categoria 1 -->
         <div class="categoria-titulo">Série: Elementos Frutais</div>
         <div class="grid-icones">
             <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')"></div>
@@ -226,7 +223,6 @@
             <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')"></div>
         </div>
 
-        <!-- Categoria 2 -->
         <div class="categoria-titulo laranja">Série: Cyber-Animais e Arte</div>
         <div class="grid-icones">
             <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')"></div>
@@ -263,7 +259,6 @@
     </div>
 
     <script>
-        // Variável para guardar a imagem escolhida temporariamente
         let imagemSelecionadaTemporaria = "";
 
         setTimeout(() => {
@@ -279,7 +274,7 @@
         function entrarNoCatalogo(nomeDoPerfil) {
             document.getElementById('perfil-area').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
-            document.getElementById('nome-perfil-ativo').innerText = "Perfil: " + nomeDoPerfil;
+            document.getElementById('nome-perfil-active' ? 'nome-perfil-ativo' : 'nome-perfil-ativo').innerText = "Perfil: " + nomeDoPerfil;
             window.scrollTo(0, 0);
         }
 
@@ -290,8 +285,13 @@
             document.getElementById('check-infantil').checked = false;
             document.getElementById('botao-salvar').classList.remove('ativo');
             
-            // Reseta para o design de carinha padrão
             imagemSelecionadaTemporaria = "";
             const preview = document.getElementById('avatar-preview-novo');
             preview.style.backgroundImage = "none";
-            document.getElementById('olhos-preview').
+            document.getElementById('olhos-preview').style.display = "flex";
+            document.getElementById('sorriso-preview').style.display = "block";
+        }
+
+        function voltarParaPerfis() {
+            document.getElementById('add-perfil-area').style.display = 'none';
+            document.getElementById('perfil-area').style.display = 'block'
