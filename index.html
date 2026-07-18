@@ -167,9 +167,14 @@
     </div>
 
     <script>
+        // Se já fez login antes, pula direto para a tela de escolher perfil
+        if (localStorage.getItem('usuarioLogado') === 'true') {
+            window.location.href = 'perfis.html';
+        }
+
         function fazerLogin() {
-            // Salva na memória temporária do app que o usuário fez login
-            sessionStorage.setItem('logado', 'true');
+            // Guarda na memória permanente que já fez login uma vez
+            localStorage.setItem('usuarioLogado', 'true');
             window.location.href = 'perfis.html';
         }
     </script>
