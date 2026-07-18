@@ -4,8 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filimesflix</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
+
+        /* Animação Inicial */
+        .intro { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; animation: anim 3s forwards; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 999; }
+        @keyframes anim { 0% { opacity: 0; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; display: none; pointer-events: none; } }
+
+        /* Login */
+        #login-area { width: 90%; max-width: 380px; margin: 60px auto; padding: 30px 20px; background: #141414; border-radius: 8px; border: 1px solid #222; text-align: center; }
+        .logo-texto { color: #e50914; font-size: 2.3rem; margin-bottom: 10px; font-weight: 900; }
+        #login-area h2 { font-size: 1.1rem; color: #aaa; font-weight: 400; margin-bottom: 25px; }
+        .btn-google { width: 100%; background: #ffffff; color: #1f1f1f; border: 1px solid #747775; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
+        .btn-google i { color: #4285F4; font-size: 1.1rem; }
+        .divisor { margin: 20px 0; display: flex; align-items: center; text-align: center; color: #666; }
+        .divisor::before, .divisor::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
+        .divisor span { padding: 0 10px; font-size: 0.9rem; }
+        input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #333; background: #232323; color: white; font-size: 1rem; }
+        .btn-entrar { background: #e50914; color: white; padding: 14px; width: 100%; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+
+        /* TELA DE PERFIS */
+        #perfil-area { position: relative; min-height: 100vh; background: #141414; overflow-x: hidden; }
+        .banner-perfil { width: 100%; height: 45vh; background-image: url('https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=800'); background-size: cover; background-position: center top; position: relative; }
+        .banner-gradiente { position: absolute; width: 100%; height: 100%; background: linear-gradient(to top, #141414 10%, rgba(20,20,20,0.4) 60%, rgba(0,0,0,0.8)); }
+        .banner-info { position: absolute; bottom: 20px; left: 20px; text-align: left; z-index: 2; }
+        .tag-netflix { color: #e50914; font-size: 0.7rem; font-weight: bold; letter-spacing: 2px; }
+        .banner-info h1 { font-size: 1.8rem; font-weight: 800; margin: 5px 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        .banner-info p { font-size: 0.9rem; color: #ddd; }
+
+        /* Grade de Perfis */
+        .container-perfis { padding: 20px; text-align: center; position: relative; z-index: 5; margin-top: -15px; }
+        .titulo-perfil { font-size: 1.1rem; color: #fff; margin-bottom: 20px; font-weight: 500; }
+        .grid-perfis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 360px; margin: 0 auto; }
+        .card-perfil { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .card-perfil span { font-size: 0.85rem; color: #aaa; margin-top: 8px; text-align: center; }
+
+        .avatar { width: 75px; height: 75px; border-radius: 8px; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .azul { background: #1e88e5; }
+        .amarelo { background: #fdd835; }
+        .vermelho { background: #e53935; }
+        .cinza { background: #333; color: #aaa; font-size: 1.3rem; }
+        .infantil { background: linear-gradient(45deg, #ff007f, #ffaa00, #00aaff); font-weight: bold; font-size: 0.9rem; }
+        .dinamico { background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); }
+
+        .olhos { width: 40px; height: 6px; position: absolute; top: 30px; display: flex; justify-content: space-between; }
+        .olhos::before, .olhos::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; }
+        .amarelo .olhos::before, .amarelo .olhos::after, .vermelho .olhos::before, .vermelho .olhos::after { background: #141414; }
+        .sorriso { width: 35px; height: 16px; border-bottom: 5px solid #fff; border-radius: 0 0 50% 50%/0 0 100% 100%; position: absolute; bottom: 22px; }
+        .amarelo .sorriso, .vermelho .sorriso { border-bottom-color: #141414; }
+        .card-perfil:active .avatar { transform: scale(0.95); border: 2px solid #fff; }
+
+        /* TELA ADICIONAR PERFIL */
+        #add-perfil-area { background: #000; min-height: 100vh; padding: 20px; display: none; }
+        .topo-add { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; font-size: 1.2rem; }
+        .topo-add i { cursor: pointer; font-size: 1.4rem; }
+        .btn-salvar { color: #444; font-weight: bold; cursor: pointer; font-size: 1rem; border: none; background: none; transition: color 0.2s; }
+        .btn-salvar.ativo { color: #fff; }
+        
+        .avatar-container-add { display: flex; justify-content: center; position: relative; margin-bottom: 30px; }
+        .avatar-add { width: 110px; height: 110px; border-radius: 8px; background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); position: relative; display: flex; justify-content: center; align-items: center; }
+        .avatar-add .olhos { top: 45px; width: 55px; }
+        .avatar-add .olhos::before, .avatar-add .olhos::after { width: 10px; height: 10px; }
+        .avatar-add .sorriso { bottom: 30px; width: 50px; height: 20px; border-bottom-width: 6px; }
+        .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+
+        .input-add { background: #262626; border: none; border-radius: 4px; padding: 16px; color: #fff; font-size: 1.1rem; width: 100%; margin-bottom: 25px; }
+        .input-add::placeholder { color: #737373; }
+        
+        .box-kids { background: #1a1a1a; padding: 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .box-kids-texto h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+        .box-kids-texto p { font-size: 0.85rem; color: #737373; line-height: 1.3; padding-right: 10px; }
+        
+        .switch { position: relative; display: inline-block; width: 46px; height: 26px; flex-shrink: 0; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #555; transition: .3s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+        input:checked + .slider { background-color: #fff; }
+        input:checked + .slider:before { transform: translateX(20px); background-color: #000; }
+
+        /* Layout da Home */
+        #conteudo { width: 100%; background: #141414; min-height: 100vh; }
+        header { background: #000; padding: 15px; border-bottom: 1px solid #222; }
+        .header-logo { color: #e50914; font-weight: 900; font-size: 1.5rem; }
+        .secao { padding: 20px; text-align: left; }
+        .secao h2, .secao-privada h2 { font-size: 1.3rem; margin-bottom: 15px; }
+        .grid-filmes { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card-filme { background: #222; border-radius: 6px; overflow: hidden; }
+        .card-filme img { width: 100%; height: 140px; object-fit: cover; }
+        .card-filme h3 { font-size: 0.85rem; margin: 8px; text-align: center; }
+
+        /* Seção Canais */
+        .secao-privada { padding: 25px 20px; background: #0a0a0a; border-top: 2px solid #222; text-align: left; }
+        .aviso-privado { color: #e50914; font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px; }
+        .grid-canais { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .card-canal { background: #1f1f1f; border-radius: 6px; padding: 20px; text-align: center; border: 1px solid #333; }
+        .bloqueado { filter: blur(5px); pointer-events: none; opacity: 0.4; }
+        .btn-assinar { background: #46d369; color: white; padding: 15px; width: 100%; border: none; border-radius: 6px; margin-top: 20px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
 <body>
 
@@ -16,24 +113,17 @@
     <div id="login-area">
         <h1 class="logo-texto">FILIMESFLIX</h1>
         <h2>Faça login ou crie uma conta</h2>
-        
-        <button class="btn-google" onclick="irParaPerfis()">
+        <button class="btn-google" onclick="proximaTelaPerfis()">
             <i class="fab fa-google"></i> Fazer login com o Google
         </button>
-        
-        <div class="divisor">
-            <span>ou</span>
-        </div>
-        
+        <div class="divisor"><span>ou</span></div>
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Senha">
-        
-        <button class="btn-entrar" onclick="irParaPerfis()">Entrar</button>
+        <button class="btn-entrar" onclick="proximaTelaPerfis()">Entrar</button>
     </div>
 
-    <!-- 3. TELA DE ESCOLHA DE PERFIL (ESTILO NETFLIX) -->
+    <!-- 3. TELA DE SELEÇÃO DE PERFIL -->
     <div id="perfil-area" style="display: none;">
-        <!-- Banner de Fundo (Destaque) -->
         <div class="banner-perfil">
             <div class="banner-gradiente"></div>
             <div class="banner-info">
@@ -42,109 +132,177 @@
                 <p>Assista à minissérie agora</p>
             </div>
         </div>
-
-        <!-- Grade de Perfis -->
         <div class="container-perfis">
             <p class="titulo-perfil">Quem está assistindo?</p>
-            
-            <div class="grid-perfis">
-                <div class="card-perfil" onclick="escolherPerfil('Marcelo')">
-                    <div class="avatar azul">
-                        <div class="olhos"></div>
-                        <div class="sorriso"></div>
-                    </div>
+            <div class="grid-perfis" id="lista-de-perfis">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marcelo')">
+                    <div class="avatar azul"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marcelo</span>
                 </div>
-                
-                <div class="card-perfil" onclick="escolherPerfil('Marivania')">
-                    <div class="avatar amarelo">
-                        <div class="olhos"></div>
-                        <div class="sorriso"></div>
-                    </div>
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marivania')">
+                    <div class="avatar amarelo"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marivania</span>
                 </div>
-
-                <div class="card-perfil" onclick="escolherPerfil('Maria')">
-                    <div class="avatar vermelho">
-                        <div class="olhos"></div>
-                        <div class="sorriso"></div>
-                    </div>
+                <div class="card-perfil" onclick="entrarNoCatalogo('Maria')">
+                    <div class="avatar vermelho"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Maria</span>
                 </div>
-
-                <div class="card-perfil" onclick="escolherPerfil('Infantil')">
-                    <div class="avatar infantil">
-                        <span>Infantil</span>
-                    </div>
+                <div class="card-perfil" onclick="entrarNoCatalogo('Infantil')">
+                    <div class="avatar infantil"><span>Infantil</span></div>
                     <span>Infantil</span>
                 </div>
-
-                <div class="card-perfil acao">
-                    <div class="avatar cinza">
-                        <i class="fa-solid fa-plus"></i>
-                    </div>
+                
+                <!-- ESTE É O BOTÃO QUE ABRE A ABA DE ADICIONAR PERFIL -->
+                <div class="card-perfil" onclick="abrirTelaAdicionarPerfil()">
+                    <div class="avatar cinza"><i class="fa-solid fa-plus"></i></div>
                     <span>Adicionar</span>
                 </div>
-
-                <div class="card-perfil acao">
-                    <div class="avatar cinza">
-                        <i class="fa-solid fa-pencil"></i>
-                    </div>
+                
+                <div class="card-perfil">
+                    <div class="avatar cinza"><i class="fa-solid fa-pencil"></i></div>
                     <span>Editar</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 4. TELA PRINCIPAL (CATÁLOGO) -->
+    <!-- 3.5 TELA ADICIONAR PERFIL (ABRE AO CLICAR EM ADICIONAR) -->
+    <div id="add-perfil-area">
+        <div class="topo-add">
+            <i class="fa-solid fa-arrow-left" onclick="voltarParaPerfis()"></i>
+            <span>Adicionar perfil</span>
+            <button class="btn-salvar" id="botao-salvar" onclick="salvarNovoPerfil()">Salvar</button>
+        </div>
+
+        <div class="avatar-container-add">
+            <div class="avatar-add">
+                <div class="olhos"></div>
+                <div class="sorriso"></div>
+                <div class="badge-editar">
+                    <i class="fa-solid fa-pencil"></i>
+                </div>
+            </div>
+        </div>
+
+        <input type="text" class="input-add" id="novo-nome-perfil" placeholder="Nome do perfil" oninput="validarInput(this)">
+
+        <div class="box-kids">
+            <div class="box-kids-texto">
+                <h3>Perfil para crianças</h3>
+                <p>Feito para crianças de até 12 anos, mas com o controle total dos pais.</p>
+            </div>
+            <label class="switch">
+                <input type="checkbox" id="check-infantil">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <!-- 4. TELA PRINCIPAL (HOME) -->
     <div id="conteudo" style="display: none;">
         <header>
             <span class="header-logo">FILIMESFLIX</span>
             <span id="nome-perfil-ativo" style="float: right; color: #aaa; font-size: 0.9rem; margin-top: 5px;"></span>
         </header>
-
         <section class="secao">
             <h2>Filmes Populares</h2>
             <div class="grid-filmes">
-                <div class="card-filme">
-                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="Filme 1">
-                    <h3>Interestelar</h3>
-                </div>
-                <div class="card-filme">
-                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400" alt="Filme 2">
-                    <h3>Batman</h3>
-                </div>
-                <div class="card-filme">
-                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="Filme 3">
-                    <h3>Vingadores</h3>
-                </div>
-                <div class="card-filme">
-                    <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400" alt="Filme 4">
-                    <h3>Invocação do Mal</h3>
-                </div>
+                <div class="card-filme"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="1"><h3>Interestelar</h3></div>
+                <div class="card-filme"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400" alt="2"><h3>Batman</h3></div>
+                <div class="card-filme"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="3"><h3>Vingadores</h3></div>
+                <div class="card-filme"><img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400" alt="4"><h3>Invocação do Mal</h3></div>
             </div>
         </section>
-
         <section class="secao-privada">
             <h2>🔒 Canais ao Vivo (Privado)</h2>
             <p class="aviso-privado">Disponível apenas para assinantes Premium</p>
-            
             <div class="grid-canais bloqueado">
-                <div class="card-canal" id="c1">
-                    <div class="icone-play">🔒</div>
-                    <h3>Globo AO VIVO</h3>
-                </div>
-                <div class="card-canal" id="c2">
-                    <div class="icone-play">🔒</div>
-                    <h3>TNT Sports</h3>
-                </div>
+                <div class="card-canal" id="c1"><div class="icone-play">🔒</div><h3>Globo AO VIVO</h3></div>
+                <div class="card-canal" id="c2"><div class="icone-play">🔒</div><h3>TNT Sports</h3></div>
             </div>
-            
-            <button class="btn-assinar" id="btn-premium" onclick="liberar()">Assinar para desbloquear canais</button>
+            <button class="btn-assinar" id="btn-premium" onclick="ativarPremium()">Assinar para desbloquear canais</button>
         </section>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Fecha animação
+        setTimeout(() => {
+            const animacao = document.getElementById('animacao');
+            if (animacao) animacao.style.display = 'none';
+        }, 3000);
+
+        // Abre perfis
+        function proximaTelaPerfis() {
+            document.getElementById('login-area').style.display = 'none';
+            document.getElementById('perfil-area').style.display = 'block';
+        }
+
+        // Abre catálogo
+        function entrarNoCatalogo(nomeDoPerfil) {
+            document.getElementById('perfil-area').style.display = 'none';
+            document.getElementById('conteudo').style.display = 'block';
+            document.getElementById('nome-perfil-ativo').innerText = "Perfil: " + nomeDoPerfil;
+            window.scrollTo(0, 0);
+        }
+
+        // DISPARADO APENAS AO CLICAR NO BOTÃO CINZA COM O "+" (ADICIONAR)
+        function abrirTelaAdicionarPerfil() {
+            document.getElementById('perfil-area').style.display = 'none';
+            document.getElementById('add-perfil-area').style.display = 'block';
+            document.getElementById('novo-nome-perfil').value = "";
+            document.getElementById('check-infantil').checked = false;
+            document.getElementById('botao-salvar').classList.remove('ativo');
+        }
+
+        function voltarParaPerfis() {
+            document.getElementById('add-perfil-area').style.display = 'none';
+            document.getElementById('perfil-area').style.display = 'block';
+        }
+
+        function validarInput(input) {
+            const btn = document.getElementById('botao-salvar');
+            if (input.value.trim().length > 0) {
+                btn.classList.add('ativo');
+            } else {
+                btn.classList.remove('ativo');
+            }
+        }
+
+        function salvarNovoPerfil() {
+            const nomeInput = document.getElementById('novo-nome-perfil').value.trim();
+            const ehInfantil = document.getElementById('check-infantil').checked;
+            
+            if (nomeInput === "") return;
+
+            const grid = document.getElementById('lista-de-perfis');
+            const novoCard = document.createElement('div');
+            novoCard.className = 'card-perfil';
+            novoCard.onclick = function() { entrarNoCatalogo(nomeInput); };
+
+            let avatarHTML = '';
+            if (ehInfantil) {
+                avatarHTML = '<div class="avatar infantil"><span>Infantil</span></div>';
+            } else {
+                avatarHTML = '<div class="avatar dinamico"><div class="olhos"></div><div class="sorriso"></div></div>';
+            }
+
+            novoCard.innerHTML = avatarHTML + '<span>' + nomeInput + '</span>';
+
+            // Insere antes do botão cinza de Adicionar
+            const botaoAdicionar = grid.children[grid.children.length - 2];
+            grid.insertBefore(novoCard, botaoAdicionar);
+
+            voltarParaPerfis();
+        }
+
+        function ativarPremium() {
+            alert("Redirecionando para assinatura Premium...");
+            document.querySelector('.grid-canais').classList.remove('bloqueado');
+            document.querySelectorAll('.icone-play').forEach(i => i.innerText = "▶️");
+            document.getElementById('btn-premium').style.display = 'none';
+            document.querySelector('.aviso-privado').innerText = "Premium Ativado! Canais Liberados.";
+            document.querySelector('.aviso-privado').style.color = "#46d369";
+        }
+    </script>
 </body>
-    </html>
-    
+</html>
