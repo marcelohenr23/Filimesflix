@@ -13,9 +13,10 @@
 
     <!-- TELA DE LOGIN -->
     <div id="login-area">
-        <h1>Faça login ou crie uma conta</h1>
+        <h1 class="logo-texto">FILIMESFLIX</h1>
+        <h2>Faça login ou crie uma conta</h2>
         <button class="btn-google">Login com Google</button>
-        <p>ou</p>
+        <p class="divisor">ou</p>
         <input type="email" placeholder="Email"><br>
         <input type="password" placeholder="Senha"><br>
         <button class="btn-entrar" onclick="irParaHome()">Entrar</button>
@@ -23,18 +24,59 @@
 
     <!-- TELA PRINCIPAL (CONTEÚDO) -->
     <div id="conteudo" style="display: none;">
-        <h1>Filmes</h1>
-        <div class="grid">
-            <div class="item">Filme 1</div>
-            <div class="item">Filme 2</div>
-        </div>
+        <header>
+            <span class="header-logo">FILIMESFLIX</span>
+        </header>
 
-        <h1 style="margin-top: 30px;">Canais ao Vivo</h1>
-        <div class="grid">
-            <div class="item bloqueado" id="c1">Canal 1</div>
-            <div class="item bloqueado" id="c2">Canal 2</div>
-        </div>
-        <button class="btn-assinar" onclick="liberar()">Assinar para desbloquear</button>
+        <!-- SEÇÃO DE FILMES -->
+        <section class="secao">
+            <h2>Filmes Populares</h2>
+            <div class="grid-filmes">
+                <div class="card-filme">
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="Filme 1">
+                    <h3>Interestelar</h3>
+                </div>
+                <div class="card-filme">
+                    <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400" alt="Filme 2">
+                    <h3>Batman: O Cavaleiro das Trevas</h3>
+                </div>
+                <div class="card-filme">
+                    <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="Filme 3">
+                    <h3>Vingadores</h3>
+                </div>
+                <div class="card-filme">
+                    <img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400" alt="Filme 4">
+                    <h3>Invocação do Mal</h3>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PRIVADA DE CANAIS AO VIVO (ROLANDO PARA BAIXO) -->
+        <section class="secao-privada">
+            <h2>🔒 Canais ao Vivo (Privado)</h2>
+            <p class="aviso-privado">Disponível apenas para assinantes Premium</p>
+            
+            <div class="grid-canais bloqueado">
+                <div class="card-canal" id="c1">
+                    <div class="icone-play">🔒</div>
+                    <h3>Globo AO VIVO</h3>
+                </div>
+                <div class="card-canal" id="c2">
+                    <div class="icone-play">🔒</div>
+                    <h3>TNT Sports</h3>
+                </div>
+                <div class="card-canal" id="c3">
+                    <div class="icone-play">🔒</div>
+                    <h3>HBO Plus</h3>
+                </div>
+                <div class="card-canal" id="c4">
+                    <div class="icone-play">🔒</div>
+                    <h3>Telecine Action</h3>
+                </div>
+            </div>
+            
+            <button class="btn-assinar" id="btn-premium" onclick="liberar()">Assinar para desbloquear canais</button>
+        </section>
     </div>
 
     <script src="script.js"></script>
