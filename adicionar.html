@@ -79,7 +79,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_14.png');
+            background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); /* Robô como padrão inicial */
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -173,7 +173,7 @@
             margin-bottom: 20px;
         }
 
-        /* Base dos quadradinhos dos Avatares usando as fotos individuais */
+        /* Configuração dos quadradinhos com links diretos estáveis */
         .icone-opcao {
             width: 100%;
             aspect-ratio: 1 / 1;
@@ -189,12 +189,12 @@
             transform: scale(0.95);
         }
 
-        /* Conectando os links diretos das suas imagens enviadas */
-        .av-1 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_14.png'); }
-        .av-2 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_15.png'); }
-        .av-3 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_16.png'); }
-        .av-4 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_17.png'); }
-        .av-5 { background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/image_18.png'); }
+        /* Seus personagens 3D hospedados com sucesso */
+        .av-1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); } /* Robô */
+        .av-2 { background-image: url('https://i.postimg.cc/rDh9R79D/1784404699916.png'); } /* Banguela */
+        .av-3 { background-image: url('https://i.postimg.cc/87ybfxbs/1784404700716.png'); } /* Groot */
+        .av-4 { background-image: url('https://i.postimg.cc/zydkH4kL/1784404703767.png'); } /* Naruto */
+        .av-5 { background-image: url('https://i.postimg.cc/sMfcX352/1784404743400.png'); } /* Menino */
 
     </style>
 </head>
@@ -234,15 +234,14 @@
         </div>
 
         <div class="modal-content">
-            <!-- CATEGORIA: CINEMÁTICOS -->
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
-                    <div class="icone-opcao av-1" onclick="selecionarAvatar('image_14.png')"></div>
-                    <div class="icone-opcao av-2" onclick="selecionarAvatar('image_15.png')"></div>
-                    <div class="icone-opcao av-3" onclick="selecionarAvatar('image_16.png')"></div>
-                    <div class="icone-opcao av-4" onclick="selecionarAvatar('image_17.png')"></div>
-                    <div class="icone-opcao av-5" onclick="selecionarAvatar('image_18.png')"></div>
+                    <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/sMnJGbJx/1784404694570.png')"></div>
+                    <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/rDh9R79D/1784404699916.png')"></div>
+                    <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/87ybfxbs/1784404700716.png')"></div>
+                    <div class="icone-opcao av-4" onclick="selecionarAvatar('https://i.postimg.cc/zydkH4kL/1784404703767.png')"></div>
+                    <div class="icone-opcao av-5" onclick="selecionarAvatar('https://i.postimg.cc/sMfcX352/1784404743400.png')"></div>
                 </div>
             </div>
         </div>
@@ -259,9 +258,9 @@
             document.getElementById('telaPrincipal').style.display = 'block';
         }
 
-        function selecionarAvatar(nomeImagem) {
+        function selecionarAvatar(urlImagem) {
             const preview = document.getElementById('preview');
-            preview.style.backgroundImage = `url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/${nomeImagem}')`;
+            preview.style.backgroundImage = `url('${urlImagem}')`;
             fecharModal();
         }
 
