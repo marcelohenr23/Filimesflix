@@ -1,34 +1,187 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filimesflix - Login</title>
     <style>
-        /* Seu estilo da tela de login */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #000; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        .login-card { width: 90%; max-width: 400px; padding: 40px; background: rgba(0,0,0,0.75); border-radius: 8px; text-align: center; }
-        h1 { color: #e50914; font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
-        input { width: 100%; padding: 15px; margin-bottom: 15px; background: #333; color: #fff; border: none; border-radius: 4px; }
-        button { width: 100%; padding: 15px; background: #e50914; color: #fff; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fundo com efeito de imagem borrada ou degradê escuro clássico */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%);
+            z-index: -1;
+        }
+
+        /* Logotipo fictício no topo */
+        .logo {
+            color: #E50914;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Caixa de Login */
+        .login-card {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-card h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Campos de Entrada */
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .input-group input {
+            width: 100%;
+            background-color: #333333;
+            border: none;
+            border-radius: 4px;
+            padding: 16px;
+            color: #ffffff;
+            font-size: 1rem;
+            outline: none;
+            transition: background-color 0.2s;
+        }
+
+        .input-group input:focus {
+            background-color: #444444;
+        }
+
+        .input-group input::placeholder {
+            color: #8c8c8c;
+        }
+
+        /* Botão Entrar */
+        .btn-entrar {
+            background-color: #E50914;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-entrar:active {
+            background-color: #b80710;
+            transform: scale(0.98);
+        }
+
+        /* Links de ajuda */
+        .login-help {
+            display: flex;
+            justify-content: space-between;
+            color: #b3b3b3;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .login-help a {
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+
+        .login-help a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rodapé ou aviso de Cadastro */
+        .login-footer {
+            margin-top: 20px;
+            color: #737373;
+            font-size: 0.95rem;
+        }
+
+        .login-footer a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Logo Principal -->
+    <div class="logo">Filimesflix</div>
+
+    <!-- Caixa de Formulário -->
     <div class="login-card">
-        <h1>FILIMESFLIX</h1>
-        <input type="email" placeholder="Email ou número de telefone">
-        <input type="password" placeholder="Senha">
-        <!-- Esse comando abaixo faz mudar de página para o seu arquivo perfis.html -->
-        <button onclick="fazerLogin()">Entrar</button>
+        <h2>Entrar</h2>
+        
+        <div class="input-group">
+            <input type="text" placeholder="Email ou número de telefone" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+            <input type="password" placeholder="Senha">
+        </div>
+
+        <!-- Clicar aqui redireciona diretamente para a sua tela de escolha de perfis -->
+        <button class="btn-entrar" onclick="fazerLogin()">Entrar</button>
+
+        <div class="login-help">
+            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                <input type="checkbox" checked style="accent-color: #E50914;"> Lembrar de mim
+            </label>
+            <a href="#">Precisa de ajuda?</a>
+        </div>
+
+        <div class="login-footer">
+            Novo por aqui? <a href="#">Assine agora.</a>
+        </div>
     </div>
 
     <script>
         function fazerLogin() {
-            // Redireciona direto para a sua tela de perfis organizada
-            window.location.href = "perfis.html";
+            // Avança direto para a tela que gerencia e mostra os perfis criados
+            window.location.href = 'perfis.html';
         }
     </script>
+
 </body>
 </html>
