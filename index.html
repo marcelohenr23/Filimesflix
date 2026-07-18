@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Filmesflix - Login</title>
     <style>
-        /* Reset para evitar margens indesejadas */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         
         body { 
@@ -16,9 +15,8 @@
             align-items: center; 
         }
 
-        /* Container que ocupa quase toda a tela, mas respeita as bordas */
         .login-box { 
-            width: 92%; /* Ocupa 92% da largura do seu celular */
+            width: 92%; 
             max-width: 400px; 
             background: #000; 
             padding: 10px;
@@ -26,21 +24,22 @@
 
         .logo { 
             color: #E50914; 
-            font-size: 2.2rem; 
+            font-size: 2.8rem; 
             font-weight: 800; 
             margin-bottom: 30px; 
             text-align: center; 
+            text-transform: uppercase;
         }
 
         input { 
             width: 100%; 
-            padding: 18px; /* Padding maior para o dedo clicar fácil */
+            padding: 18px; 
             margin-bottom: 15px; 
             background: #333; 
             border: none; 
             color: #fff; 
             border-radius: 4px; 
-            font-size: 16px; /* 16px evita que o iPhone dê zoom automático ao clicar */
+            font-size: 16px; 
         }
 
         button { 
@@ -64,18 +63,37 @@
 <body>
     <div class="login-box">
         <div class="logo">Filmesflix</div>
-        <input type="email" placeholder="Email ou número de telefone">
-        <input type="password" placeholder="Senha">
+        
+        <input type="email" id="email" placeholder="Email ou número de telefone">
+        <input type="password" id="senha" placeholder="Senha">
+        
         <button onclick="fazerLogin()">Entrar</button>
+
         <div class="options">
-            <label><input type="checkbox"> Lembrar de mim</label>
+            <label><input type="checkbox" checked> Lembrar de mim</label>
             <a href="#">Ajuda?</a>
         </div>
-        <div class="signup">Novo por aqui? <a href="#">Assine agora.</a></div>
+
+        <div class="signup">
+            Novo por aqui? <a href="cadastro.html">Assine agora.</a>
+        </div>
     </div>
 
     <script>
+        // Se o usuário já estiver logado, redireciona direto para a tela de perfis
+        if (localStorage.getItem('usuarioLogado') === 'true') {
+            window.location.href = 'perfis.html';
+        }
+
         function fazerLogin() {
+            // Verifica se a conta foi criada no cadastro.html
+            if (localStorage.getItem('contaCriada') !== 'true') {
+                alert("Você ainda não tem uma conta! Por favor, cadastre-se primeiro.");
+                window.location.href = 'cadastro.html';
+                return;
+            }
+            
+            // Se tem conta, faz o login
             localStorage.setItem('usuarioLogado', 'true');
             window.location.href = 'perfis.html';
         }
