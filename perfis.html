@@ -37,7 +37,6 @@
             letter-spacing: 1px;
         }
 
-        /* Grade de perfis */
         .perfis-grid {
             display: flex;
             justify-content: center;
@@ -63,7 +62,6 @@
             transform: scale(1.05);
         }
 
-        /* Foto do perfil */
         .avatar {
             width: 100px;
             height: 100px;
@@ -80,7 +78,6 @@
             border-color: #ffffff;
         }
 
-        /* Nome do perfil */
         .nome {
             font-size: 0.95rem;
             text-align: center;
@@ -90,7 +87,6 @@
             width: 100%;
         }
 
-        /* Botão de Adicionar Perfil (+) */
         .btn-adicionar {
             display: flex;
             justify-content: center;
@@ -108,7 +104,6 @@
             border-color: transparent;
         }
 
-        /* Botão Gerenciar Perfis lá embaixo */
         .btn-gerenciar {
             background: none;
             border: 1px solid #808080;
@@ -133,27 +128,58 @@
     <div class="container">
         <h1>Quem está assistindo?</h1>
 
-        <div class="perfis-grid">
-            <!-- Perfil Padrão Principal (Usa o primeiro bonequinho robô do link estável) -->
+        <div class="perfis-grid" id="containerPerfis">
+            
+            <!-- O Perfil Principal sempre fixo -->
             <div class="perfil-box" onclick="entrarNoSite('Principal')">
-                <div class="avatar" style="background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png');"></div>
+                <div class="avatar" style="background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg');"></div>
                 <div class="nome">Principal</div>
             </div>
 
-            <!-- Botão de Criar Novo Perfil (+) que vai para a tela adicionar.html -->
-            <a href="adicionar.html" class="perfil-box">
+            <!-- Os perfis novos que você criar vão aparecer AUTOMATICAMENTE bem aqui no meio -->
+
+            <!-- Botão fixo de Adicionar Perfil (+) -->
+            <a href="adicionar.html" class="perfil-box" id="blocoBotaoAdicionar">
                 <div class="avatar btn-adicionar">+</div>
                 <div class="nome">Adicionar perfil</div>
             </a>
         </div>
 
-        <button class="btn-gerenciar">Gerenciar perfis</button>
+        <button class="btn-gerenciar" onclick="limparPerfis()">Limpar criados</button>
     </div>
 
     <script>
+        // Função executada assim que a tela abre
+        window.onload = function() {
+            const container = document.getElementById('containerPerfis');
+            const botaoAdicionar = document.getElementById('blocoBotaoAdicionar');
+            
+            // Puxa os perfis criados salvos na memória do navegador
+            let perfisSalvos = JSON.parse(localStorage.getItem('perfisFilimesflix')) || [];
+            
+            // Desenha cada perfil novo na tela
+            perfisSalvos.forEach(perfil => {
+                const novoPerfilHtml = `
+                    <div class="perfil-box" onclick="entrarNoSite('${perfil.nome}')">
+                        <div class="avatar" style="background-image: url('${perfil.foto}');"></div>
+                        <div class="nome">${perfil.nome}</div>
+                    </div>
+                `;
+                // Insere antes do botão de "Adicionar Perfil (+)"
+                botaoAdicionar.insertAdjacentHTML('beforebegin', novoPerfilHtml);
+            });
+        };
+
         function entrarNoSite(nomePerfil) {
             alert("Entrando como " + nomePerfil + "...");
-            // Aqui futuramente você pode colocar para ir para a home do seu site (ex: home.html)
+        }
+
+        // Função extra caso queira apagar os perfis criados e começar de novo
+        function limparPerfis() {
+            if(confirm("Deseja apagar os perfis adicionais criados?")) {
+                localStorage.removeItem('perfisFilimesflix');
+                window.location.reload();
+            }
         }
     </script>
 
