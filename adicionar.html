@@ -184,7 +184,6 @@
             transform: scale(0.95);
         }
 
-        /* Seus 5 personagens aplicados de forma estável */
         .av-1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
         .av-2 { background-image: url('https://i.postimg.cc/rDh9R79D/1784404699916.png'); }
         .av-3 { background-image: url('https://i.postimg.cc/87ybfxbs/1784404700716.png'); }
@@ -195,7 +194,6 @@
 </head>
 <body>
 
-    <!-- Conteúdo Principal -->
     <div id="telaPrincipal" style="display: block;">
         <div class="header-nav">
             <a href="perfis.html" class="header-left">
@@ -219,7 +217,7 @@
         </div>
     </div>
 
-    <!-- TELA DE ESCOLHA DE ÍCONES (MODAL) -->
+    <!-- TELA DE ÍCONES -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -243,8 +241,8 @@
     </div>
 
     <script>
-        // Trava de segurança: Se tentar pular direto pra cá sem logar, joga pro login
-        if (sessionStorage.getItem('logado') !== 'true') {
+        // Trava de segurança atualizada para localStorage
+        if (localStorage.getItem('usuarioLogado') !== 'true') {
             window.location.href = 'index.html';
         }
 
