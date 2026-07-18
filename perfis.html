@@ -6,37 +6,93 @@
     <title>Filimesflix - Escolha o Perfil</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #000000; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .perfis-container { width: 100%; max-width: 600px; text-align: center; }
-        h2 { font-size: 1.8rem; color: #ffffff; margin-bottom: 2.5rem; font-weight: normal; letter-spacing: 0.5px; }
-        .grid-perfis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px 15px; justify-items: center; margin-bottom: 3rem; }
-        .avatar-box { text-decoration: none; color: #8c8c8c; display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: color 0.2s; }
-        .avatar { width: 85px; height: 85px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; font-weight: bold; color: #ffffff; margin-bottom: 12px; transition: transform 0.2s, border-color 0.2s; border: 3px solid transparent; }
+        body { background-color: #141414; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .perfis-container { width: 100%; max-width: 650px; text-align: center; }
+        h2 { font-size: 2rem; color: #ffffff; margin-bottom: 2.5rem; font-weight: normal; letter-spacing: 0.5px; }
+        .grid-perfis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px 20px; justify-items: center; margin-bottom: 3.5rem; }
+        .avatar-box { text-decoration: none; color: #8c8c8c; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        
+        /* Formato quadrado clássico com cantos suaves */
+        .avatar { width: 95px; height: 95px; border-radius: 8px; position: relative; overflow: hidden; transition: transform 0.2s; border: 3px solid transparent; }
+        
+        /* ---- DESENHOS DOS AVATARES EM CSS ---- */
+        /* Perfil Azul - Sorriso Minimalista */
         .blue { background-color: #2b7fff; }
-        .yellow { background-color: #ffc83b; color: #333; }
+        .blue::before { content: ''; position: absolute; width: 16px; height: 16px; background: #fff; border-radius: 50%; top: 30px; left: 22px; box-shadow: 32px 0 #fff; }
+        .blue::after { content: ''; position: absolute; width: 40px; height: 20px; border: 5px solid #fff; border-radius: 0 0 50px 50px; border-top: none; top: 52px; left: 28px; }
+
+        /* Perfil Amarelo - Piscadinha e Sorriso */
+        .yellow { background-color: #ffc83b; }
+        .yellow::before { content: ''; position: absolute; width: 16px; height: 16px; background: #333; border-radius: 50%; top: 30px; left: 22px; }
+        .yellow .piscada { position: absolute; width: 18px; height: 5px; background: #333; top: 36px; right: 22px; transform: rotate(-10deg); }
+        .yellow::after { content: ''; position: absolute; width: 35px; height: 15px; border: 5px solid #333; border-radius: 0 0 50px 50px; border-top: none; top: 55px; left: 30px; }
+
+        /* Perfil Vermelho - Óculos Escuros Estiloso */
         .red { background-color: #e50914; }
-        .kids { background: linear-gradient(45deg, #ff007f, #ff5e00, #00bfff); }
-        .action-btn { background-color: #222222; border: 1px dashed #555555; color: #aaaaaa; }
-        .avatar-box:hover .avatar { transform: scale(1.08); border-color: #ffffff; }
+        .red::before { content: ''; position: absolute; width: 32px; height: 18px; background: #fff; border-radius: 4px 4px 12px 12px; top: 32px; left: 14px; box-shadow: 35px 0 #fff; }
+        .red .linha-oculos { position: absolute; width: 68px; height: 5px; background: #fff; top: 32px; left: 14px; }
+        .red::after { content: ''; position: absolute; width: 30px; height: 5px; background: #fff; border-radius: 10px; top: 62px; left: 32px; }
+        
+        /* Perfil Infantil - Cores vibrantes com carinha feliz */
+        .kids { background: linear-gradient(45deg, #ff007f, #ff5e00); }
+        .kids::before { content: ''; position: absolute; width: 14px; height: 14px; background: #fff; border-radius: 50%; top: 32px; left: 24px; box-shadow: 28px 0 #fff; }
+        .kids::after { content: ''; position: absolute; width: 44px; height: 22px; border: 5px solid #fff; border-radius: 0 0 50px 50px; border-top: none; top: 50px; left: 25px; }
+
+        /* Botões de Ação (+ e Editar) */
+        .action-btn { background-color: #222222; border: 1px dashed #555555; color: #aaaaaa; display: flex; justify-content: center; align-items: center; }
+
+        /* Efeitos de Hover */
+        .avatar-box:hover .avatar { transform: scale(1.05); border-color: #ffffff; }
         .avatar-box:hover p { color: #ffffff; }
-        .avatar-box p { font-size: 0.95rem; font-weight: normal; white-space: nowrap; }
-        .btn-gerenciar { background-color: transparent; color: #8c8c8c; border: 1px solid #8c8c8c; padding: 10px 24px; font-size: 0.9rem; cursor: pointer; letter-spacing: 1px; transition: all 0.2s; }
+        .avatar-box p { font-size: 1rem; font-weight: normal; margin-top: 12px; white-space: nowrap; transition: color 0.2s; }
+
+        .btn-gerenciar { background-color: transparent; color: #8c8c8c; border: 1px solid #8c8c8c; padding: 12px 28px; font-size: 0.9rem; cursor: pointer; letter-spacing: 2px; transition: all 0.2s; margin-top: 10px; }
         .btn-gerenciar:hover { border-color: #ffffff; color: #ffffff; }
     </style>
 </head>
 <body>
+
     <div class="perfis-container">
         <h2>Quem está assistindo?</h2>
+        
         <div class="grid-perfis">
-            <a href="filmes.html" class="avatar-box"><div class="avatar blue">M</div><p>Marcelo</p></a>
-            <a href="filmes.html" class="avatar-box"><div class="avatar yellow">M</div><p>Marivania</p></a>
-            <a href="filmes.html" class="avatar-box"><div class="avatar red">M</div><p>Maria</p></a>
-            <a href="filmes.html" class="avatar-box"><div class="avatar kids" style="font-size: 1.1rem;">KIDS</div><p>Infantil</p></a>
-            <div class="avatar-box" onclick="alert('Em breve!')"><div class="avatar action-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></div><p>Adicionar</p></div>
-            <div class="avatar-box" onclick="alert('Em breve!')"><div class="avatar action-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div><p>Editar</p></div>
+            <a href="filmes.html" class="avatar-box">
+                <div class="avatar blue"></div>
+                <p>Marcelo</p>
+            </a>
+            
+            <a href="filmes.html" class="avatar-box">
+                <div class="avatar yellow"><div class="piscada"></div></div>
+                <p>Marivania</p>
+            </a>
+            
+            <a href="filmes.html" class="avatar-box">
+                <div class="avatar red"><div class="linha-oculos"></div></div>
+                <p>Maria</p>
+            </a>
+            
+            <a href="filmes.html" class="avatar-box">
+                <div class="avatar kids"></div>
+                <p>Infantil</p>
+            </a>
+
+            <div class="avatar-box" onclick="alert('Em breve!')">
+                <div class="avatar action-btn">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                </div>
+                <p>Adicionar</p>
+            </div>
+
+            <div class="avatar-box" onclick="alert('Em breve!')">
+                <div class="avatar action-btn">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                </div>
+                <p>Editar</p>
+            </div>
         </div>
+
         <button class="btn-gerenciar" onclick="alert('Em breve!')">GERENCIAR PERFIS</button>
     </div>
+
 </body>
 </html>
-
