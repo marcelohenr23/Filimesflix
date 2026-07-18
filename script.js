@@ -1,14 +1,23 @@
-// Remove a animação inicial após 3 segundos
+// Remove animação inicial
 setTimeout(() => {
     const animacao = document.getElementById('animacao');
     if (animacao) animacao.style.display = 'none';
 }, 3000);
 
-// Troca de tela ao clicar no botão "Entrar"
-function irParaHome() {
+// Vai do Login para a Seleção de Perfis
+function irParaPerfis() {
     document.getElementById('login-area').style.display = 'none';
+    document.getElementById('perfil-area').style.display = 'block';
+}
+
+// Ativa o perfil escolhido e entra na Home
+function escolherPerfil(nome) {
+    document.getElementById('perfil-area').style.display = 'none';
     document.getElementById('conteudo').style.display = 'block';
-    window.scrollTo(0, 0); // Garante que comece do topo da página de filmes
+    
+    // Escreve o nome do perfil ativo lá no topo da home
+    document.getElementById('nome-perfil-ativo').innerText = "Perfil: " + nome;
+    window.scrollTo(0, 0);
 }
 
 // Desbloqueia os canais ao vivo
