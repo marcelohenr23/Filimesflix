@@ -5,20 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filimesflix</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Ícones oficiais para o botão do Google -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <!-- ANIMAÇÃO INICIAL -->
     <div class="intro" id="animacao">FILIMESFLIX</div>
 
-    <!-- TELA DE LOGIN -->
+    <!-- TELA DE LOGIN ESTILIZADA -->
     <div id="login-area">
         <h1 class="logo-texto">FILIMESFLIX</h1>
         <h2>Faça login ou crie uma conta</h2>
-        <button class="btn-google">Login com Google</button>
-        <p class="divisor">ou</p>
-        <input type="email" placeholder="Email"><br>
-        <input type="password" placeholder="Senha"><br>
+        
+        <!-- Botão no formato oficial do Google -->
+        <button class="btn-google" onclick="alert('Login com Google acionado!')">
+            <i class="fab fa-google"></i> Fazer login com o Google
+        </button>
+        
+        <div class="divisor">
+            <span>ou</span>
+        </div>
+        
+        <input type="email" placeholder="E-mail">
+        <input type="password" placeholder="Senha">
+        
         <button class="btn-entrar" onclick="irParaHome()">Entrar</button>
     </div>
 
@@ -38,7 +49,7 @@
                 </div>
                 <div class="card-filme">
                     <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400" alt="Filme 2">
-                    <h3>Batman: O Cavaleiro das Trevas</h3>
+                    <h3>Batman</h3>
                 </div>
                 <div class="card-filme">
                     <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="Filme 3">
@@ -51,7 +62,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO PRIVADA DE CANAIS AO VIVO (ROLANDO PARA BAIXO) -->
+        <!-- SEÇÃO PRIVADA DE CANAIS -->
         <section class="secao-privada">
             <h2>🔒 Canais ao Vivo (Privado)</h2>
             <p class="aviso-privado">Disponível apenas para assinantes Premium</p>
@@ -64,14 +75,6 @@
                 <div class="card-canal" id="c2">
                     <div class="icone-play">🔒</div>
                     <h3>TNT Sports</h3>
-                </div>
-                <div class="card-canal" id="c3">
-                    <div class="icone-play">🔒</div>
-                    <h3>HBO Plus</h3>
-                </div>
-                <div class="card-canal" id="c4">
-                    <div class="icone-play">🔒</div>
-                    <h3>Telecine Action</h3>
                 </div>
             </div>
             
