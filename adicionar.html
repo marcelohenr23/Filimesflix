@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* Barra superior */
         .header-nav {
             display: flex;
             justify-content: space-between;
@@ -54,7 +53,6 @@
             cursor: pointer;
         }
 
-        /* Conteúdo principal */
         .main-content {
             flex: 1;
             width: 100%;
@@ -66,7 +64,6 @@
             align-items: center;
         }
 
-        /* Área do Avatar */
         .avatar-container {
             position: relative;
             margin-bottom: 35px;
@@ -79,7 +76,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); /* Novo padrão inicial melhorado */
+            background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); 
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -101,7 +98,6 @@
             z-index: 10;
         }
 
-        /* Campo de Texto */
         .input-box {
             width: 100%;
             margin-bottom: 30px;
@@ -119,7 +115,6 @@
         input[type="text"]::placeholder { color: #8c8c8c; }
         input[type="text"]:focus { outline: none; background: #333333; }
 
-        /* ================= TELA DE ESCOLHER ÍCONE (MODAL) ================= */
         .modal-icones {
             position: fixed;
             top: 0;
@@ -188,7 +183,6 @@
             transform: scale(0.95);
         }
 
-        /* Seus 5 novos links atualizados nos quadradinhos */
         .av-1 { background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); }
         .av-2 { background-image: url('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg'); }
         .av-3 { background-image: url('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg'); }
@@ -199,7 +193,6 @@
 </head>
 <body>
 
-    <!-- Conteúdo Principal -->
     <div id="telaPrincipal" style="display: block;">
         <div class="header-nav">
             <a href="perfis.html" class="header-left">
@@ -223,7 +216,6 @@
         </div>
     </div>
 
-    <!-- ================= TELA DE ESCOLHA DE ÍCONES (MODAL) ================= -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -236,7 +228,6 @@
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
-                    <!-- Cliques configurados para repassar as novas imagens de alta qualidade -->
                     <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg')"></div>
                     <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg')"></div>
                     <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg')"></div>
@@ -248,6 +239,9 @@
     </div>
 
     <script>
+        // Guarda a URL da imagem selecionada (começa com o primeiro boneco por padrão)
+        let imagemSelecionada = 'https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg';
+
         function abrirModal() {
             document.getElementById('telaPrincipal').style.display = 'none';
             document.getElementById('modalIcones').style.display = 'flex';
@@ -259,6 +253,7 @@
         }
 
         function selecionarAvatar(urlImagem) {
+            imagemSelecionada = urlImagem;
             const preview = document.getElementById('preview');
             preview.style.backgroundImage = "url('" + urlImagem + "')";
             fecharModal();
@@ -270,7 +265,19 @@
                 alert("Por favor, digite um nome para o perfil.");
                 return;
             }
-            alert("Perfil '" + nome + "' criado com sucesso!");
+
+            // Pega a lista de perfis que já existem ou cria uma vazia
+            let perfisSalvos = JSON.parse(localStorage.getItem('perfisFilimesflix')) || [];
+            
+            // Adiciona o novo perfil criado na lista
+            perfisSalvos.push({
+                nome: nome,
+                foto: imagemSelecionada
+            });
+
+            // Grava de volta na memória do navegador
+            localStorage.setItem('perfisFilimesflix', JSON.stringify(perfisSalvos));
+
             window.location.href = 'perfis.html';
         }
     </script>
