@@ -80,6 +80,8 @@
             position: relative; 
             overflow: hidden;
             background-color: #2b7fff;
+            background-size: cover;
+            background-position: center;
         }
 
         /* Desenho do rostinho padrão em CSS */
@@ -104,17 +106,6 @@
             border-top: none; 
             top: 60px; 
             left: 33px; 
-        }
-
-        /* Estilo para quando for um emoji grande */
-        .avatar-emoji {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 4.5rem;
-            background: #222;
         }
 
         .badge-lapis {
@@ -159,7 +150,7 @@
             height: 100%;
             background-color: #000000;
             z-index: 1000;
-            display: none; /* Escondido por padrão */
+            display: none; 
             flex-direction: column;
             overflow-y: auto;
             padding: 20px;
@@ -210,13 +201,15 @@
             cursor: pointer;
             overflow: hidden;
             position: relative;
+            background-size: cover;
+            background-position: center;
             border: 2px solid transparent;
         }
         .icone-opcao:active {
             transform: scale(0.95);
         }
 
-        /* Cores dos clássicos do modal */
+        /* Cores dos clássicos */
         .c-blue { background-color: #2b7fff; }
         .c-yellow { background-color: #ffc83b; }
         .c-red { background-color: #e50914; }
@@ -225,7 +218,7 @@
 </head>
 <body>
 
-    <!-- Conteúdo Principal (Adicionar Perfil) -->
+    <!-- Conteúdo Principal -->
     <div id="telaPrincipal">
         <div class="header-nav">
             <a href="perfis.html" class="header-left">
@@ -236,7 +229,6 @@
         </div>
 
         <div class="main-content">
-            <!-- Clicar aqui abre a seleção de ícones -->
             <div class="avatar-container" onclick="abrirModal()">
                 <div class="avatar-preview rostinho" id="preview"></div>
                 <div class="badge-lapis">
@@ -250,7 +242,7 @@
         </div>
     </div>
 
-    <!-- ================= TELA DE ESCOLHA DE ÍCONES ================= -->
+    <!-- ================= TELA DE ESCOLA DE ÍCONES (MODAL) ================= -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -271,33 +263,27 @@
                 </div>
             </div>
 
-            <!-- Categoria 2 (Seu universo criativo exclusivo!) -->
+            <!-- Categoria 2 - Personagens 3D Estilo Cinema -->
             <div>
-                <p class="categoria-titulo">Turma do Jacão</p>
+                <p class="categoria-titulo">Personagens 3D (Cinema)</p>
                 <div class="grid-icones">
-                    <!-- Lápis Tatuado -->
-                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '✏️')">
-                        <div class="avatar-emoji">✏️</div>
-                    </div>
-                    <!-- Jaca -->
-                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🍈')">
-                        <div class="avatar-emoji">🍈</div>
-                    </div>
-                    <!-- Coco -->
-                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🥥')">
-                        <div class="avatar-emoji">🥥</div>
-                    </div>
-                    <!-- Melancia -->
-                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🍉')">
-                        <div class="avatar-emoji">🍉</div>
-                    </div>
+                    <!-- Astronauta 3D -->
+                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200\')', false, '')"></div>
+                    
+                    <!-- Monstrinho de Animação 3D -->
+                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=200\')', false, '')"></div>
+                    
+                    <!-- Balde de Pipoca Cinema 3D -->
+                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=200\')', false, '')"></div>
+                    
+                    <!-- Robô Futurista 3D -->
+                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=200\')', false, '')"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Funções para controlar a abertura da tela de ícones
         function abrirModal() {
             document.getElementById('telaPrincipal').style.display = 'none';
             document.getElementById('modalIcones').style.display = 'flex';
@@ -308,18 +294,17 @@
             document.getElementById('telaPrincipal').style.display = 'block';
         }
 
-        // Aplica o ícone escolhido de volta na tela de criação
-        function selecionarEstilo(background, ehRostinho, emoji) {
+        function selecionarEstilo(backgroundVal, ehRostinho) {
             const preview = document.getElementById('preview');
             
             if (ehRostinho) {
                 preview.className = "avatar-preview rostinho";
-                preview.style.background = background;
-                preview.innerHTML = "";
+                preview.style.background = backgroundVal;
+                preview.style.backgroundImage = "none";
             } else {
                 preview.className = "avatar-preview";
-                preview.style.background = "#222222";
-                preview.innerHTML = `<div class="avatar-emoji">${emoji}</div>`;
+                preview.style.background = "none";
+                preview.style.backgroundImage = backgroundVal;
             }
             
             fecharModal();
