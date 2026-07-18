@@ -2,26 +2,47 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Filimesflix</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; touch-action: manipulation; }
         body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
 
-        /* Tela de Carregamento Segura (Sumiço Total Definitivo) */
-        #tela-carregamento-fixa { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; pointer-events: none; }
-
-        /* Login */
-        #login-area { width: 90%; max-width: 380px; margin: 60px auto; padding: 30px 20px; background: #141414; border-radius: 8px; border: 1px solid #222; text-align: center; position: relative; z-index: 10; }
+        /* Login - Forçando visibilidade e cliques */
+        #login-area { 
+            width: 92%; 
+            max-width: 380px; 
+            margin: 40px auto; 
+            padding: 30px 20px; 
+            background: #141414; 
+            border-radius: 8px; 
+            border: 1px solid #222; 
+            text-align: center; 
+            position: relative; 
+            z-index: 9999 !important;
+        }
         .logo-texto { color: #e50914; font-size: 2.3rem; margin-bottom: 10px; font-weight: 900; }
         #login-area h2 { font-size: 1.1rem; color: #aaa; font-weight: 400; margin-bottom: 25px; }
         
-        /* Forçando botões a aceitarem clique em qualquer celular */
-        .btn-google, .btn-entrar { width: 100%; padding: 14px; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; border: none; display: block; position: relative; z-index: 50; pointer-events: auto !important; }
-        .btn-google { background: #ffffff; color: #1f1f1f; border: 1px solid #747775; margin-bottom: 5px; font-weight: 500; }
+        /* Botões ultra responsivos ao toque */
+        .btn-google, .btn-entrar { 
+            width: 100%; 
+            padding: 16px; 
+            border-radius: 4px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: none; 
+            display: block; 
+            position: relative; 
+            z-index: 99999 !important; 
+            pointer-events: auto !important;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+        .btn-google { background: #ffffff; color: #1f1f1f; border: 1px solid #747775; margin-bottom: 12px; font-weight: 500; }
         .btn-google i { color: #4285F4; margin-right: 8px; }
-        .btn-entrar { background: #e50914; color: white; }
+        .btn-entrar { background: #e50914; color: white; margin-top: 12px; }
 
         .divisor { margin: 20px 0; display: flex; align-items: center; text-align: center; color: #666; }
         .divisor::before, .divisor::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
@@ -29,8 +50,8 @@
         input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #333; background: #232323; color: white; font-size: 1rem; }
 
         /* TELA DE PERFIS */
-        #perfil-area { position: relative; min-height: 100vh; background: #141414; overflow-x: hidden; }
-        .banner-perfil { width: 100%; height: 45vh; background-image: url('https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=800'); background-size: cover; background-position: center top; position: relative; }
+        #perfil-area { position: relative; min-height: 100vh; background: #141414; }
+        .banner-perfil { width: 100%; height: 40vh; background-image: url('https://images.unsplash.com/photo-1533928298208-27ff66555d8d?w=800'); background-size: cover; background-position: center top; position: relative; }
         .banner-gradiente { position: absolute; width: 100%; height: 100%; background: linear-gradient(to top, #141414 10%, rgba(20,20,20,0.4) 60%, rgba(0,0,0,0.8)); }
         .banner-info { position: absolute; bottom: 20px; left: 20px; text-align: left; z-index: 2; }
         .tag-netflix { color: #e50914; font-size: 0.7rem; font-weight: bold; letter-spacing: 2px; }
@@ -40,7 +61,8 @@
         .container-perfis { padding: 20px; text-align: center; position: relative; z-index: 5; margin-top: -15px; }
         .titulo-perfil { font-size: 1.1rem; color: #fff; margin-bottom: 20px; font-weight: 500; }
         .grid-perfis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 360px; margin: 0 auto; }
-        .card-perfil { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        
+        .card-perfil { display: flex; flex-direction: column; align-items: center; cursor: pointer; pointer-events: auto !important; position: relative; z-index: 999; }
         .card-perfil span { font-size: 0.85rem; color: #aaa; margin-top: 8px; text-align: center; }
 
         .avatar { width: 75px; height: 75px; border-radius: 8px; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
@@ -60,20 +82,19 @@
         /* TELA ADICIONAR PERFIL */
         #add-perfil-area { background: #000; min-height: 100vh; padding: 20px; display: none; }
         .topo-add { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; font-size: 1.2rem; }
-        .topo-add i { cursor: pointer; font-size: 1.4rem; }
-        .btn-salvar { color: #444; font-weight: bold; cursor: pointer; font-size: 1rem; border: none; background: none; transition: color 0.2s; }
+        .topo-add i { cursor: pointer; font-size: 1.4rem; padding: 10px; }
+        .btn-salvar { color: #444; font-weight: bold; cursor: pointer; font-size: 1rem; border: none; background: none; }
         .btn-salvar.ativo { color: #fff; }
         
         .avatar-container-add { display: flex; justify-content: center; position: relative; margin-bottom: 30px; }
-        .avatar-add { width: 110px; height: 110px; border-radius: 8px; background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); position: relative; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; }
+        .avatar-add { width: 110px; height: 110px; border-radius: 8px; background: #2c5364; position: relative; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; }
         .avatar-add .olhos { top: 45px; width: 55px; }
         .avatar-add .olhos::before, .avatar-add .olhos::after { width: 10px; height: 10px; }
         .avatar-add .sorriso { bottom: 30px; width: 50px; height: 20px; border-bottom-width: 6px; }
-        .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.5); cursor: pointer; z-index: 10; }
+        .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; cursor: pointer; z-index: 10; }
 
         .input-add { background: #262626; border: none; border-radius: 4px; padding: 16px; color: #fff; font-size: 1.1rem; width: 100%; margin-bottom: 25px; }
-        
-        .box-kids { background: #1a1a1a; padding: 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
+        .box-kids { background: #1a1a1a; padding: 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }
         .box-kids-texto h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
         .box-kids-texto p { font-size: 0.85rem; color: #737373; line-height: 1.3; }
         
@@ -85,19 +106,19 @@
         input:checked + .slider:before { transform: translateX(20px); background-color: #000; }
 
         /* TELA ESCOLHA UM ÍCONE */
-        #escolha-icone-area { background: #000; min-height: 100vh; padding: 20px; display: none; text-align: left; }
+        #escolha-icone-area { background: #000; min-height: 100vh; padding: 20px; display: none; }
         .topo-icones { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; font-size: 1.2rem; font-weight: bold; }
-        .topo-icones i { cursor: pointer; font-size: 1.4rem; }
+        .topo-icones i { cursor: pointer; font-size: 1.4rem; padding: 10px; }
         .categoria-titulo { font-size: 0.85rem; font-weight: 900; color: #00aaff; letter-spacing: 1px; margin: 25px 0 12px 0; text-transform: uppercase; }
         .categoria-titulo.laranja { color: #ff8800; }
-        .grid-icones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
+        .grid-icones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .box-icone-opcao { aspect-ratio: 1; border-radius: 6px; overflow: hidden; cursor: pointer; background-size: cover; background-position: center; background-color: #111; }
 
         /* Layout da Home */
         #conteudo { width: 100%; background: #141414; min-height: 100vh; }
         header { background: #000; padding: 15px; border-bottom: 1px solid #222; }
         .header-logo { color: #e50914; font-weight: 900; font-size: 1.5rem; }
-        .secao { padding: 20px; text-align: left; }
+        .secao { padding: 20px; }
         .secao h2, .secao-privada h2 { font-size: 1.3rem; margin-bottom: 15px; }
         .grid-filmes { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card-filme { background: #222; border-radius: 6px; overflow: hidden; }
@@ -105,7 +126,7 @@
         .card-filme h3 { font-size: 0.85rem; margin: 8px; text-align: center; }
 
         /* Canais */
-        .secao-privada { padding: 25px 20px; background: #0a0a0a; border-top: 2px solid #222; text-align: left; }
+        .secao-privada { padding: 25px 20px; background: #0a0a0a; border-top: 2px solid #222; }
         .aviso-privado { color: #e50914; font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px; }
         .grid-canais { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .card-canal { background: #1f1f1f; border-radius: 6px; padding: 20px; text-align: center; border: 1px solid #333; }
@@ -115,15 +136,13 @@
 </head>
 <body>
 
-    <!-- 1. ANIMAÇÃO INICIAL REFORÇADA -->
-    <div id="tela-carregamento-fixa">FILIMESFLIX</div>
-
-    <!-- 2. TELA DE LOGIN -->
+    <!-- TELA DE LOGIN (Sem tela de carregamento para evitar travar por cima) -->
     <div id="login-area">
         <h1 class="logo-texto">FILIMESFLIX</h1>
         <h2>Faça login ou crie uma conta</h2>
         
-        <button class="btn-google" type="button" onclick="irParaPerfis()">
+        <!-- Clique direto com gatilho duplo (onclick + ontouchstart) -->
+        <button class="btn-google" type="button" onclick="irParaPerfis()" ontouchstart="irParaPerfis()">
             <i class="fab fa-google"></i> Fazer login com o Google
         </button>
         
@@ -131,10 +150,10 @@
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Senha">
         
-        <button class="btn-entrar" type="button" onclick="irParaPerfis()">Entrar</button>
+        <button class="btn-entrar" type="button" onclick="irParaPerfis()" ontouchstart="irParaPerfis()">Entrar</button>
     </div>
 
-    <!-- 3. TELA DE SELEÇÃO DE PERFIL -->
+    <!-- TELA DE SELEÇÃO DE PERFIL -->
     <div id="perfil-area" style="display: none;">
         <div class="banner-perfil">
             <div class="banner-gradiente"></div>
@@ -147,60 +166,50 @@
         <div class="container-perfis">
             <p class="titulo-perfil">Quem está assistindo?</p>
             <div class="grid-perfis" id="lista-de-perfis">
-                <div class="card-perfil" onclick="entrarNoCatalogo('Marcelo')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marcelo')" ontouchstart="entrarNoCatalogo('Marcelo')">
                     <div class="avatar azul"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marcelo</span>
                 </div>
-                <div class="card-perfil" onclick="entrarNoCatalogo('Marivania')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marivania')" ontouchstart="entrarNoCatalogo('Marivania')">
                     <div class="avatar amarelo"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marivania</span>
                 </div>
-                <div class="card-perfil" onclick="entrarNoCatalogo('Maria')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Maria')" ontouchstart="entrarNoCatalogo('Maria')">
                     <div class="avatar vermelho"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Maria</span>
                 </div>
-                <div class="card-perfil" onclick="entrarNoCatalogo('Infantil')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Infantil')" ontouchstart="entrarNoCatalogo('Infantil')">
                     <div class="avatar infantil"><span>Infantil</span></div>
                     <span>Infantil</span>
                 </div>
                 
-                <div class="card-perfil" onclick="abrirTelaAdicionarPerfil()">
+                <div class="card-perfil" onclick="abrirTelaAdicionarPerfil()" ontouchstart="abrirTelaAdicionarPerfil()">
                     <div class="avatar cinza"><i class="fa-solid fa-plus"></i></div>
                     <span>Adicionar</span>
-                </div>
-                
-                <div class="card-perfil">
-                    <div class="avatar cinza"><i class="fa-solid fa-pencil"></i></div>
-                    <span>Editar</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 3.5 TELA ADICIONAR PERFIL -->
+    <!-- TELA ADICIONAR PERFIL -->
     <div id="add-perfil-area">
         <div class="topo-add">
             <i class="fa-solid fa-arrow-left" onclick="voltarParaPerfis()"></i>
             <span>Adicionar perfil</span>
             <button class="btn-salvar" id="botao-salvar" onclick="salvarNovoPerfil()">Salvar</button>
         </div>
-
         <div class="avatar-container-add">
             <div class="avatar-add" id="avatar-preview-novo" onclick="abrirEscolhaIcone()">
                 <div class="olhos" id="olhos-preview"></div>
                 <div class="sorriso" id="sorriso-preview"></div>
-                <div class="badge-editar">
-                    <i class="fa-solid fa-pencil"></i>
-                </div>
+                <div class="badge-editar"><i class="fa-solid fa-pencil"></i></div>
             </div>
         </div>
-
         <input type="text" class="input-add" id="novo-nome-perfil" placeholder="Nome do perfil" oninput="validarInput(this)">
-
         <div class="box-kids">
             <div class="box-kids-texto">
                 <h3>Perfil para crianças</h3>
-                <p>Feito para crianças de até 12 anos, mas com o controle total dos pais.</p>
+                <p>Controle total dos pais.</p>
             </div>
             <label class="switch">
                 <input type="checkbox" id="check-infantil">
@@ -209,71 +218,46 @@
         </div>
     </div>
 
-    <!-- 3.6 TELA SELEÇÃO DE ÍCONES -->
+    <!-- TELA SELEÇÃO DE ÍCONES -->
     <div id="escolha-icone-area">
         <div class="topo-icones">
             <i class="fa-solid fa-arrow-left" onclick="fecharEscolhaIcone()"></i>
             <span>Escolha um ícone</span>
         </div>
-
-        <div class="categoria-titulo">Série: Elementos Frutais</div>
+        <div class="categoria-titulo">Série: Frutas</div>
         <div class="grid-icones">
             <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')"></div>
             <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150')"></div>
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=150')"></div>
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')"></div>
-        </div>
-
-        <div class="categoria-titulo laranja">Série: Cyber-Animais e Arte</div>
-        <div class="grid-icones">
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')"></div>
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150')"></div>
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150')"></div>
-            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150')"></div>
         </div>
     </div>
 
-    <!-- 4. TELA PRINCIPAL -->
+    <!-- TELA PRINCIPAL -->
     <div id="conteudo" style="display: none;">
         <header>
             <span class="header-logo">FILIMESFLIX</span>
-            <span id="nome-perfil-ativo" style="float: right; color: #aaa; font-size: 0.9rem; margin-top: 5px;"></span>
+            <span id="nome-perfil-ativo" style="float: right; color: #aaa;"></span>
         </header>
         <section class="secao">
             <h2>Filmes Populares</h2>
             <div class="grid-filmes">
                 <div class="card-filme"><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400" alt="1"><h3>Interestelar</h3></div>
                 <div class="card-filme"><img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400" alt="2"><h3>Batman</h3></div>
-                <div class="card-filme"><img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400" alt="3"><h3>Vingadores</h3></div>
-                <div class="card-filme"><img src="https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?w=400" alt="4"><h3>Invocação do Mal</h3></div>
             </div>
         </section>
         <section class="secao-privada">
             <h2>🔒 Canais ao Vivo (Privado)</h2>
-            <p class="aviso-privado">Disponível apenas para assinantes Premium</p>
-            <div class="grid-canais bloqueado">
-                <div class="card-canal" id="c1"><div class="icone-play">🔒</div><h3>Globo AO VIVO</h3></div>
-                <div class="card-canal" id="c2"><div class="icone-play">🔒</div><h3>TNT Sports</h3></div>
-            </div>
-            <button class="btn-assinar" id="btn-premium" onclick="ativarPremium()">Assinar para desbloquear canais</button>
+            <p class="aviso-privado">Premium Requerido</p>
+            <button class="btn-assinar" onclick="ativarPremium()">Assinar para desbloquear</button>
         </section>
     </div>
 
     <script>
         let imagemSelecionadaTemporaria = "";
 
-        // Deleta a tela preta de carregamento após 2.5 segundos de forma agressiva
-        setTimeout(function() {
-            var box = document.getElementById('tela-carregamento-fixa');
-            if(box) {
-                box.parentNode.removeChild(box);
-            }
-        }, 2500);
-
-        // Nome de função alterado para limpar qualquer cache antigo do celular
         function irParaPerfis() {
             document.getElementById('login-area').style.display = 'none';
             document.getElementById('perfil-area').style.display = 'block';
+            window.scrollTo(0, 0);
         }
 
         function entrarNoCatalogo(nomeDoPerfil) {
@@ -286,15 +270,6 @@
         function abrirTelaAdicionarPerfil() {
             document.getElementById('perfil-area').style.display = 'none';
             document.getElementById('add-perfil-area').style.display = 'block';
-            document.getElementById('novo-nome-perfil').value = "";
-            document.getElementById('check-infantil').checked = false;
-            document.getElementById('botao-salvar').classList.remove('ativo');
-            
-            imagemSelecionadaTemporaria = "";
-            const preview = document.getElementById('avatar-preview-novo');
-            preview.style.backgroundImage = "none";
-            document.getElementById('olhos-preview').style.display = "flex";
-            document.getElementById('sorriso-preview').style.display = "block";
         }
 
         function voltarParaPerfis() {
@@ -303,4 +278,45 @@
         }
 
         function abrirEscolhaIcone() {
-            document.getElementById(
+            document.getElementById('add-perfil-area').style.display = 'none';
+            document.getElementById('escolha-icone-area').style.display = 'block';
+        }
+
+        function fecharEscolhaIcone() {
+            document.getElementById('escolha-icone-area').style.display = 'none';
+            document.getElementById('add-perfil-area').style.display = 'block';
+        }
+
+        function selecionarIcone(urlImagem) {
+            imagemSelecionadaTemporaria = urlImagem;
+            const preview = document.getElementById('avatar-preview-novo');
+            preview.style.backgroundImage = "url('" + urlImagem + "')";
+            document.getElementById('olhos-preview').style.display = "none";
+            document.getElementById('sorriso-preview').style.display = "none";
+            fecharEscolhaIcone();
+        }
+
+        function validarInput(input) {
+            const btn = document.getElementById('botao-salvar');
+            if (input.value.trim().length > 0) { btn.classList.add('ativo'); } 
+            else { btn.classList.remove('ativo'); }
+        }
+
+        function salvarNovoPerfil() {
+            const nomeInput = document.getElementById('novo-nome-perfil').value.trim();
+            if (nomeInput === "") return;
+            const grid = document.getElementById('lista-de-perfis');
+            const novoCard = document.createElement('div');
+            novoCard.className = 'card-perfil';
+            novoCard.onclick = function() { entrarNoCatalogo(nomeInput); };
+            novoCard.innerHTML = '<div class="avatar azul"><div class="olhos"></div><div class="sorriso"></div></div><span>' + nomeInput + '</span>';
+            grid.insertBefore(novoCard, grid.children[grid.children.length - 1]);
+            voltarParaPerfis();
+        }
+
+        function ativarPremium() {
+            alert("Premium Ativado!");
+        }
+    </script>
+</body>
+</html>
