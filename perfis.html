@@ -113,7 +113,7 @@
             color: #ffffff;
         }
 
-        /* Imagens padrão do sistema estáveis */
+        /* Imagem padrão */
         .p1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
     </style>
 </head>
@@ -140,8 +140,8 @@
     <button class="btn-gerenciar">Gerenciar perfis</button>
 
     <script>
-        // Trava de segurança: Se tentar pular direto pra cá sem logar, joga pro login
-        if (sessionStorage.getItem('logado') !== 'true') {
+        // Trava de segurança atualizada para localStorage
+        if (localStorage.getItem('usuarioLogado') !== 'true') {
             window.location.href = 'index.html';
         }
 
