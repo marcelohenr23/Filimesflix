@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filimesflix - Quem está assistindo?</title>
+    <title>Filmesflix - Quem está assistindo?</title>
     <style>
         * {
             margin: 0;
@@ -23,26 +23,21 @@
             padding: 20px;
         }
 
-        .container {
-            text-align: center;
-            max-width: 800px;
-            width: 100%;
-        }
-
         h1 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 40px;
+            font-size: 1.8rem;
             font-weight: normal;
-            letter-spacing: 1px;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
 
-        .perfis-grid {
+        .perfis-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            max-width: 600px;
+            width: 100%;
             margin-bottom: 50px;
         }
 
@@ -50,136 +45,108 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: #808080;
-            width: 120px;
+            gap: 12px;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .perfil-box:hover {
-            color: #ffffff;
-            transform: scale(1.05);
+            text-decoration: none;
+            color: inherit;
+            width: 100px;
         }
 
         .avatar {
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
             border-radius: 8px;
             background-size: cover;
             background-position: center;
-            border: 3px solid transparent;
-            margin-bottom: 12px;
-            transition: border-color 0.2s;
-            background-color: #222;
+            border: 2px solid transparent;
+            transition: border-color 0.2s, transform 0.2s;
         }
 
-        .perfil-box:hover .avatar {
+        .perfil-box:active .avatar {
+            transform: scale(0.95);
             border-color: #ffffff;
         }
 
-        .nome {
-            font-size: 0.95rem;
+        .perfil-nome {
+            font-size: 0.9rem;
+            color: #808080;
             text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            width: 100%;
+            transition: color 0.2s;
         }
 
+        .perfil-box:active .perfil-nome {
+            color: #ffffff;
+        }
+
+        /* Botão Adicionar Perfil */
         .btn-adicionar {
+            width: 90px;
+            height: 90px;
+            border-radius: 8px;
+            border: 2px dashed #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #141414;
+            color: #333;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .perfil-box:active .btn-adicionar {
+            border-color: #808080;
             color: #808080;
-            font-size: 3.5rem;
-            font-weight: 300;
-            transition: background-color 0.2s, color 0.2s;
         }
 
-        .perfil-box:hover .btn-adicionar {
-            background-color: #cccccc;
-            color: #000000;
-            border-color: transparent;
-        }
-
+        /* Botão de Gerenciar lá embaixo */
         .btn-gerenciar {
             background: none;
             border: 1px solid #808080;
             color: #808080;
             padding: 10px 24px;
             font-size: 0.9rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
             transition: border-color 0.2s, color 0.2s;
-            margin-top: 20px;
         }
 
-        .btn-gerenciar:hover {
+        .btn-gerenciar:active {
             border-color: #ffffff;
             color: #ffffff;
         }
+
+        /* Imagens padrão do sistema estáveis */
+        .p1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Quem está assistindo?</h1>
+    <h1>Quem está assistindo?</h1>
 
-        <div class="perfis-grid" id="containerPerfis">
-            
-            <!-- O Perfil Principal sempre fixo -->
-            <div class="perfil-box" onclick="entrarNoSite('Principal')">
-                <div class="avatar" style="background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg');"></div>
-                <div class="nome">Principal</div>
-            </div>
-
-            <!-- Os perfis novos que você criar vão aparecer AUTOMATICAMENTE bem aqui no meio -->
-
-            <!-- Botão fixo de Adicionar Perfil (+) -->
-            <a href="adicionar.html" class="perfil-box" id="blocoBotaoAdicionar">
-                <div class="avatar btn-adicionar">+</div>
-                <div class="nome">Adicionar perfil</div>
-            </a>
+    <div class="perfis-container">
+        <!-- Perfil Padrão -->
+        <div class="perfil-box" onclick="entrarNoSite('Usuário')">
+            <div class="avatar p1"></div>
+            <div class="perfil-nome">Usuário</div>
         </div>
 
-        <button class="btn-gerenciar" onclick="limparPerfis()">Limpar criados</button>
+        <!-- Botão para Criar Novo Perfil -->
+        <a href="adicionar.html" class="perfil-box">
+            <div class="btn-adicionar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            </div>
+            <div class="perfil-nome">Adicionar</div>
+        </a>
     </div>
 
+    <button class="btn-gerenciar">Gerenciar perfis</button>
+
     <script>
-        // Função executada assim que a tela abre
-        window.onload = function() {
-            const container = document.getElementById('containerPerfis');
-            const botaoAdicionar = document.getElementById('blocoBotaoAdicionar');
-            
-            // Puxa os perfis criados salvos na memória do navegador
-            let perfisSalvos = JSON.parse(localStorage.getItem('perfisFilimesflix')) || [];
-            
-            // Desenha cada perfil novo na tela
-            perfisSalvos.forEach(perfil => {
-                const novoPerfilHtml = `
-                    <div class="perfil-box" onclick="entrarNoSite('${perfil.nome}')">
-                        <div class="avatar" style="background-image: url('${perfil.foto}');"></div>
-                        <div class="nome">${perfil.nome}</div>
-                    </div>
-                `;
-                // Insere antes do botão de "Adicionar Perfil (+)"
-                botaoAdicionar.insertAdjacentHTML('beforebegin', novoPerfilHtml);
-            });
-        };
+        // Trava de segurança: Se tentar pular direto pra cá sem logar, joga pro login
+        if (sessionStorage.getItem('logado') !== 'true') {
+            window.location.href = 'index.html';
+        }
 
         function entrarNoSite(nomePerfil) {
             alert("Entrando como " + nomePerfil + "...");
-        }
-
-        // Função extra caso queira apagar os perfis criados e começar de novo
-        function limparPerfis() {
-            if(confirm("Deseja apagar os perfis adicionais criados?")) {
-                localStorage.removeItem('perfisFilimesflix');
-                window.location.reload();
-            }
         }
     </script>
 
