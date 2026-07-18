@@ -79,7 +79,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); /* Padrão inicial */
+            background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); /* Primeiro boneco padrão inicial */
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -128,7 +128,7 @@
             height: 100%;
             background-color: #000000;
             z-index: 1000;
-            display: none; /* GARANTE QUE COMEÇA ESCONDIDO */
+            display: none; 
             flex-direction: column;
             overflow-y: auto;
             padding: 20px;
@@ -188,7 +188,7 @@
             transform: scale(0.95);
         }
 
-        /* Seus personagens 3D */
+        /* Seus 5 personagens aplicados nos blocos usando os links diretos */
         .av-1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
         .av-2 { background-image: url('https://i.postimg.cc/rDh9R79D/1784404699916.png'); }
         .av-3 { background-image: url('https://i.postimg.cc/87ybfxbs/1784404700716.png'); }
@@ -199,7 +199,7 @@
 </head>
 <body>
 
-    <!-- Conteúdo Principal (Começa VISÍVEL) -->
+    <!-- Conteúdo Principal -->
     <div id="telaPrincipal" style="display: block;">
         <div class="header-nav">
             <a href="perfis.html" class="header-left">
@@ -210,7 +210,6 @@
         </div>
 
         <div class="main-content">
-            <!-- Clicar aqui abre a lista de ícones -->
             <div class="avatar-container" onclick="abrirModal()">
                 <div class="avatar-preview" id="preview"></div>
                 <div class="badge-lapis">
@@ -224,7 +223,7 @@
         </div>
     </div>
 
-    <!-- ================= TELA DE ESCOLHA DE ÍCONES (MODAL - Começa ESCONDIDO) ================= -->
+    <!-- ================= TELA DE ESCOLHA DE ÍCONES (MODAL) ================= -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -237,6 +236,7 @@
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
+                    <!-- Cada quadradinho envia o link direto correto para trocar a foto principal -->
                     <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/sMnJGbJx/1784404694570.png')"></div>
                     <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/rDh9R79D/1784404699916.png')"></div>
                     <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/87ybfxbs/1784404700716.png')"></div>
@@ -260,6 +260,7 @@
 
         function selecionarAvatar(urlImagem) {
             const preview = document.getElementById('preview');
+            // Altera o plano de fundo dinamicamente usando a URL da imagem clicada
             preview.style.backgroundImage = "url('" + urlImagem + "')";
             fecharModal();
         }
