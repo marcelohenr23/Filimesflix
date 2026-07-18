@@ -85,17 +85,16 @@
 
 
         /* ==========================================================================
-           NOVA INTERFACE INFANTIL PREMIUM (ESTILO NETFLIX COM ROXO NEON)
+           INTERFACE INFANTIL PREMIUM (ESTILO NETFLIX COM ROXO NEON)
            ========================================================================== */
         #conteudo-infantil { 
             width: 100%; 
             background: linear-gradient(to bottom, #190b2b 0%, #0d0617 40%, #05020a 100%); 
             min-height: 100vh; 
             display: none; 
-            padding-bottom: 90px; /* Espaço para o menu inferior fixo */
+            padding-bottom: 90px; 
         }
         
-        /* Header idêntico com ícones de download e notificação */
         .header-infantil { 
             padding: 15px 20px; 
             display: flex; 
@@ -108,12 +107,10 @@
             backdrop-filter: blur(10px);
         }
         .marca-kids { display: flex; align-items: center; gap: 8px; }
-        .logo-n { color: #e50914; font-weight: 900; font-size: 1.8rem; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        .logo-n { color: #e50914; font-weight: 900; font-size: 1.8rem; }
         .badge-infantil-topo { background: #391963; color: #00ffcc; font-weight: bold; font-size: 0.9rem; padding: 4px 12px; border-radius: 20px; border: 1px solid #00ffcc; text-transform: uppercase; letter-spacing: 1px; }
         .icones-topo-infantil { display: flex; gap: 20px; color: #fff; font-size: 1.3rem; align-items: center; }
-        .icones-topo-infantil i { cursor: pointer; }
 
-        /* Banner Principal de Destaque Assimetrico */
         .container-destaque { padding: 15px 15px 25px 15px; }
         .card-destaque { 
             width: 100%; 
@@ -130,7 +127,6 @@
             background: linear-gradient(to top, rgba(13, 6, 23, 1) 0%, rgba(13, 6, 23, 0.6) 30%, transparent 70%); 
         }
         
-        /* Info e Botões do Banner */
         .info-destaque { position: absolute; bottom: 25px; left: 0; width: 100%; text-align: center; padding: 0 20px; }
         .titulo-desenho-destaque { font-size: 2.5rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: -1px; text-shadow: 0 4px 12px rgba(0,0,0,0.8); margin-bottom: 4px; }
         .tags-destaque { font-size: 0.8rem; color: #b3a2cd; margin-bottom: 20px; font-weight: 500; }
@@ -147,11 +143,9 @@
             align-items: center; justify-content: center; gap: 8px; cursor: pointer; backdrop-filter: blur(5px);
         }
 
-        /* Carrossel Horizontal de Categorias (Netflix original Style) */
         .categoria-infantil-container { padding-left: 15px; margin-bottom: 30px; }
         .titulo-categoria-infantil { font-size: 1.25rem; font-weight: bold; color: #fff; margin-bottom: 12px; letter-spacing: -0.5px; }
         
-        /* Lista com rolagem lateral fluida e invisível */
         .carrossel-horizontal { 
             display: flex; 
             gap: 10px; 
@@ -160,11 +154,10 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
-        .carrossel-horizontal::-webkit-scrollbar { display: none; } /* Esconde a barra feia */
+        .carrossel-horizontal::-webkit-scrollbar { display: none; }
 
-        /* Capas verticais idênticas da imagem */
         .item-desenho { 
-            flex: 0 0 125px; /* Largura perfeita para caber várias na tela rolando */
+            flex: 0 0 125px; 
             scroll-snap-align: start;
             border-radius: 8px;
             overflow: hidden;
@@ -173,7 +166,6 @@
         }
         .item-desenho img { width: 100%; height: 180px; object-fit: cover; display: block; }
         
-        /* Menu Inferior Fixo da Netflix */
         .menu-inferior-kids { 
             position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; 
             background: #09040f; border-top: 1px solid rgba(255, 255, 255, 0.05); 
@@ -213,21 +205,21 @@
         <div class="container-perfis">
             <p class="titulo-perfil">Quem está assistindo?</p>
             <div class="grid-perfis" id="lista-de-perfis">
-                <div class="card-perfil" onclick="entrarNoCatalogo('Marcelo')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marcelo', false)">
                     <div class="avatar azul"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marcelo</span>
                 </div>
-                <div class="card-perfil" onclick="entrarNoCatalogo('Marivania')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Marivania', false)">
                     <div class="avatar amarelo"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Marivania</span>
                 </div>
-                <div class="card-perfil" onclick="entrarNoCatalogo('Maria')">
+                <div class="card-perfil" onclick="entrarNoCatalogo('Maria', false)">
                     <div class="avatar vermelho"><div class="olhos"></div><div class="sorriso"></div></div>
                     <span>Maria</span>
                 </div>
                 
-                <!-- Perfil Infantil -->
-                <div class="card-perfil" onclick="entrarNoCatalogo('Infantil')">
+                <!-- Perfil Infantil Correto -->
+                <div class="card-perfil" onclick="entrarNoCatalogo('Infantil', true)">
                     <div class="avatar infantil"><span>Infantil</span></div>
                     <span>Infantil</span>
                 </div>
@@ -284,11 +276,10 @@
 
 
     <!-- ==========================================================================
-       5. ABA DE DESENHO INFANTIL SUPER ESTILOSA (ROXO NEON STYLED)
+       5. ABA DE DESENHO INFANTIL CORRIGIDA E ADAPTADA
        ========================================================================== */ -->
     <div id="conteudo-infantil">
         
-        <!-- Topo com Logo e Ícones da imagem -->
         <header class="header-infantil">
             <div class="marca-kids">
                 <span class="logo-n">F</span>
@@ -300,7 +291,6 @@
             </div>
         </header>
         
-        <!-- Banner de Destaque Gigante (Igual ao Carrossel da Imagem) -->
         <div class="container-destaque">
             <div class="card-destaque">
                 <img src="https://images.unsplash.com/photo-1518173946687-a4c8a3b1f98e?w=700" alt="Carrossel Destaque">
@@ -316,7 +306,6 @@
             </div>
         </div>
         
-        <!-- Categoria 1: Engraçados (Com rolagem horizontal suave) -->
         <div class="categoria-infantil-container">
             <h2 class="titulo-categoria-infantil">Engraçados</h2>
             <div class="carrossel-horizontal">
@@ -327,8 +316,20 @@
             </div>
         </div>
 
-        <!-- Categoria 2: Animais -->
         <div class="categoria-infantil-container">
             <h2 class="titulo-categoria-infantil">Animais</h2>
             <div class="carrossel-horizontal">
-     
+                <div class="item-desenho"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300" alt="Patrulha"></div>
+                <div class="item-desenho"><img src="https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=300" alt="Frutas"></div>
+                <div class="item-desenho"><img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=300" alt="Anime"></div>
+                <div class="item-desenho"><img src="https://images.unsplash.com/photo-1560942485-b2a11cc13456?w=300" alt="Herois"></div>
+            </div>
+        </div>
+
+        <div class="menu-inferior-kids">
+            <div class="item-menu-inferior ativo">
+                <i class="fa-solid fa-house"></i>
+                <span>Início</span>
+            </div>
+            <div class="item-menu-inferior">
+             
