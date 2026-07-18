@@ -61,6 +61,7 @@
     </style>
 </head>
 <body>
+
     <div class="login-box">
         <div class="logo">Filmesflix</div>
         
@@ -80,20 +81,21 @@
     </div>
 
     <script>
-        // Se o usuário já estiver logado, redireciona direto para a tela de perfis
-        if (localStorage.getItem('usuarioLogado') === 'true') {
+        // Esta parte checa se o usuário JÁ tem conta E JÁ fez login
+        // Se não tiver conta, ele não faz o redirecionamento automático
+        if (localStorage.getItem('usuarioLogado') === 'true' && localStorage.getItem('contaCriada') === 'true') {
             window.location.href = 'perfis.html';
         }
 
         function fazerLogin() {
-            // Verifica se a conta foi criada no cadastro.html
+            // Verifica se a pessoa criou a conta lá no cadastro.html
             if (localStorage.getItem('contaCriada') !== 'true') {
                 alert("Você ainda não tem uma conta! Por favor, cadastre-se primeiro.");
                 window.location.href = 'cadastro.html';
                 return;
             }
             
-            // Se tem conta, faz o login
+            // Se tem conta, libera a entrada
             localStorage.setItem('usuarioLogado', 'true');
             window.location.href = 'perfis.html';
         }
