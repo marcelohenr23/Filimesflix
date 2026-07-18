@@ -2,182 +2,39 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmesflix - Login</title>
+    <title>Adicionar Perfil</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.95) 100%);
-            z-index: -1;
-        }
-
-        .logo {
-            color: #E50914;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .login-card {
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 40px;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            border: 1px solid #222;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .login-card h2 {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .input-group {
-            position: relative;
-            width: 100%;
-        }
-
-        .input-group input {
-            width: 100%;
-            background-color: #333333;
-            border: none;
-            border-radius: 4px;
-            padding: 16px;
-            color: #ffffff;
-            font-size: 1rem;
-            outline: none;
-            transition: background-color 0.2s;
-        }
-
-        .input-group input:focus {
-            background-color: #444444;
-        }
-
-        .input-group input::placeholder {
-            color: #8c8c8c;
-        }
-
-        .btn-entrar {
-            background-color: #E50914;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            padding: 16px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-
-        .btn-entrar:active {
-            background-color: #b80710;
-            transform: scale(0.98);
-        }
-
-        .login-help {
-            display: flex;
-            justify-content: space-between;
-            color: #b3b3b3;
-            font-size: 0.85rem;
-            margin-top: 5px;
-        }
-
-        .login-help a {
-            color: #b3b3b3;
-            text-decoration: none;
-        }
-
-        .login-help a:hover {
-            text-decoration: underline;
-        }
-
-        .login-footer {
-            margin-top: 20px;
-            color: #737373;
-            font-size: 0.95rem;
-        }
-
-        .login-footer a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .login-footer a:hover {
-            text-decoration: underline;
-        }
+        body { background-color: #000; color: #fff; font-family: Arial; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .main-content { width: 100%; max-width: 400px; display: flex; flex-direction: column; align-items: center; }
+        .avatar-preview { width: 110px; height: 110px; border-radius: 12px; background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); background-size: cover; margin-bottom: 20px; }
+        input { width: 100%; background: #262626; border: none; padding: 15px; color: white; border-radius: 6px; margin-bottom: 20px; }
+        button { background-color: #E50914; color: white; border: none; padding: 15px 30px; border-radius: 4px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="logo">Filmesflix</div>
-
-    <div class="login-card">
-        <h2>Entrar</h2>
-        
-        <div class="input-group">
-            <input type="text" placeholder="Email ou número de telefone" autocomplete="off">
-        </div>
-
-        <div class="input-group">
-            <input type="password" placeholder="Senha">
-        </div>
-
-        <button class="btn-entrar" onclick="fazerLogin()">Entrar</button>
-
-        <div class="login-help">
-            <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
-                <input type="checkbox" checked style="accent-color: #E50914;"> Lembrar de mim
-            </label>
-            <a href="#">Precisa de ajuda?</a>
-        </div>
-
-        <div class="login-footer">
-            Novo por aqui? <a href="#">Assine agora.</a>
-        </div>
+    <div class="main-content">
+        <h1>Adicionar perfil</h1>
+        <div class="avatar-preview"></div>
+        <input type="text" id="nomePerfil" placeholder="Nome do perfil" maxlength="15">
+        <button onclick="salvarPerfil()">Salvar</button>
     </div>
 
     <script>
-        // Se já fez login antes, pula direto para a tela de escolher perfil
-        if (localStorage.getItem('usuarioLogado') === 'true') {
-            window.location.href = 'perfis.html';
+        if (localStorage.getItem('usuarioLogado') !== 'true') {
+            window.location.href = 'index.html';
         }
 
-        function fazerLogin() {
-            // Guarda na memória permanente que já fez login uma vez
-            localStorage.setItem('usuarioLogado', 'true');
+        function salvarPerfil() {
+            const nome = document.getElementById('nomePerfil').value.trim();
+            if (nome === "") {
+                alert("Por favor, digite um nome.");
+                return;
+            }
+            // Salva o nome na memória
+            localStorage.setItem('nomeDoPerfil', nome);
             window.location.href = 'perfis.html';
         }
     </script>
-
 </body>
 </html>
