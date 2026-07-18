@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filimesflix - Catálogo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        body { background-color: #141414; color: #ffffff; padding-bottom: 50px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 4%; background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%); }
+        .logo { color: #E50914; font-size: 1.8rem; font-weight: bold; text-decoration: none; }
+        .btn-sair { color: #fff; text-decoration: none; background-color: #E50914; padding: 7px 15px; border-radius: 4px; font-size: 0.9rem; font-weight: bold; }
+        .banner-principal { height: 55vh; background: linear-gradient(to top, #141414 10%, rgba(0,0,0,0) 90%), url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000') no-repeat center center/cover; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4% 40px 4%; }
+        .banner-principal h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .banner-principal p { max-width: 500px; font-size: 1rem; color: #cccccc; margin-bottom: 15px; }
+        .categoria { padding: 20px 4% 0 4%; }
+        .categoria h3 { font-size: 1.2rem; margin-bottom: 10px; color: #e5e5e5; }
+        .lista-filmes { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
+        .lista-filmes::-webkit-scrollbar { display: none; }
+        .card-filme { flex: 0 0 150px; height: 220px; background-color: #2f2f2f; border-radius: 4px; cursor: pointer; transition: transform 0.2s; background-size: cover; background-position: center; }
+        .card-filme:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">FILIMESFLIX</a>
+        <a href="index.html" class="btn-sair">Sair</a>
+    </header>
+    <section class="banner-principal">
+        <h2>Filme em Destaque</h2>
+        <p>Assista agora ao título mais comentado da semana. Ação, suspense e reviravoltas impressionantes.</p>
+    </section>
+    <section class="categoria">
+        <h3>Populares na Filimesflix</h3>
+        <div class="lista-filmes">
+            <div class="card-filme" style="background-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=300');"></div>
+            <div class="card-filme" style="background-image: url('https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?q=80&w=300');"></div>
+            <div class="card-filme" style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=300');"></div>
+            <div class="card-filme" style="background-image: url('https://images.unsplash.com/photo-1509281373149-e957c6296406?q=80&w=300');"></div>
+        </div>
+    </section>
+</body>
+</html>
+
