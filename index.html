@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filimesflix</title>
     <style>
-        body { margin: 0; background-color: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; font-family: Arial, sans-serif; }
+        body { margin: 0; background-color: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; font-family: Arial, sans-serif; color: white; }
         
-        /* Animação do nome */
-        .intro { color: #e50914; font-size: 3rem; font-weight: 900; letter-spacing: -2px; animation: netflixIntro 3s ease-in-out forwards; }
+        .intro { color: #e50914; font-size: 3rem; font-weight: 900; animation: netflixIntro 3s ease-in-out forwards; }
         
         @keyframes netflixIntro {
             0% { transform: scale(0.5); opacity: 0; }
             50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(2); opacity: 0; display: none; }
+            100% { transform: scale(2); opacity: 0; }
         }
 
-        #login-area { display: none; color: white; text-align: center; }
+        #login-area { display: none; text-align: center; width: 80%; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+        button { width: 100%; padding: 10px; background: #e50914; color: white; border: none; border-radius: 5px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -25,14 +26,14 @@
 
     <div id="login-area">
         <h1>Entrar no Filimesflix</h1>
-        <button>Login com Google</button>
+        <button onclick="alert('Login com Google clicado!')">Login com Google</button>
         <p>ou</p>
         <input type="email" placeholder="Email"><br>
         <input type="password" placeholder="Senha">
     </div>
 
     <script>
-        // Oculta a intro e mostra o login após a animação (3 segundos)
+        // Esta parte faz a mágica acontecer após 3 segundos
         setTimeout(() => {
             document.querySelector('.intro').style.display = 'none';
             document.getElementById('login-area').style.display = 'block';
