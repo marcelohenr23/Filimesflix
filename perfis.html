@@ -4,45 +4,29 @@
     <meta charset="UTF-8">
     <title>Quem está assistindo?</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: Arial; text-align: center; padding-top: 100px; }
-        .perfis-container { display: flex; justify-content: center; gap: 20px; }
-        .perfil-box { cursor: pointer; }
-        .avatar { width: 100px; height: 100px; border-radius: 8px; background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); background-size: cover; }
-        .btn-adicionar { width: 100px; height: 100px; border: 2px dashed #333; display: flex; align-items: center; justify-content: center; text-decoration: none; color: #333; }
+        body { background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: Arial; }
+        .container { display: flex; gap: 30px; }
+        .perfil { text-align: center; cursor: pointer; }
+        .avatar { width: 150px; height: 150px; background: #333; border-radius: 5px; margin-bottom: 10px; border: 3px solid transparent; }
+        .perfil:hover .avatar { border: 3px solid #fff; }
+        .nome { color: #808080; font-size: 1.2rem; }
+        .btn-add { display: block; margin-top: 50px; color: #808080; text-decoration: none; border: 1px solid #808080; padding: 10px 20px; }
     </style>
 </head>
 <body>
-
     <h1>Quem está assistindo?</h1>
-
-    <div class="perfis-container">
-        <!-- Perfil que será dinâmico -->
-        <div class="perfil-box" onclick="entrar()">
-            <div class="avatar"></div>
-            <div class="perfil-nome" id="nomeExibido">Carregando...</div>
+    <div class="container">
+        <div class="perfil">
+            <div class="avatar" style="background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); background-size: cover;"></div>
+            <div class="nome" id="nomeExibido">Carregando...</div>
         </div>
-
-        <!-- Botão Adicionar -->
-        <a href="adicionar.html" class="btn-adicionar">+</a>
     </div>
+    <a href="adicionar.html" class="btn-add">Adicionar perfil</a>
 
     <script>
-        // Trava de segurança
-        if (localStorage.getItem('usuarioLogado') !== 'true') {
-            window.location.href = 'index.html';
-        }
-
-        // Carrega o nome salvo
-        const nomeSalvo = localStorage.getItem('nomeDoPerfil');
-        if (nomeSalvo) {
-            document.getElementById('nomeExibido').innerText = nomeSalvo;
-        } else {
-            document.getElementById('nomeExibido').innerText = 'Usuário';
-        }
-
-        function entrar() {
-            alert("Entrando...");
-        }
+        if (localStorage.getItem('usuarioLogado') !== 'true') window.location.href = 'index.html';
+        const nome = localStorage.getItem('nomeDoPerfil');
+        document.getElementById('nomeExibido').innerText = nome ? nome : "Usuário";
     </script>
 </body>
 </html>
