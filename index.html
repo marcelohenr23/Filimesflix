@@ -139,7 +139,6 @@
 </head>
 <body>
 
-    <!-- Logo Corrigida -->
     <div class="logo">Filmesflix</div>
 
     <div class="login-card">
@@ -169,6 +168,8 @@
 
     <script>
         function fazerLogin() {
+            // Salva na memória temporária do app que o usuário fez login
+            sessionStorage.setItem('logado', 'true');
             window.location.href = 'perfis.html';
         }
     </script>
