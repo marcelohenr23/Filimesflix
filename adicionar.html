@@ -18,9 +18,10 @@
             min-height: 100vh; 
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* Barra superior idêntica a de aplicativos */
+        /* Barra superior */
         .header-nav {
             display: flex;
             justify-content: space-between;
@@ -53,7 +54,7 @@
             cursor: pointer;
         }
 
-        /* Conteúdo principal centralizado */
+        /* Conteúdo principal */
         .main-content {
             flex: 1;
             width: 100%;
@@ -65,22 +66,24 @@
             align-items: center;
         }
 
-        /* Área do Avatar com o ícone de lápis sobreposto */
+        /* Área do Avatar */
         .avatar-container {
             position: relative;
             margin-bottom: 35px;
+            cursor: pointer;
         }
         
         .avatar-preview { 
             width: 110px; 
             height: 110px; 
             border-radius: 8px; 
-            background-color: #2b7fff; 
             position: relative; 
-            transition: background 0.3s; 
+            overflow: hidden;
+            background-color: #2b7fff;
         }
-        
-        .avatar-preview::before { 
+
+        /* Desenho do rostinho padrão em CSS */
+        .rostinho::before { 
             content: ''; 
             position: absolute; 
             width: 18px; 
@@ -91,8 +94,7 @@
             left: 26px; 
             box-shadow: 36px 0 #fff; 
         }
-        
-        .avatar-preview::after { 
+        .rostinho::after { 
             content: ''; 
             position: absolute; 
             width: 44px; 
@@ -102,6 +104,17 @@
             border-top: none; 
             top: 60px; 
             left: 33px; 
+        }
+
+        /* Estilo para quando for um emoji grande */
+        .avatar-emoji {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4.5rem;
+            background: #222;
         }
 
         .badge-lapis {
@@ -119,7 +132,7 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
         }
 
-        /* Campo de Texto ocupando a largura total */
+        /* Campo de Texto */
         .input-box {
             width: 100%;
             margin-bottom: 30px;
@@ -134,98 +147,182 @@
             font-size: 1.1rem; 
             border-radius: 4px; 
         }
-        
-        input[type="text"]::placeholder { 
-            color: #8c8c8c; 
-        }
-        
-        input[type="text"]:focus { 
-            outline: none; 
-            background: #444444; 
-        }
+        input[type="text"]::placeholder { color: #8c8c8c; }
+        input[type="text"]:focus { outline: none; background: #444444; }
 
-        /* Seleção de Cores horizontal estilizada */
-        .secao-cores {
+        /* ================= TELA DE ESCOLHER ÍCONE (MODAL) ================= */
+        .modal-icones {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            text-align: left;
-            margin-bottom: 20px;
+            height: 100%;
+            background-color: #000000;
+            z-index: 1000;
+            display: none; /* Escondido por padrão */
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 20px;
         }
 
-        .secao-cores label {
-            color: #8c8c8c;
-            font-size: 0.9rem;
-            display: block;
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .modal-header h2 {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .categoria-titulo {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: bold;
             margin-bottom: 12px;
         }
 
-        .opcoes-cores { 
-            display: flex; 
-            gap: 14px; 
+        .grid-icones {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
         }
-        
-        .cor-btn { 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 6px; 
-            cursor: pointer; 
-            border: 2px solid transparent; 
-            transition: transform 0.1s;
+
+        .icone-opcao {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid transparent;
         }
-        
-        .cor-btn.active { 
-            border-color: #ffffff; 
-            transform: scale(1.05);
+        .icone-opcao:active {
+            transform: scale(0.95);
         }
+
+        /* Cores dos clássicos do modal */
+        .c-blue { background-color: #2b7fff; }
+        .c-yellow { background-color: #ffc83b; }
+        .c-red { background-color: #e50914; }
+        .c-purple { background-color: #8e44ad; }
     </style>
 </head>
 <body>
 
-    <!-- Topo funcional estilo app -->
-    <div class="header-nav">
-        <a href="perfis.html" class="header-left">
-            <!-- Seta de voltar -->
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            <h1>Adicionar perfil</h1>
-        </a>
-        <button class="btn-salvar-topo" onclick="salvarPerfil()">Salvar</button>
+    <!-- Conteúdo Principal (Adicionar Perfil) -->
+    <div id="telaPrincipal">
+        <div class="header-nav">
+            <a href="perfis.html" class="header-left">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <h1>Adicionar perfil</h1>
+            </a>
+            <button class="btn-salvar-topo" onclick="salvarPerfil()">Salvar</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Clicar aqui abre a seleção de ícones -->
+            <div class="avatar-container" onclick="abrirModal()">
+                <div class="avatar-preview rostinho" id="preview"></div>
+                <div class="badge-lapis">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <input type="text" id="nomePerfil" placeholder="Nome do perfil" maxlength="15" autocomplete="off">
+            </div>
+        </div>
     </div>
 
-    <!-- Centro do formulário -->
-    <div class="main-content">
-        
-        <div class="avatar-container">
-            <div class="avatar-preview" id="preview"></div>
-            <div class="badge-lapis">
-                <!-- Ícone do Lápis -->
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+    <!-- ================= TELA DE ESCOLHA DE ÍCONES ================= -->
+    <div id="modalIcones" class="modal-icones">
+        <div class="modal-header">
+            <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 15px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <h2>Escolha um ícone</h2>
             </div>
         </div>
 
-        <div class="input-box">
-            <input type="text" id="nomePerfil" placeholder="Nome do perfil" maxlength="15" autocomplete="off">
-        </div>
+        <div class="modal-content">
+            <!-- Categoria 1 -->
+            <div>
+                <p class="categoria-titulo">Os Clássicos</p>
+                <div class="grid-icones">
+                    <div class="icone-opcao c-blue rostinho" onclick="selecionarEstilo('#2b7fff', true, '')"></div>
+                    <div class="icone-opcao c-yellow rostinho" onclick="selecionarEstilo('#ffc83b', true, '')"></div>
+                    <div class="icone-opcao c-red rostinho" onclick="selecionarEstilo('#e50914', true, '')"></div>
+                    <div class="icone-opcao c-purple rostinho" onclick="selecionarEstilo('#8e44ad', true, '')"></div>
+                </div>
+            </div>
 
-        <div class="secao-cores">
-            <label>Escolha a cor do tema:</label>
-            <div class="opcoes-cores">
-                <div class="cor-btn active" style="background-color: #2b7fff;" onclick="mudarCor('#2b7fff', this)"></div>
-                <div class="cor-btn" style="background-color: #ffc83b;" onclick="mudarCor('#ffc83b', this)"></div>
-                <div class="cor-btn" style="background-color: #e50914;" onclick="mudarCor('#e50914', this)"></div>
-                <div class="cor-btn" style="background: linear-gradient(45deg, #ff007f, #ff5e00);" onclick="mudarCor('linear-gradient(45deg, #ff007f, #ff5e00)', this)"></div>
+            <!-- Categoria 2 (Seu universo criativo exclusivo!) -->
+            <div>
+                <p class="categoria-titulo">Turma do Jacão</p>
+                <div class="grid-icones">
+                    <!-- Lápis Tatuado -->
+                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '✏️')">
+                        <div class="avatar-emoji">✏️</div>
+                    </div>
+                    <!-- Jaca -->
+                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🍈')">
+                        <div class="avatar-emoji">🍈</div>
+                    </div>
+                    <!-- Coco -->
+                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🥥')">
+                        <div class="avatar-emoji">🥥</div>
+                    </div>
+                    <!-- Melancia -->
+                    <div class="icone-opcao" onclick="selecionarEstilo('', false, '🍉')">
+                        <div class="avatar-emoji">🍉</div>
+                    </div>
+                </div>
             </div>
         </div>
-
     </div>
 
     <script>
-        let corSelecionada = '#2b7fff';
+        // Funções para controlar a abertura da tela de ícones
+        function abrirModal() {
+            document.getElementById('telaPrincipal').style.display = 'none';
+            document.getElementById('modalIcones').style.display = 'flex';
+        }
 
-        function mudarCor(cor, elemento) {
-            corSelecionada = cor;
-            document.getElementById('preview').style.background = cor;
+        function fecharModal() {
+            document.getElementById('modalIcones').style.display = 'none';
+            document.getElementById('telaPrincipal').style.display = 'block';
+        }
+
+        // Aplica o ícone escolhido de volta na tela de criação
+        function selecionarEstilo(background, ehRostinho, emoji) {
+            const preview = document.getElementById('preview');
             
-            document.querySelectorAll('.cor-btn').forEach(btn => btn.classList.remove('active'));
-            elemento.classList.add('active');
+            if (ehRostinho) {
+                preview.className = "avatar-preview rostinho";
+                preview.style.background = background;
+                preview.innerHTML = "";
+            } else {
+                preview.className = "avatar-preview";
+                preview.style.background = "#222222";
+                preview.innerHTML = `<div class="avatar-emoji">${emoji}</div>`;
+            }
+            
+            fecharModal();
         }
 
         function salvarPerfil() {
@@ -234,7 +331,6 @@
                 alert("Por favor, digite um nome para o perfil.");
                 return;
             }
-            
             alert("Perfil '" + nome + "' criado com sucesso!");
             window.location.href = 'perfis.html';
         }
