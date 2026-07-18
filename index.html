@@ -9,12 +9,12 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
 
-        /* Animação Inicial */
-        .intro { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; animation: anim 3s forwards; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 999; }
-        @keyframes anim { 0% { opacity: 0; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; display: none; pointer-events: none; } }
+        /* Animação Inicial - Corrigida para sumir do mapa após 3s */
+        .intro { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; animation: anim 3s forwards; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 999; pointer-events: none; }
+        @keyframes anim { 0% { opacity: 0; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; opacity: 0; } }
 
         /* Login */
-        #login-area { width: 90%; max-width: 380px; margin: 60px auto; padding: 30px 20px; background: #141414; border-radius: 8px; border: 1px solid #222; text-align: center; }
+        #login-area { width: 90%; max-width: 380px; margin: 60px auto; padding: 30px 20px; background: #141414; border-radius: 8px; border: 1px solid #222; text-align: center; position: relative; z-index: 10; }
         .logo-texto { color: #e50914; font-size: 2.3rem; margin-bottom: 10px; font-weight: 900; }
         #login-area h2 { font-size: 1.1rem; color: #aaa; font-weight: 400; margin-bottom: 25px; }
         .btn-google { width: 100%; background: #ffffff; color: #1f1f1f; border: 1px solid #747775; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
@@ -23,7 +23,7 @@
         .divisor::before, .divisor::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
         .divisor span { padding: 0 10px; font-size: 0.9rem; }
         input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #333; background: #232323; color: white; font-size: 1rem; }
-        .btn-entrar { background: #e50914; color: white; padding: 14px; width: 100%; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+        .btn-entrar { background: #e50914; color: white; padding: 14px; width: 100%; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; position: relative; z-index: 20; }
 
         /* TELA DE PERFIS */
         #perfil-area { position: relative; min-height: 100vh; background: #141414; overflow-x: hidden; }
@@ -261,9 +261,12 @@
     <script>
         let imagemSelecionadaTemporaria = "";
 
+        // Remove completamente o bloco da animação após 3 segundos para liberar os cliques
         setTimeout(() => {
             const animacao = document.getElementById('animacao');
-            if (animacao) animacao.style.display = 'none';
+            if (animacao) {
+                animacao.remove(); 
+            }
         }, 3000);
 
         function proximaTelaPerfis() {
@@ -274,7 +277,7 @@
         function entrarNoCatalogo(nomeDoPerfil) {
             document.getElementById('perfil-area').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
-            document.getElementById('nome-perfil-active' ? 'nome-perfil-ativo' : 'nome-perfil-ativo').innerText = "Perfil: " + nomeDoPerfil;
+            document.getElementById('nome-perfil-ativo').innerText = "Perfil: " + nomeDoPerfil;
             window.scrollTo(0, 0);
         }
 
@@ -292,6 +295,4 @@
             document.getElementById('sorriso-preview').style.display = "block";
         }
 
-        function voltarParaPerfis() {
-            document.getElementById('add-perfil-area').style.display = 'none';
-            document.getElementById('perfil-area').style.display = 'block'
+        function voltar
