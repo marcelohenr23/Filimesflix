@@ -9,21 +9,24 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, sans-serif; min-height: 100vh; }
 
-        /* Animação Inicial - Corrigida para sumir do mapa após 3s */
-        .intro { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; animation: anim 3s forwards; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 999; pointer-events: none; }
-        @keyframes anim { 0% { opacity: 0; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; opacity: 0; } }
+        /* Tela de Carregamento Segura (Sumiço Total Definitivo) */
+        #tela-carregamento-fixa { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 2.8rem; font-weight: 900; background: #000; position: fixed; width: 100%; top: 0; left: 0; z-index: 9999; pointer-events: none; }
 
         /* Login */
         #login-area { width: 90%; max-width: 380px; margin: 60px auto; padding: 30px 20px; background: #141414; border-radius: 8px; border: 1px solid #222; text-align: center; position: relative; z-index: 10; }
         .logo-texto { color: #e50914; font-size: 2.3rem; margin-bottom: 10px; font-weight: 900; }
         #login-area h2 { font-size: 1.1rem; color: #aaa; font-weight: 400; margin-bottom: 25px; }
-        .btn-google { width: 100%; background: #ffffff; color: #1f1f1f; border: 1px solid #747775; padding: 12px; border-radius: 4px; font-size: 0.95rem; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
-        .btn-google i { color: #4285F4; font-size: 1.1rem; }
+        
+        /* Forçando botões a aceitarem clique em qualquer celular */
+        .btn-google, .btn-entrar { width: 100%; padding: 14px; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; border: none; display: block; position: relative; z-index: 50; pointer-events: auto !important; }
+        .btn-google { background: #ffffff; color: #1f1f1f; border: 1px solid #747775; margin-bottom: 5px; font-weight: 500; }
+        .btn-google i { color: #4285F4; margin-right: 8px; }
+        .btn-entrar { background: #e50914; color: white; }
+
         .divisor { margin: 20px 0; display: flex; align-items: center; text-align: center; color: #666; }
         .divisor::before, .divisor::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
         .divisor span { padding: 0 10px; font-size: 0.9rem; }
         input { width: 100%; padding: 14px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #333; background: #232323; color: white; font-size: 1rem; }
-        .btn-entrar { background: #e50914; color: white; padding: 14px; width: 100%; border: none; border-radius: 4px; font-size: 1rem; font-weight: bold; cursor: pointer; position: relative; z-index: 20; }
 
         /* TELA DE PERFIS */
         #perfil-area { position: relative; min-height: 100vh; background: #141414; overflow-x: hidden; }
@@ -34,7 +37,6 @@
         .banner-info h1 { font-size: 1.8rem; font-weight: 800; margin: 5px 0; letter-spacing: -1px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
         .banner-info p { font-size: 0.9rem; color: #ddd; }
 
-        /* Grade de Perfis */
         .container-perfis { padding: 20px; text-align: center; position: relative; z-index: 5; margin-top: -15px; }
         .titulo-perfil { font-size: 1.1rem; color: #fff; margin-bottom: 20px; font-weight: 500; }
         .grid-perfis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 360px; margin: 0 auto; }
@@ -47,7 +49,6 @@
         .vermelho { background: #e53935; }
         .cinza { background: #333; color: #aaa; font-size: 1.3rem; }
         .infantil { background: linear-gradient(45deg, #ff007f, #ffaa00, #00aaff); font-weight: bold; font-size: 0.9rem; }
-        
         .img-avatar { background-size: cover; background-position: center; }
 
         .olhos { width: 40px; height: 6px; position: absolute; top: 30px; display: flex; justify-content: space-between; }
@@ -55,7 +56,6 @@
         .amarelo .olhos::before, .amarelo .olhos::after, .vermelho .olhos::before, .vermelho .olhos::after { background: #141414; }
         .sorriso { width: 35px; height: 16px; border-bottom: 5px solid #fff; border-radius: 0 0 50% 50%/0 0 100% 100%; position: absolute; bottom: 22px; }
         .amarelo .sorriso, .vermelho .sorriso { border-bottom-color: #141414; }
-        .card-perfil:active .avatar { transform: scale(0.95); border: 2px solid #fff; }
 
         /* TELA ADICIONAR PERFIL */
         #add-perfil-area { background: #000; min-height: 100vh; padding: 20px; display: none; }
@@ -72,11 +72,10 @@
         .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.5); cursor: pointer; z-index: 10; }
 
         .input-add { background: #262626; border: none; border-radius: 4px; padding: 16px; color: #fff; font-size: 1.1rem; width: 100%; margin-bottom: 25px; }
-        .input-add::placeholder { color: #737373; }
         
         .box-kids { background: #1a1a1a; padding: 16px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; text-align: left; }
         .box-kids-texto h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
-        .box-kids-texto p { font-size: 0.85rem; color: #737373; line-height: 1.3; padding-right: 10px; }
+        .box-kids-texto p { font-size: 0.85rem; color: #737373; line-height: 1.3; }
         
         .switch { position: relative; display: inline-block; width: 46px; height: 26px; flex-shrink: 0; }
         .switch input { opacity: 0; width: 0; height: 0; }
@@ -93,7 +92,6 @@
         .categoria-titulo.laranja { color: #ff8800; }
         .grid-icones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
         .box-icone-opcao { aspect-ratio: 1; border-radius: 6px; overflow: hidden; cursor: pointer; background-size: cover; background-position: center; background-color: #111; }
-        .box-icone-opcao:active { transform: scale(0.95); }
 
         /* Layout da Home */
         #conteudo { width: 100%; background: #141414; min-height: 100vh; }
@@ -106,7 +104,7 @@
         .card-filme img { width: 100%; height: 140px; object-fit: cover; }
         .card-filme h3 { font-size: 0.85rem; margin: 8px; text-align: center; }
 
-        /* Seção Canais */
+        /* Canais */
         .secao-privada { padding: 25px 20px; background: #0a0a0a; border-top: 2px solid #222; text-align: left; }
         .aviso-privado { color: #e50914; font-size: 0.85rem; margin-top: -10px; margin-bottom: 15px; }
         .grid-canais { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -117,20 +115,23 @@
 </head>
 <body>
 
-    <!-- 1. ANIMAÇÃO INICIAL -->
-    <div class="intro" id="animacao">FILIMESFLIX</div>
+    <!-- 1. ANIMAÇÃO INICIAL REFORÇADA -->
+    <div id="tela-carregamento-fixa">FILIMESFLIX</div>
 
     <!-- 2. TELA DE LOGIN -->
     <div id="login-area">
         <h1 class="logo-texto">FILIMESFLIX</h1>
         <h2>Faça login ou crie uma conta</h2>
-        <button class="btn-google" onclick="proximaTelaPerfis()">
+        
+        <button class="btn-google" type="button" onclick="irParaPerfis()">
             <i class="fab fa-google"></i> Fazer login com o Google
         </button>
+        
         <div class="divisor"><span>ou</span></div>
         <input type="email" placeholder="E-mail">
         <input type="password" placeholder="Senha">
-        <button class="btn-entrar" onclick="proximaTelaPerfis()">Entrar</button>
+        
+        <button class="btn-entrar" type="button" onclick="irParaPerfis()">Entrar</button>
     </div>
 
     <!-- 3. TELA DE SELEÇÃO DE PERFIL -->
@@ -261,15 +262,16 @@
     <script>
         let imagemSelecionadaTemporaria = "";
 
-        // Remove completamente o bloco da animação após 3 segundos para liberar os cliques
-        setTimeout(() => {
-            const animacao = document.getElementById('animacao');
-            if (animacao) {
-                animacao.remove(); 
+        // Deleta a tela preta de carregamento após 2.5 segundos de forma agressiva
+        setTimeout(function() {
+            var box = document.getElementById('tela-carregamento-fixa');
+            if(box) {
+                box.parentNode.removeChild(box);
             }
-        }, 3000);
+        }, 2500);
 
-        function proximaTelaPerfis() {
+        // Nome de função alterado para limpar qualquer cache antigo do celular
+        function irParaPerfis() {
             document.getElementById('login-area').style.display = 'none';
             document.getElementById('perfil-area').style.display = 'block';
         }
@@ -295,4 +297,10 @@
             document.getElementById('sorriso-preview').style.display = "block";
         }
 
-        function voltar
+        function voltarParaPerfis() {
+            document.getElementById('add-perfil-area').style.display = 'none';
+            document.getElementById('perfil-area').style.display = 'block';
+        }
+
+        function abrirEscolhaIcone() {
+            document.getElementById(
