@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filimesflix - Adicionar Perfil</title>
+    <title>Filmesflix - Adicionar Perfil</title>
     <style>
         * { 
             margin: 0; 
@@ -76,7 +76,7 @@
             border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); 
+            background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); 
             background-size: cover;
             background-position: center;
             border: 2px solid #333;
@@ -115,6 +115,7 @@
         input[type="text"]::placeholder { color: #8c8c8c; }
         input[type="text"]:focus { outline: none; background: #333333; }
 
+        /* MODAL DE ESCOLHER ÍCONE */
         .modal-icones {
             position: fixed;
             top: 0;
@@ -183,16 +184,18 @@
             transform: scale(0.95);
         }
 
-        .av-1 { background-image: url('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg'); }
-        .av-2 { background-image: url('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg'); }
-        .av-3 { background-image: url('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg'); }
-        .av-4 { background-image: url('https://i.postimg.cc/VShQgGzj/lv-0-20260718172326.jpg'); }
-        .av-5 { background-image: url('https://i.postimg.cc/p9SbCGPm/lv-0-20260718172436.jpg'); }
+        /* Seus 5 personagens aplicados de forma estável */
+        .av-1 { background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); }
+        .av-2 { background-image: url('https://i.postimg.cc/rDh9R79D/1784404699916.png'); }
+        .av-3 { background-image: url('https://i.postimg.cc/87ybfxbs/1784404700716.png'); }
+        .av-4 { background-image: url('https://i.postimg.cc/zydkH4kL/1784404703767.png'); }
+        .av-5 { background-image: url('https://i.postimg.cc/sMfcX352/1784404743400.png'); }
 
     </style>
 </head>
 <body>
 
+    <!-- Conteúdo Principal -->
     <div id="telaPrincipal" style="display: block;">
         <div class="header-nav">
             <a href="perfis.html" class="header-left">
@@ -216,6 +219,7 @@
         </div>
     </div>
 
+    <!-- TELA DE ESCOLHA DE ÍCONES (MODAL) -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -228,19 +232,21 @@
             <div>
                 <p class="categoria-titulo">Cinemáticos</p>
                 <div class="grid-icones">
-                    <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg')"></div>
-                    <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/hJYWsyKT/lv-0-20260718171912.jpg')"></div>
-                    <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/1gdhBCy6/lv-0-20260718172009.jpg')"></div>
-                    <div class="icone-opcao av-4" onclick="selecionarAvatar('https://i.postimg.cc/VShQgGzj/lv-0-20260718172326.jpg')"></div>
-                    <div class="icone-opcao av-5" onclick="selecionarAvatar('https://i.postimg.cc/p9SbCGPm/lv-0-20260718172436.jpg')"></div>
+                    <div class="icone-opcao av-1" onclick="selecionarAvatar('https://i.postimg.cc/sMnJGbJx/1784404694570.png')"></div>
+                    <div class="icone-opcao av-2" onclick="selecionarAvatar('https://i.postimg.cc/rDh9R79D/1784404699916.png')"></div>
+                    <div class="icone-opcao av-3" onclick="selecionarAvatar('https://i.postimg.cc/87ybfxbs/1784404700716.png')"></div>
+                    <div class="icone-opcao av-4" onclick="selecionarAvatar('https://i.postimg.cc/zydkH4kL/1784404703767.png')"></div>
+                    <div class="icone-opcao av-5" onclick="selecionarAvatar('https://i.postimg.cc/sMfcX352/1784404743400.png')"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Guarda a URL da imagem selecionada (começa com o primeiro boneco por padrão)
-        let imagemSelecionada = 'https://i.postimg.cc/7CR89sqS/lv-0-20260718171739.jpg';
+        // Trava de segurança: Se tentar pular direto pra cá sem logar, joga pro login
+        if (sessionStorage.getItem('logado') !== 'true') {
+            window.location.href = 'index.html';
+        }
 
         function abrirModal() {
             document.getElementById('telaPrincipal').style.display = 'none';
@@ -253,7 +259,6 @@
         }
 
         function selecionarAvatar(urlImagem) {
-            imagemSelecionada = urlImagem;
             const preview = document.getElementById('preview');
             preview.style.backgroundImage = "url('" + urlImagem + "')";
             fecharModal();
@@ -265,19 +270,7 @@
                 alert("Por favor, digite um nome para o perfil.");
                 return;
             }
-
-            // Pega a lista de perfis que já existem ou cria uma vazia
-            let perfisSalvos = JSON.parse(localStorage.getItem('perfisFilimesflix')) || [];
-            
-            // Adiciona o novo perfil criado na lista
-            perfisSalvos.push({
-                nome: nome,
-                foto: imagemSelecionada
-            });
-
-            // Grava de volta na memória do navegador
-            localStorage.setItem('perfisFilimesflix', JSON.stringify(perfisSalvos));
-
+            alert("Perfil '" + nome + "' criado com sucesso!");
             window.location.href = 'perfis.html';
         }
     </script>
