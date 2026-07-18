@@ -47,7 +47,9 @@
         .vermelho { background: #e53935; }
         .cinza { background: #333; color: #aaa; font-size: 1.3rem; }
         .infantil { background: linear-gradient(45deg, #ff007f, #ffaa00, #00aaff); font-weight: bold; font-size: 0.9rem; }
-        .dinamico { background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); }
+        
+        /* Classes dos avatares customizados por imagem */
+        .img-avatar { background-size: cover; background-position: center; }
 
         .olhos { width: 40px; height: 6px; position: absolute; top: 30px; display: flex; justify-content: space-between; }
         .olhos::before, .olhos::after { content: ''; width: 8px; height: 8px; background: #fff; border-radius: 50%; }
@@ -64,11 +66,11 @@
         .btn-salvar.ativo { color: #fff; }
         
         .avatar-container-add { display: flex; justify-content: center; position: relative; margin-bottom: 30px; }
-        .avatar-add { width: 110px; height: 110px; border-radius: 8px; background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); position: relative; display: flex; justify-content: center; align-items: center; }
+        .avatar-add { width: 110px; height: 110px; border-radius: 8px; background: linear-gradient(to bottom, #2c5364, #203a43, #0f2027); position: relative; display: flex; justify-content: center; align-items: center; background-size: cover; background-position: center; }
         .avatar-add .olhos { top: 45px; width: 55px; }
         .avatar-add .olhos::before, .avatar-add .olhos::after { width: 10px; height: 10px; }
         .avatar-add .sorriso { bottom: 30px; width: 50px; height: 20px; border-bottom-width: 6px; }
-        .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+        .badge-editar { position: absolute; bottom: -5px; right: -5px; background: #fff; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.85rem; box-shadow: 0 2px 5px rgba(0,0,0,0.5); cursor: pointer; z-index: 10; }
 
         .input-add { background: #262626; border: none; border-radius: 4px; padding: 16px; color: #fff; font-size: 1.1rem; width: 100%; margin-bottom: 25px; }
         .input-add::placeholder { color: #737373; }
@@ -83,6 +85,16 @@
         .slider:before { position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
         input:checked + .slider { background-color: #fff; }
         input:checked + .slider:before { transform: translateX(20px); background-color: #000; }
+
+        /* TELA ESCOLHA UM ÍCONE (NOVA) */
+        #escolha-icone-area { background: #000; min-height: 100vh; padding: 20px; display: none; text-align: left; }
+        .topo-icones { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; font-size: 1.2rem; font-weight: bold; }
+        .topo-icones i { cursor: pointer; font-size: 1.4rem; }
+        .categoria-titulo { font-size: 0.85rem; font-weight: 900; color: #00aaff; letter-spacing: 1px; margin: 25px 0 12px 0; text-transform: uppercase; }
+        .categoria-titulo.laranja { color: #ff8800; }
+        .grid-icones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px; }
+        .box-icone-opcao { aspect-ratio: 1; border-radius: 6px; overflow: hidden; cursor: pointer; background-size: cover; background-position: center; background-color: #111; }
+        .box-icone-opcao:active { transform: scale(0.95); }
 
         /* Layout da Home */
         #conteudo { width: 100%; background: #141414; min-height: 100vh; }
@@ -152,7 +164,6 @@
                     <span>Infantil</span>
                 </div>
                 
-                <!-- ESTE É O BOTÃO QUE ABRE A ABA DE ADICIONAR PERFIL -->
                 <div class="card-perfil" onclick="abrirTelaAdicionarPerfil()">
                     <div class="avatar cinza"><i class="fa-solid fa-plus"></i></div>
                     <span>Adicionar</span>
@@ -166,7 +177,7 @@
         </div>
     </div>
 
-    <!-- 3.5 TELA ADICIONAR PERFIL (ABRE AO CLICAR EM ADICIONAR) -->
+    <!-- 3.5 TELA ADICIONAR PERFIL -->
     <div id="add-perfil-area">
         <div class="topo-add">
             <i class="fa-solid fa-arrow-left" onclick="voltarParaPerfis()"></i>
@@ -175,9 +186,10 @@
         </div>
 
         <div class="avatar-container-add">
-            <div class="avatar-add">
-                <div class="olhos"></div>
-                <div class="sorriso"></div>
+            <!-- Ao clicar no avatar ou no lápis, abre as opções de ícone -->
+            <div class="avatar-add" id="avatar-preview-novo" onclick="abrirEscolhaIcone()">
+                <div class="olhos" id="olhos-preview"></div>
+                <div class="sorriso" id="sorriso-preview"></div>
                 <div class="badge-editar">
                     <i class="fa-solid fa-pencil"></i>
                 </div>
@@ -198,7 +210,33 @@
         </div>
     </div>
 
-    <!-- 4. TELA PRINCIPAL (HOME) -->
+    <!-- 3.6 TELA SELEÇÃO DE ÍCONES (ESTILO A FOTO QUE MANDOU) -->
+    <div id="escolha-icone-area">
+        <div class="topo-icones">
+            <i class="fa-solid fa-arrow-left" onclick="fecharEscolhaIcone()"></i>
+            <span>Escolha um ícone</span>
+        </div>
+
+        <!-- Categoria 1 -->
+        <div class="categoria-titulo">Série: Elementos Frutais</div>
+        <div class="grid-icones">
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1528825871115-3581a5387919?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1557800636-894a64c1696f?w=150')"></div>
+        </div>
+
+        <!-- Categoria 2 -->
+        <div class="categoria-titulo laranja">Série: Cyber-Animais e Arte</div>
+        <div class="grid-icones">
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150')"></div>
+            <div class="box-icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150')" onclick="selecionarIcone('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150')"></div>
+        </div>
+    </div>
+
+    <!-- 4. TELA PRINCIPAL -->
     <div id="conteudo" style="display: none;">
         <header>
             <span class="header-logo">FILIMESFLIX</span>
@@ -225,19 +263,19 @@
     </div>
 
     <script>
-        // Fecha animação
+        // Variável para guardar a imagem escolhida temporariamente
+        let imagemSelecionadaTemporaria = "";
+
         setTimeout(() => {
             const animacao = document.getElementById('animacao');
             if (animacao) animacao.style.display = 'none';
         }, 3000);
 
-        // Abre perfis
         function proximaTelaPerfis() {
             document.getElementById('login-area').style.display = 'none';
             document.getElementById('perfil-area').style.display = 'block';
         }
 
-        // Abre catálogo
         function entrarNoCatalogo(nomeDoPerfil) {
             document.getElementById('perfil-area').style.display = 'none';
             document.getElementById('conteudo').style.display = 'block';
@@ -245,64 +283,15 @@
             window.scrollTo(0, 0);
         }
 
-        // DISPARADO APENAS AO CLICAR NO BOTÃO CINZA COM O "+" (ADICIONAR)
         function abrirTelaAdicionarPerfil() {
             document.getElementById('perfil-area').style.display = 'none';
             document.getElementById('add-perfil-area').style.display = 'block';
             document.getElementById('novo-nome-perfil').value = "";
             document.getElementById('check-infantil').checked = false;
             document.getElementById('botao-salvar').classList.remove('ativo');
-        }
-
-        function voltarParaPerfis() {
-            document.getElementById('add-perfil-area').style.display = 'none';
-            document.getElementById('perfil-area').style.display = 'block';
-        }
-
-        function validarInput(input) {
-            const btn = document.getElementById('botao-salvar');
-            if (input.value.trim().length > 0) {
-                btn.classList.add('ativo');
-            } else {
-                btn.classList.remove('ativo');
-            }
-        }
-
-        function salvarNovoPerfil() {
-            const nomeInput = document.getElementById('novo-nome-perfil').value.trim();
-            const ehInfantil = document.getElementById('check-infantil').checked;
             
-            if (nomeInput === "") return;
-
-            const grid = document.getElementById('lista-de-perfis');
-            const novoCard = document.createElement('div');
-            novoCard.className = 'card-perfil';
-            novoCard.onclick = function() { entrarNoCatalogo(nomeInput); };
-
-            let avatarHTML = '';
-            if (ehInfantil) {
-                avatarHTML = '<div class="avatar infantil"><span>Infantil</span></div>';
-            } else {
-                avatarHTML = '<div class="avatar dinamico"><div class="olhos"></div><div class="sorriso"></div></div>';
-            }
-
-            novoCard.innerHTML = avatarHTML + '<span>' + nomeInput + '</span>';
-
-            // Insere antes do botão cinza de Adicionar
-            const botaoAdicionar = grid.children[grid.children.length - 2];
-            grid.insertBefore(novoCard, botaoAdicionar);
-
-            voltarParaPerfis();
-        }
-
-        function ativarPremium() {
-            alert("Redirecionando para assinatura Premium...");
-            document.querySelector('.grid-canais').classList.remove('bloqueado');
-            document.querySelectorAll('.icone-play').forEach(i => i.innerText = "▶️");
-            document.getElementById('btn-premium').style.display = 'none';
-            document.querySelector('.aviso-privado').innerText = "Premium Ativado! Canais Liberados.";
-            document.querySelector('.aviso-privado').style.color = "#46d369";
-        }
-    </script>
-</body>
-</html>
+            // Reseta para o design de carinha padrão
+            imagemSelecionadaTemporaria = "";
+            const preview = document.getElementById('avatar-preview-novo');
+            preview.style.backgroundImage = "none";
+            document.getElementById('olhos-preview').
