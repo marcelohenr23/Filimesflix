@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filimesflix - Login</title>
+    <title>Filmesflix - Login</title>
     <style>
         * {
             margin: 0;
@@ -25,7 +25,6 @@
             overflow: hidden;
         }
 
-        /* Fundo com efeito de imagem borrada ou degradê escuro clássico */
         body::before {
             content: '';
             position: absolute;
@@ -34,7 +33,6 @@
             z-index: -1;
         }
 
-        /* Logotipo fictício no topo */
         .logo {
             color: #E50914;
             font-size: 2.5rem;
@@ -44,7 +42,6 @@
             text-transform: uppercase;
         }
 
-        /* Caixa de Login */
         .login-card {
             background-color: rgba(0, 0, 0, 0.75);
             padding: 40px;
@@ -63,7 +60,6 @@
             margin-bottom: 10px;
         }
 
-        /* Campos de Entrada */
         .input-group {
             position: relative;
             width: 100%;
@@ -89,7 +85,6 @@
             color: #8c8c8c;
         }
 
-        /* Botão Entrar */
         .btn-entrar {
             background-color: #E50914;
             color: #ffffff;
@@ -108,7 +103,6 @@
             transform: scale(0.98);
         }
 
-        /* Links de ajuda */
         .login-help {
             display: flex;
             justify-content: space-between;
@@ -126,7 +120,6 @@
             text-decoration: underline;
         }
 
-        /* Rodapé ou aviso de Cadastro */
         .login-footer {
             margin-top: 20px;
             color: #737373;
@@ -146,10 +139,9 @@
 </head>
 <body>
 
-    <!-- Logo Principal -->
-    <div class="logo">Filimesflix</div>
+    <!-- Logo Corrigida -->
+    <div class="logo">Filmesflix</div>
 
-    <!-- Caixa de Formulário -->
     <div class="login-card">
         <h2>Entrar</h2>
         
@@ -161,7 +153,6 @@
             <input type="password" placeholder="Senha">
         </div>
 
-        <!-- Clicar aqui redireciona diretamente para a sua tela de escolha de perfis -->
         <button class="btn-entrar" onclick="fazerLogin()">Entrar</button>
 
         <div class="login-help">
@@ -178,7 +169,6 @@
 
     <script>
         function fazerLogin() {
-            // Avança direto para a tela que gerencia e mostra os perfis criados
             window.location.href = 'perfis.html';
         }
     </script>
