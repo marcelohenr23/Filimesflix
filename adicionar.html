@@ -76,12 +76,14 @@
         .avatar-preview { 
             width: 110px; 
             height: 110px; 
-            border-radius: 8px; 
+            border-radius: 12px; 
             position: relative; 
             overflow: hidden;
-            background-image: url('avatares.png');
+            background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/avatares.png');
             background-size: 400% 400%;
-            background-position: 0% 0%; /* Começa com o primeiro boneco */
+            background-position: 0% 0%; /* Primeiro personagem padrão */
+            background-repeat: no-repeat;
+            border: 2px solid #333;
         }
 
         .badge-lapis {
@@ -97,6 +99,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
         /* Campo de Texto */
@@ -107,15 +110,15 @@
 
         input[type="text"] { 
             width: 100%;
-            background: #333333; 
+            background: #262626; 
             border: none; 
             padding: 16px; 
             color: white; 
             font-size: 1.1rem; 
-            border-radius: 4px; 
+            border-radius: 6px; 
         }
         input[type="text"]::placeholder { color: #8c8c8c; }
-        input[type="text"]:focus { outline: none; background: #444444; }
+        input[type="text"]:focus { outline: none; background: #333333; }
 
         /* ================= TELA DE ESCOLHER ÍCONE (MODAL) ================= */
         .modal-icones {
@@ -166,25 +169,27 @@
         .grid-icones {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+            gap: 14px;
             margin-bottom: 20px;
         }
 
-        /* Base para recortar a imagem grande em pedaços */
+        /* Base dos quadradinhos */
         .icone-opcao {
             width: 100%;
             aspect-ratio: 1 / 1;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            background-image: url('avatares.png');
-            background-size: 400% 400%; /* Divide a imagem em 4 colunas e 4 linhas */
+            background-image: url('https://raw.githubusercontent.com/marcelohenr23/Filimesflix/main/avatares.png');
+            background-size: 400% 400%; 
+            background-repeat: no-repeat;
             border: 2px solid transparent;
+            background-color: #141414; /* Cor de fundo caso demore a carregar */
         }
         .icone-opcao:active {
             transform: scale(0.95);
         }
 
-        /* Mapeamento exato de cada um dos seus 16 avatares */
+        /* Posições exatas de cada imagem */
         /* Linha 1 */
         .av-1 { background-position: 0% 0%; }
         .av-2 { background-position: 33.33% 0%; }
@@ -224,7 +229,6 @@
 
         <div class="main-content">
             <div class="avatar-container" onclick="abrirModal()">
-                <!-- O preview muda de acordo com o que escolher no modal -->
                 <div class="avatar-preview" id="preview"></div>
                 <div class="badge-lapis">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
@@ -289,7 +293,6 @@
             document.getElementById('telaPrincipal').style.display = 'block';
         }
 
-        // Atualiza a posição da imagem de fundo baseada no clique do usuário
         function selecionarAvatar(posicao) {
             const preview = document.getElementById('preview');
             preview.style.backgroundPosition = posicao;
