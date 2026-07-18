@@ -1,8 +1,13 @@
 body { margin: 0; background: #000; color: #fff; font-family: sans-serif; text-align: center; }
 .intro { height: 100vh; display: flex; justify-content: center; align-items: center; color: #e50914; font-size: 3rem; font-weight: 900; animation: anim 3s forwards; }
 @keyframes anim { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; display: none; } }
-#conteudo { display: none; padding: 20px; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+
+#login-area { padding: 20px; margin-top: 50px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; padding: 20px; }
 .item { background: #222; padding: 20px; border-radius: 8px; }
 .bloqueado { filter: blur(5px); pointer-events: none; }
-button { background: #46d369; color: white; padding: 15px; border: none; width: 100%; border-radius: 5px; margin-top: 20px; font-weight: bold; }
+
+input { width: 80%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
+.btn-entrar { background: #e50914; color: white; padding: 15px; width: 80%; border: none; border-radius: 5px; cursor: pointer; }
+.btn-google { background: #4285F4; color: white; padding: 15px; width: 80%; border: none; border-radius: 5px; margin-bottom: 10px; }
+.btn-assinar { background: #46d369; color: white; padding: 15px; width: 90%; border: none; border-radius: 5px; margin-top: 20px; font-weight: bold; }
