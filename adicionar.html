@@ -79,33 +79,9 @@
             border-radius: 8px; 
             position: relative; 
             overflow: hidden;
-            background-color: #2b7fff;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Desenho do rostinho padrão em CSS */
-        .rostinho::before { 
-            content: ''; 
-            position: absolute; 
-            width: 18px; 
-            height: 18px; 
-            background: #fff; 
-            border-radius: 50%; 
-            top: 35px; 
-            left: 26px; 
-            box-shadow: 36px 0 #fff; 
-        }
-        .rostinho::after { 
-            content: ''; 
-            position: absolute; 
-            width: 44px; 
-            height: 22px; 
-            border: 5px solid #fff; 
-            border-radius: 0 0 50px 50px; 
-            border-top: none; 
-            top: 60px; 
-            left: 33px; 
+            background-image: url('avatares.png');
+            background-size: 400% 400%;
+            background-position: 0% 0%; /* Começa com o primeiro boneco */
         }
 
         .badge-lapis {
@@ -184,36 +160,54 @@
             font-size: 1.1rem;
             color: #ffffff;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
         .grid-icones {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
+        /* Base para recortar a imagem grande em pedaços */
         .icone-opcao {
             width: 100%;
             aspect-ratio: 1 / 1;
             border-radius: 8px;
             cursor: pointer;
-            overflow: hidden;
-            position: relative;
-            background-size: cover;
-            background-position: center;
+            background-image: url('avatares.png');
+            background-size: 400% 400%; /* Divide a imagem em 4 colunas e 4 linhas */
             border: 2px solid transparent;
         }
         .icone-opcao:active {
             transform: scale(0.95);
         }
 
-        /* Cores dos clássicos */
-        .c-blue { background-color: #2b7fff; }
-        .c-yellow { background-color: #ffc83b; }
-        .c-red { background-color: #e50914; }
-        .c-purple { background-color: #8e44ad; }
+        /* Mapeamento exato de cada um dos seus 16 avatares */
+        /* Linha 1 */
+        .av-1 { background-position: 0% 0%; }
+        .av-2 { background-position: 33.33% 0%; }
+        .av-3 { background-position: 66.66% 0%; }
+        .av-4 { background-position: 100% 0%; }
+
+        /* Linha 2 */
+        .av-5 { background-position: 0% 33.33%; }
+        .av-6 { background-position: 33.33% 33.33%; }
+        .av-7 { background-position: 66.66% 33.33%; }
+        .av-8 { background-position: 100% 33.33%; }
+
+        /* Linha 3 */
+        .av-9 { background-position: 0% 66.66%; }
+        .av-10 { background-position: 33.33% 66.66%; }
+        .av-11 { background-position: 66.66% 66.66%; }
+        .av-12 { background-position: 100% 66.66%; }
+
+        /* Linha 4 */
+        .av-13 { background-position: 0% 100%; }
+        .av-14 { background-position: 33.33% 100%; }
+        .av-15 { background-position: 66.66% 100%; }
+        .av-16 { background-position: 100% 100%; }
     </style>
 </head>
 <body>
@@ -230,7 +224,8 @@
 
         <div class="main-content">
             <div class="avatar-container" onclick="abrirModal()">
-                <div class="avatar-preview rostinho" id="preview"></div>
+                <!-- O preview muda de acordo com o que escolher no modal -->
+                <div class="avatar-preview" id="preview"></div>
                 <div class="badge-lapis">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                 </div>
@@ -242,7 +237,7 @@
         </div>
     </div>
 
-    <!-- ================= TELA DE ESCOLA DE ÍCONES (MODAL) ================= -->
+    <!-- ================= TELA DE ESCOLHA DE ÍCONES (MODAL) ================= -->
     <div id="modalIcones" class="modal-icones">
         <div class="modal-header">
             <div style="cursor: pointer; display: flex; align-items: center;" onclick="fecharModal()">
@@ -252,32 +247,32 @@
         </div>
 
         <div class="modal-content">
-            <!-- Categoria 1 -->
             <div>
-                <p class="categoria-titulo">Os Clássicos</p>
+                <p class="categoria-titulo">Seus Personagens 3D</p>
                 <div class="grid-icones">
-                    <div class="icone-opcao c-blue rostinho" onclick="selecionarEstilo('#2b7fff', true, '')"></div>
-                    <div class="icone-opcao c-yellow rostinho" onclick="selecionarEstilo('#ffc83b', true, '')"></div>
-                    <div class="icone-opcao c-red rostinho" onclick="selecionarEstilo('#e50914', true, '')"></div>
-                    <div class="icone-opcao c-purple rostinho" onclick="selecionarEstilo('#8e44ad', true, '')"></div>
-                </div>
-            </div>
+                    <!-- Linha 1 -->
+                    <div class="icone-opcao av-1" onclick="selecionarAvatar('0% 0%')"></div>
+                    <div class="icone-opcao av-2" onclick="selecionarAvatar('33.33% 0%')"></div>
+                    <div class="icone-opcao av-3" onclick="selecionarAvatar('66.66% 0%')"></div>
+                    <div class="icone-opcao av-4" onclick="selecionarAvatar('100% 0%')"></div>
+                    
+                    <!-- Linha 2 -->
+                    <div class="icone-opcao av-5" onclick="selecionarAvatar('0% 33.33%')"></div>
+                    <div class="icone-opcao av-6" onclick="selecionarAvatar('33.33% 33.33%')"></div>
+                    <div class="icone-opcao av-7" onclick="selecionarAvatar('66.66% 33.33%')"></div>
+                    <div class="icone-opcao av-8" onclick="selecionarAvatar('100% 33.33%')"></div>
 
-            <!-- Categoria 2 - Personagens 3D Estilo Cinema -->
-            <div>
-                <p class="categoria-titulo">Personagens 3D (Cinema)</p>
-                <div class="grid-icones">
-                    <!-- Astronauta 3D -->
-                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=200\')', false, '')"></div>
-                    
-                    <!-- Monstrinho de Animação 3D -->
-                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=200\')', false, '')"></div>
-                    
-                    <!-- Balde de Pipoca Cinema 3D -->
-                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?q=80&w=200\')', false, '')"></div>
-                    
-                    <!-- Robô Futurista 3D -->
-                    <div class="icone-opcao" style="background-image: url('https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=200');" onclick="selecionarEstilo('url(\'https://images.unsplash.com/photo-1589254065878-42c9da997008?q=80&w=200\')', false, '')"></div>
+                    <!-- Linha 3 -->
+                    <div class="icone-opcao av-9" onclick="selecionarAvatar('0% 66.66%')"></div>
+                    <div class="icone-opcao av-10" onclick="selecionarAvatar('33.33% 66.66%')"></div>
+                    <div class="icone-opcao av-11" onclick="selecionarAvatar('66.66% 66.66%')"></div>
+                    <div class="icone-opcao av-12" onclick="selecionarAvatar('100% 66.66%')"></div>
+
+                    <!-- Linha 4 -->
+                    <div class="icone-opcao av-13" onclick="selecionarAvatar('0% 100%')"></div>
+                    <div class="icone-opcao av-14" onclick="selecionarAvatar('33.33% 100%')"></div>
+                    <div class="icone-opcao av-15" onclick="selecionarAvatar('66.66% 100%')"></div>
+                    <div class="icone-opcao av-16" onclick="selecionarAvatar('100% 100%')"></div>
                 </div>
             </div>
         </div>
@@ -294,19 +289,10 @@
             document.getElementById('telaPrincipal').style.display = 'block';
         }
 
-        function selecionarEstilo(backgroundVal, ehRostinho) {
+        // Atualiza a posição da imagem de fundo baseada no clique do usuário
+        function selecionarAvatar(posicao) {
             const preview = document.getElementById('preview');
-            
-            if (ehRostinho) {
-                preview.className = "avatar-preview rostinho";
-                preview.style.background = backgroundVal;
-                preview.style.backgroundImage = "none";
-            } else {
-                preview.className = "avatar-preview";
-                preview.style.background = "none";
-                preview.style.backgroundImage = backgroundVal;
-            }
-            
+            preview.style.backgroundPosition = posicao;
             fecharModal();
         }
 
