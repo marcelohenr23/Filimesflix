@@ -2,31 +2,83 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Quem está assistindo?</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Filmesflix - Perfis</title>
     <style>
-        body { background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: Arial; }
-        .container { display: flex; gap: 30px; }
-        .perfil { text-align: center; cursor: pointer; }
-        .avatar { width: 150px; height: 150px; background: #333; border-radius: 5px; margin-bottom: 10px; border: 3px solid transparent; }
-        .perfil:hover .avatar { border: 3px solid #fff; }
-        .nome { color: #808080; font-size: 1.2rem; }
-        .btn-add { display: block; margin-top: 50px; color: #808080; text-decoration: none; border: 1px solid #808080; padding: 10px 20px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background-color: #000; color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        
+        h1 { font-size: 1.5rem; margin-bottom: 30px; font-weight: normal; }
+        
+        .perfis-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 20px; 
+            width: 100%; 
+            padding: 0 20px;
+        }
+
+        .perfil-box { text-align: center; cursor: pointer; width: 100px; }
+        .avatar { 
+            width: 100px; 
+            height: 100px; 
+            border-radius: 4px; 
+            background-size: cover; 
+            background-position: center; 
+            margin-bottom: 10px; 
+            border: 2px solid transparent; 
+        }
+        .perfil-nome { color: #808080; font-size: 0.9rem; }
+        
+        .btn-adicionar { 
+            width: 100px; 
+            height: 100px; 
+            border: 2px dashed #333; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 2rem; 
+            color: #333; 
+            text-decoration: none; 
+            border-radius: 4px;
+        }
+
+        .btn-gerenciar { 
+            margin-top: 50px; 
+            padding: 10px 25px; 
+            border: 1px solid #808080; 
+            color: #808080; 
+            background: none; 
+            font-size: 0.9rem; 
+            cursor: pointer; 
+        }
     </style>
 </head>
 <body>
+
     <h1>Quem está assistindo?</h1>
-    <div class="container">
-        <div class="perfil">
-            <div class="avatar" style="background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png'); background-size: cover;"></div>
-            <div class="nome" id="nomeExibido">Carregando...</div>
+
+    <div class="perfis-container">
+        <div class="perfil-box" onclick="alert('Entrando...')">
+            <div class="avatar" style="background-image: url('https://i.postimg.cc/sMnJGbJx/1784404694570.png');"></div>
+            <div class="perfil-nome" id="nomeExibido">Carregando...</div>
         </div>
+
+        <a href="adicionar.html" class="btn-adicionar">+</a>
     </div>
-    <a href="adicionar.html" class="btn-add">Adicionar perfil</a>
+
+    <button class="btn-gerenciar">Gerenciar perfis</button>
 
     <script>
-        if (localStorage.getItem('usuarioLogado') !== 'true') window.location.href = 'index.html';
-        const nome = localStorage.getItem('nomeDoPerfil');
-        document.getElementById('nomeExibido').innerText = nome ? nome : "Usuário";
+        // Trava de segurança
+        if (localStorage.getItem('usuarioLogado') !== 'true') {
+            window.location.href = 'index.html';
+        }
+
+        // Lê o nome salvo
+        const nomeSalvo = localStorage.getItem('nomeDoPerfil');
+        document.getElementById('nomeExibido').innerText = nomeSalvo ? nomeSalvo : "Usuário";
     </script>
 </body>
 </html>
