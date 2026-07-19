@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmesflix - Catálogo</title>
+    <title>Filmesflix - Oficial</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background: #000; color: #fff; padding-bottom: 50px; }
+        
+        /* Cabeçalho */
         header { display: flex; align-items: center; padding: 20px; }
         .menu-icon { font-size: 1.8rem; cursor: pointer; color: #E50914; margin-right: 15px; }
         h1 { color: #E50914; font-size: 1.5rem; }
         
-        #menuLateral { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.3s; padding-top: 60px; }
+        /* Menus e Modais */
+        #menuLateral { height: 100%; width: 0; position: fixed; z-index: 5000; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.3s; padding-top: 60px; }
         #menuLateral a { padding: 15px 25px; text-decoration: none; font-size: 1.2rem; color: #fff; display: block; }
         #menuLateral .fechar-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
 
-        h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
         .catalogo { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 200px; }
         .item { min-width: 110px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .filme { width: 110px; height: 160px; background-color: #333; border-radius: 4px; background-size: cover; background-position: center; flex-shrink: 0; }
         .titulo-filme { margin-top: 8px; font-size: 0.75rem; text-align: center; color: #ccc; width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        #modalDetalhes { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:3000; overflow-y:auto; }
-        .video-container { width: 100%; height: 250px; background: #000; }
-        .info-filme { padding: 20px; }
-        .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-decoration: none; }
+        #modalDetalhes, #modalPremium, #modalAnuncio { display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; justify-content:center; align-items:center; }
+        #modalDetalhes { background:#000; overflow-y:auto; flex-direction: column; display: none; }
         
-        #modalPremium { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:4000; justify-content:center; align-items:center; text-align:center; padding: 20px; }
+        .video-container { width: 100%; height: 250px; background: #000; }
+        .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; text-decoration: none; }
     </style>
 </head>
 <body>
 
+    <!-- Menu Lateral -->
     <div id="menuLateral">
         <span class="fechar-btn" onclick="fecharMenu()">&times;</span>
         <a href="#">Início</a>
@@ -43,6 +45,7 @@
         <h1>Filmesflix</h1>
     </header>
     
+    <!-- Catálogo Completo -->
     <h2>Lançamentos</h2>
     <div class="catalogo">
         <div class="item" onclick="abrirDetalhes('Rosário', 'el_c_8bkgRo')"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
@@ -60,55 +63,57 @@
         <div class="item" onclick="abrirDetalhes('Velozes e Furiosos', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div><div class="titulo-filme">Velozes</div></div>
     </div>
 
-    <h2>Canais ao vivo (Premium)</h2>
-    <div class="catalogo">
-        <div class="item" onclick="mostrarBloqueio()"><div class="filme" style="background-color: #E50914; display:flex; justify-content:center; align-items:center;">TV</div><div class="titulo-filme">Canal Premium</div></div>
-    </div>
-
+    <!-- Modais -->
     <div id="modalDetalhes">
         <div id="videoTrailer" class="video-container"></div>
-        <div class="info-filme">
-            <h2 id="tituloFilme" style="font-size: 2rem; margin-bottom: 20px;">Filme</h2>
+        <div style="padding: 20px;">
+            <h2 id="tituloFilme" style="margin-bottom: 20px;">Filme</h2>
             <a href="#" class="btn-acao">▶ Assistir Agora</a>
-            <button onclick="fecharDetalhes()" style="padding:15px; width:100%; background:#333; color:#fff; border:none; border-radius:4px;">Voltar</button>
+            <button onclick="fecharDetalhes()" style="width:100%; padding:15px; margin-top:10px; background:#333; color:#fff; border:none;">Voltar</button>
         </div>
     </div>
 
+    <!-- Modal Anúncio (Aparece primeiro) -->
+    <div id="modalAnuncio" style="display:flex; background:rgba(0,0,0,0.95);">
+        <div style="background:#111; padding:30px; border-radius:15px; width:90%; max-width:350px; text-align:center; border:1px solid #333; position:relative;">
+            <button onclick="fecharAnuncio()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5rem;">&times;</button>
+            <div style="font-size:3rem; margin-bottom:20px;">⚡</div>
+            <h2>Sem anúncios?</h2>
+            <p style="margin-bottom:20px;">Assine o plano Premium para remover interrupções.</p>
+            <button onclick="irParaPremium()" class="btn-acao">Remover anúncios</button>
+        </div>
+    </div>
+
+    <!-- Modal Pix -->
     <div id="modalPremium">
-        <div style="background:linear-gradient(180deg, #1c1c1c 0%, #000 100%); padding:30px; border-radius:20px; border: 1px solid #E50914; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);">
-            <div style="font-size: 3rem; color: #E50914; margin-bottom: 10px;">🔒</div>
-            <h2 style="color:#fff; margin-bottom: 10px;">Acesso VIP Premium</h2>
-            <p style="color:#aaa; margin-bottom: 25px;">Desbloqueie todo o conteúdo exclusivo.</p>
-            <div style="background:#000; padding:15px; border-radius:10px; margin-bottom: 20px; border: 1px dashed #E50914;">
-                <p style="font-size: 1.2rem; font-weight: bold;">R$ 4,99</p>
-            </div>
-            <div id="areaBotaoPix"><button onclick="exibirChavePix()" style="padding:15px; width:100%; background:#E50914; border:none; color:#fff; font-weight:bold; border-radius:50px; cursor:pointer;">Pagar com Pix</button></div>
+        <div style="background:linear-gradient(180deg, #1c1c1c 0%, #000 100%); padding:30px; border-radius:20px; border:1px solid #E50914; width:90%; max-width:400px; text-align:center;">
+            <h2>Acesso VIP</h2>
+            <p style="margin: 20px 0;">Pague R$ 4,99 e acesse tudo sem anúncios.</p>
+            <div id="areaBotaoPix"><button onclick="exibirChavePix()" class="btn-acao">Pagar com Pix</button></div>
             <div id="areaChavePix" style="display:none;">
-                <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" readonly style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; text-align: center; border-radius: 5px; margin-bottom: 10px;">
-                <button onclick="copiarPix()" style="padding:12px; width:100%; background:#28a745; border:none; color:#fff; font-weight:bold; border-radius:50px; cursor:pointer;">Copiar Chave Pix</button>
+                <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" readonly style="width:100%; padding:10px; background:#222; color:#fff; text-align:center;">
+                <button onclick="copiarPix()" style="width:100%; padding:12px; margin-top:10px; background:#28a745; border:none; color:#fff;">Copiar Chave</button>
             </div>
-            <button onclick="fecharModal()" style="margin-top:20px; background:transparent; color:#666; border:none; cursor:pointer;">Agora não</button>
+            <button onclick="fecharModalPremium()" style="background:none; border:none; color:#666; margin-top:20px;">Fechar</button>
         </div>
     </div>
 
     <script>
         function abrirMenu() { document.getElementById("menuLateral").style.width = "250px"; }
         function fecharMenu() { document.getElementById("menuLateral").style.width = "0"; }
+        function fecharAnuncio() { document.getElementById("modalAnuncio").style.display = "none"; }
+        function fecharModalPremium() { document.getElementById("modalPremium").style.display = "none"; }
+        function irParaPremium() { fecharAnuncio(); document.getElementById("modalPremium").style.display = "flex"; }
+        
         function abrirDetalhes(t, v) {
             document.getElementById('tituloFilme').innerText = t;
             let container = document.getElementById('videoTrailer');
-            if(v !== "") {
-                container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${v}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-            } else {
-                container.innerHTML = `<div style="padding:100px; text-align:center;">Trailer indisponível</div>`;
-            }
-            document.getElementById('modalDetalhes').style.display = 'block';
+            container.innerHTML = v ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${v}?autoplay=1&mute=1" frameborder="0" allowfullscreen></iframe>` : "Trailer indisponível";
+            document.getElementById('modalDetalhes').style.display = 'flex';
         }
         function fecharDetalhes() { document.getElementById('modalDetalhes').style.display = 'none'; document.getElementById('videoTrailer').innerHTML = ''; }
-        function mostrarBloqueio() { document.getElementById('modalPremium').style.display = 'flex'; }
-        function fecharModal() { document.getElementById('modalPremium').style.display = 'none'; }
         function exibirChavePix() { document.getElementById('areaBotaoPix').style.display = 'none'; document.getElementById('areaChavePix').style.display = 'block'; }
-        function copiarPix() { var c = document.getElementById("chavePix"); navigator.clipboard.writeText(c.value).then(() => { alert("Chave copiada!"); }); }
+        function copiarPix() { navigator.clipboard.writeText(document.getElementById("chavePix").value).then(() => alert("Copiado!")); }
     </script>
 </body>
 </html>
