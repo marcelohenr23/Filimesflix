@@ -33,7 +33,7 @@
         <span class="fechar-btn" onclick="fecharMenu()">&times;</span>
         <a href="#">Início</a>
         <a href="#">Filmes</a>
-        <a href="#">Premium</a>
+        <a href="#">Séries</a>
     </div>
 
     <header>
@@ -41,17 +41,21 @@
         <h1>Filmesflix</h1>
     </header>
     
-    <h2>FILMES</h2>
+    <h2>Filme recente</h2>
     <div class="catalogo">
-        <!-- Lista de todos os seus filmes -->
         <div class="item" onclick="abrirDetalhes('Rosário', 'https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
         <div class="item" onclick="abrirDetalhes('O Corvo', 'https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
-        <div class="item" onclick="abrirDetalhes('Na Mira do Atirador', 'https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div><div class="titulo-filme">Na Mira</div></div>
-        <div class="item" onclick="abrirDetalhes('Alerta Apocalipse', 'https://i.postimg.cc/D8cNBvhw/566b4cd6-2e64-4e3c-8984-261a6d7bb559-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/D8cNBvhw/566b4cd6-2e64-4e3c-8984-261a6d7bb559-m.jpg');"></div><div class="titulo-filme">Alerta Apoc.</div></div>
+    </div>
+
+    <h2>FILMES</h2>
+    <div class="catalogo">
         <div class="item" onclick="abrirDetalhes('Zero D.C.', 'https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
         <div class="item" onclick="abrirDetalhes('Vingadora', 'https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div><div class="titulo-filme">Vingadora</div></div>
-        <div class="item" onclick="abrirDetalhes('O Exorcismo', 'https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div><div class="titulo-filme">Exorcismo</div></div>
-        <div class="item" onclick="abrirDetalhes('Homem Aranha', 'https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg')"><div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div><div class="titulo-filme">Spider-Man</div></div>
+    </div>
+
+    <h2>SÉRIES</h2>
+    <div class="catalogo">
+        <!-- Espaço para suas séries -->
     </div>
 
     <h2>Canais ao vivo (Premium)</h2>
@@ -59,7 +63,6 @@
         <div class="item" onclick="mostrarBloqueio()"><div class="filme" style="background-color: #E50914; display:flex; justify-content:center; align-items:center;">TV</div><div class="titulo-filme">Canal Premium</div></div>
     </div>
 
-    <!-- Tela de Detalhes -->
     <div id="modalDetalhes">
         <div id="capaFilme" class="capa-destaque"></div>
         <div class="info-filme">
@@ -69,7 +72,6 @@
         </div>
     </div>
 
-    <!-- Modal Premium -->
     <div id="modalPremium" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:4000; justify-content:center; align-items:center; text-align:center;">
         <div style="background:#181818; padding:30px; border-radius:10px; border: 2px solid #E50914; width: 85%;">
             <h2 style="color:#E50914;">Acesso Premium</h2>
@@ -88,7 +90,7 @@
         function fecharMenu() { document.getElementById("menuLateral").style.width = "0"; }
         function abrirDetalhes(t, i) { document.getElementById('tituloFilme').innerText = t; document.getElementById('capaFilme').style.backgroundImage = 'url('+i+')'; document.getElementById('modalDetalhes').style.display = 'block'; }
         function fecharDetalhes() { document.getElementById('modalDetalhes').style.display = 'none'; }
-        function mostrarBloqueio() { document.getElementById('modalPremium').style.display = 'flex'; }
+        function mostrarBloqueio() { document.getElementById('modalPremium').style.display = 'flex'; document.getElementById('areaBotaoPix').style.display = 'block'; document.getElementById('areaChavePix').style.display = 'none'; }
         function fecharModal() { document.getElementById('modalPremium').style.display = 'none'; }
         function exibirChavePix() { document.getElementById('areaBotaoPix').style.display = 'none'; document.getElementById('areaChavePix').style.display = 'block'; }
         function copiarPix() { var c = document.getElementById("chavePix"); navigator.clipboard.writeText(c.value).then(() => { alert("Chave copiada!"); }); }
