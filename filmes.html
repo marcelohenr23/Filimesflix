@@ -8,38 +8,37 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background: #000; color: #fff; padding-bottom: 50px; }
         header { display: flex; align-items: center; padding: 20px; }
-        .menu-icon { font-size: 1.8rem; cursor: pointer; color: #E50914; margin-right: 15px; }
         h1 { color: #E50914; font-size: 1.5rem; }
         
-        /* Catálogo */
         .catalogo { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 200px; margin-bottom: 20px; }
         .item { min-width: 110px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .filme { width: 110px; height: 160px; background-color: #333; border-radius: 4px; background-size: cover; background-position: center; }
         .titulo-filme { margin-top: 8px; font-size: 0.75rem; text-align: center; color: #ccc; width: 100px; }
 
-        /* Modais */
         .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:9999; justify-content:center; align-items:center; background:rgba(0,0,0,0.95); }
         .box { background:#111; padding:30px; border-radius:15px; width:90%; max-width:350px; text-align:center; border:1px solid #333; position:relative; }
-        .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; border:none; cursor:pointer; }
+        .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; border:none; cursor:pointer; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="menu-icon" onclick="alert('Menu')">☰</div>
-        <h1>Filmesflix</h1>
-    </header>
+    <header><h1>Filmesflix</h1></header>
     
     <h2>Lançamentos</h2>
     <div class="catalogo">
         <div class="item" onclick="abrirDetalhes('Rosário', 'el_c_8bkgRo')"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
-        <div class="item" onclick="abrirDetalhes('O Corvo', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
+        <div class="item" onclick="abrirDetalhes('O Corvo', 'V_eJp4T0m8k')"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
+        <div class="item" onclick="abrirDetalhes('Na Mira', 't2pQv9l5P1c')"><div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div><div class="titulo-filme">Na Mira</div></div>
     </div>
 
     <h2>FILMES</h2>
     <div class="catalogo">
-        <div class="item" onclick="abrirDetalhes('Zero D.C.', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
-        <div class="item" onclick="abrirDetalhes('Vingadora', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div><div class="titulo-filme">Vingadora</div></div>
+        <div class="item" onclick="abrirDetalhes('Zero D.C.', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
+        <div class="item" onclick="abrirDetalhes('Vingadora', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div><div class="titulo-filme">Vingadora</div></div>
+        <div class="item" onclick="abrirDetalhes('O Exorcismo', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div><div class="titulo-filme">Exorcismo</div></div>
+        <div class="item" onclick="abrirDetalhes('Spider-Man', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div><div class="titulo-filme">Spider-Man</div></div>
+        <div class="item" onclick="abrirDetalhes('Demolidor', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div><div class="titulo-filme">Demolidor</div></div>
+        <div class="item" onclick="abrirDetalhes('Velozes', 'd_ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div><div class="titulo-filme">Velozes</div></div>
     </div>
 
     <h2>SÉRIES</h2>
@@ -56,8 +55,8 @@
             <button onclick="fechar('modalAnuncio')" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5rem;">&times;</button>
             <div style="font-size:3rem; margin-bottom:20px;">🚫</div>
             <h2>Remover Anúncios</h2>
-            <p style="margin:15px 0; color:#aaa;">Assine para uma experiência sem interrupções.</p>
-            <button class="btn-acao" onclick="irParaPix('Remover Anúncios', 'R$ 2,99')">Assinar por R$ 2,99</button>
+            <p style="margin:15px 0; color:#aaa;">Assine para assistir sem interrupções.</p>
+            <button class="btn-acao" onclick="irParaPix('Remover Anúncios', 'R$ 2,99')">Assinar R$ 2,99</button>
         </div>
     </div>
 
@@ -67,19 +66,28 @@
             <button onclick="fechar('modalCanais')" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#fff; font-size:1.5rem;">&times;</button>
             <div style="font-size:3rem; margin-bottom:20px;">📺</div>
             <h2>TV Premium</h2>
-            <p style="margin:15px 0; color:#aaa;">Libere todos os canais ao vivo agora.</p>
-            <button class="btn-acao" onclick="irParaPix('TV Premium', 'R$ 4,99')">Liberar por R$ 4,99</button>
+            <p style="margin:15px 0; color:#aaa;">Libere todos os canais ao vivo.</p>
+            <button class="btn-acao" onclick="irParaPix('TV Premium', 'R$ 4,99')">Liberar R$ 4,99</button>
         </div>
     </div>
 
-    <!-- 3. Modal Pagamento Pix (Único para ambos) -->
+    <!-- 3. Modal de Player (Assistir) -->
+    <div id="modalAssistir" class="modal">
+        <div class="box" style="max-width: 600px;">
+            <button onclick="fechar('modalAssistir')" style="position:absolute; top:10px; right:15px; color:#fff; background:none; border:none; font-size:1.5rem;">&times;</button>
+            <h2 id="tituloFilme" style="margin-bottom:15px;">Filme</h2>
+            <div id="videoContainer" style="width:100%; height:300px; background:#000;"></div>
+        </div>
+    </div>
+
+    <!-- 4. Modal de Pagamento Pix -->
     <div id="modalPix" class="modal">
         <div class="box">
             <h2 id="pixTitulo">Pagamento</h2>
             <p id="pixPreco" style="margin:15px 0; color:#E50914; font-weight:bold;"></p>
-            <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" readonly style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff; text-align:center;">
-            <button class="btn-acao" style="margin-top:10px; background:#28a745;" onclick="alert('Copiado!')">Copiar Chave Pix</button>
-            <button onclick="fechar('modalPix')" style="background:none; border:none; color:#666; margin-top:15px;">Voltar</button>
+            <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" readonly style="width:100%; padding:10px; background:#222; border:1px solid #444; color:#fff; text-align:center; margin-bottom:10px;">
+            <button class="btn-acao" style="background:#28a745;" onclick="alert('Chave copiada!')">Copiar Chave Pix</button>
+            <button onclick="fechar('modalPix')" style="background:none; border:none; color:#666; margin-top:15px;">Fechar</button>
         </div>
     </div>
 
@@ -87,14 +95,19 @@
         function abrirModal(id) { document.getElementById(id).style.display = "flex"; }
         function fechar(id) { document.getElementById(id).style.display = "none"; }
         
+        function abrirDetalhes(titulo, idVideo) {
+            document.getElementById('tituloFilme').innerText = titulo;
+            let container = document.getElementById('videoContainer');
+            container.innerHTML = idVideo !== 'd_ID_AQUI' ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${idVideo}?autoplay=1" frameborder="0" allowfullscreen></iframe>` : "Trailer em breve.";
+            abrirModal('modalAssistir');
+        }
+
         function irParaPix(servico, preco) {
             document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
             document.getElementById('pixTitulo').innerText = servico;
             document.getElementById('pixPreco').innerText = preco;
             abrirModal('modalPix');
         }
-
-        function abrirDetalhes(t, v) { /* Lógica de trailer aqui */ alert("Abrindo: " + t); }
     </script>
 </body>
 </html>
