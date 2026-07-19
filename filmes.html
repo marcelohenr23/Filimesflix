@@ -2,41 +2,64 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmesflix - Catálogo</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
-        body { background: #000; color: #fff; padding: 20px; }
-        h1 { color: #E50914; font-size: 1.8rem; margin-bottom: 20px; }
-        h2 { font-size: 1.2rem; margin: 20px 0 10px 0; }
-        .catalogo { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 10px; }
-        .filme { min-width: 110px; height: 160px; background: #333; border-radius: 4px; }
-        .btn-sair { margin-top: 40px; width: 100%; padding: 12px; background: #333; border: none; color: #fff; border-radius: 4px; }
+        body { background: #000; color: #fff; padding-bottom: 50px; }
+        h1 { color: #E50914; padding: 20px; font-size: 1.8rem; }
+        h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
+        
+        .catalogo { display: flex; gap: 10px; overflow-x: auto; padding: 0 15px; }
+        
+        .filme { 
+            min-width: 110px; 
+            height: 160px; 
+            background-color: #333; 
+            border-radius: 4px; 
+            background-size: cover; 
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .btn-sair { 
+            margin: 40px auto; 
+            display: block; 
+            padding: 10px 30px; 
+            background: #333; 
+            border: none; 
+            color: #fff; 
+            border-radius: 4px; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
     <h1>Filmesflix</h1>
     
-    <h2>Em alta</h2>
+    <h2>Filme recente</h2>
     <div class="catalogo">
-        <div class="filme"></div>
-        <div class="filme"></div>
-        <div class="filme"></div>
+        <!-- Cole os links dos filmes recentes aqui -->
+        <div class="filme" style="background-image: url('LINK_DA_IMAGEM');"></div>
     </div>
 
-    <h2>Lançamentos</h2>
+    <h2>FILMES</h2>
     <div class="catalogo">
-        <div class="filme"></div>
-        <div class="filme"></div>
-        <div class="filme"></div>
+        <!-- Cole os links dos seus filmes aqui -->
+        <div class="filme" style="background-image: url('LINK_DA_IMAGEM');"></div>
+    </div>
+
+    <h2>SÉRIES</h2>
+    <div class="catalogo">
+        <!-- Cole os links das séries aqui -->
+        <div class="filme" style="background-image: url('LINK_DA_IMAGEM');"></div>
     </div>
 
     <button class="btn-sair" onclick="sair()">Sair do App</button>
 
     <script>
         function sair() {
-            // Apaga o login para a pessoa ter que entrar de novo depois
             localStorage.removeItem('usuarioLogado');
             window.location.href = 'index.html';
         }
