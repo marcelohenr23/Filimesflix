@@ -7,7 +7,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background: #000; color: #fff; padding-bottom: 50px; }
-        h1 { color: #E50914; padding: 20px; font-size: 1.8rem; }
+        
+        /* Cabeçalho com o Menu */
+        header { display: flex; align-items: center; padding: 20px; }
+        .menu-icon { font-size: 1.5rem; cursor: pointer; color: #fff; margin-right: 15px; }
+        h1 { color: #E50914; font-size: 1.5rem; }
+        
         h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
         
         .catalogo { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 200px; }
@@ -28,7 +33,10 @@
 </head>
 <body>
 
-    <h1>Filmesflix</h1>
+    <header>
+        <div class="menu-icon" onclick="alert('Menu aberto!')">☰</div>
+        <h1>Filmesflix</h1>
+    </header>
     
     <h2>Filme recente</h2>
     <div class="catalogo">
@@ -62,12 +70,12 @@
         </div>
     </div>
 
-    <!-- Modal Premium -->
+    <!-- Modal Premium com valor 4.99 -->
     <div id="modalPremium" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center; text-align:center;">
         <div style="background:#181818; padding:30px; border-radius:10px; border: 2px solid #E50914; width: 80%; max-width: 300px;">
             <h2 style="color:#E50914; margin-bottom:15px;">Acesso Premium</h2>
             <p style="margin-bottom:10px;">Tenha acesso a todos os canais ao vivo!</p>
-            <p style="font-size:1.3rem; font-weight:bold; margin:20px 0;">Assine por apenas R$ 5,00</p>
+            <p style="font-size:1.3rem; font-weight:bold; margin:20px 0;">Assine por apenas R$ 4,99</p>
             <button onclick="fecharModal()" style="padding:10px 20px; background:#E50914; border:none; color:#fff; border-radius:4px; cursor:pointer; width: 100%;">Fechar</button>
         </div>
     </div>
