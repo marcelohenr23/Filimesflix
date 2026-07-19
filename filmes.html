@@ -9,9 +9,29 @@
         body { background: #000; color: #fff; padding-bottom: 50px; }
         h1 { color: #E50914; padding: 20px; font-size: 1.8rem; }
         h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
+        
         .catalogo { display: flex; gap: 10px; overflow-x: auto; padding: 0 15px; }
-        .filme { min-width: 110px; height: 160px; background-color: #333; border-radius: 4px; background-size: cover; background-position: center; flex-shrink: 0; }
-        .btn-sair { margin: 40px auto; display: block; padding: 10px 30px; background: #333; border: none; color: #fff; border-radius: 4px; cursor: pointer; }
+        
+        .filme { 
+            min-width: 110px; 
+            height: 160px; 
+            background-color: #333; 
+            border-radius: 4px; 
+            background-size: cover; 
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .btn-sair { 
+            margin: 40px auto; 
+            display: block; 
+            padding: 10px 30px; 
+            background: #333; 
+            border: none; 
+            color: #fff; 
+            border-radius: 4px; 
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -20,23 +40,27 @@
     
     <h2>Filme recente</h2>
     <div class="catalogo">
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/i9Y4O06Xl851N4z0W47gT5p9d4h.jpg');"></div> <!-- Velozes e Furiosos 1 -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/u3iU367rZJ0m2c07Yq36w472314.jpg');"></div> <!-- Velozes e Furiosos 2 -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/z6c98Z64m0a78v7Zq498gJ6e7lO.jpg');"></div> <!-- Velozes e Furiosos 3 -->
+        <div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/D8cNBvhw/566b4cd6-2e64-4e3c-8984-261a6d7bb559-m.jpg');"></div>
     </div>
 
     <h2>FILMES</h2>
     <div class="catalogo">
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/w2eO1bO3WpY8lR666N666N47474.jpg');"></div> <!-- Homem Aranha -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/78xJ373n2b2oXgJ3HkP5lqH9aT.jpg');"></div> <!-- Homem de Ferro -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/6J2P444s111N111N111N111N.jpg');"></div> <!-- Resgate -->
+        <div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/HVtNBYmD/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/xcQ7vkwT/97b9b9de-6e01-426e-afeb-6ae1e4f78987-m.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div>
     </div>
 
     <h2>SÉRIES</h2>
     <div class="catalogo">
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/123456789123456789.jpg');"></div> <!-- The Wolf -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/444555666777888999.jpg');"></div> <!-- Impuros -->
-        <div class="filme" style="background-image: url('https://image.tmdb.org/t/p/w500/999888777666555444.jpg');"></div> <!-- Sintonia -->
+        <div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/CRLQ23MD/cf386fd29dc557801f7a1b68835e2139.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div>
+        <div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div>
     </div>
 
     <button class="btn-sair" onclick="sair()">Sair do App</button>
