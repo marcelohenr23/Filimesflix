@@ -25,6 +25,7 @@
         .video-container { width: 100%; height: 250px; background: #000; }
         .info-filme { padding: 20px; }
         .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-decoration: none; }
+        
         #modalPremium { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:4000; justify-content:center; align-items:center; text-align:center; padding: 20px; }
     </style>
 </head>
@@ -42,7 +43,7 @@
         <h1>Filmesflix</h1>
     </header>
     
-    <h2>Filme recente</h2>
+    <h2>Lançamentos</h2>
     <div class="catalogo">
         <div class="item" onclick="abrirDetalhes('Rosário', 'el_c_8bkgRo')"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
         <div class="item" onclick="abrirDetalhes('O Corvo', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
@@ -58,9 +59,6 @@
         <div class="item" onclick="abrirDetalhes('Demolidor', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div><div class="titulo-filme">Demolidor</div></div>
         <div class="item" onclick="abrirDetalhes('Velozes e Furiosos', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div><div class="titulo-filme">Velozes</div></div>
     </div>
-
-    <h2>SÉRIES</h2>
-    <div class="catalogo"></div>
 
     <h2>Canais ao vivo (Premium)</h2>
     <div class="catalogo">
@@ -80,7 +78,7 @@
         <div style="background:linear-gradient(180deg, #1c1c1c 0%, #000 100%); padding:30px; border-radius:20px; border: 1px solid #E50914; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);">
             <div style="font-size: 3rem; color: #E50914; margin-bottom: 10px;">🔒</div>
             <h2 style="color:#fff; margin-bottom: 10px;">Acesso VIP Premium</h2>
-            <p style="color:#aaa; margin-bottom: 25px;">Desbloqueie todo o conteúdo exclusivo e canais ao vivo.</p>
+            <p style="color:#aaa; margin-bottom: 25px;">Desbloqueie todo o conteúdo exclusivo.</p>
             <div style="background:#000; padding:15px; border-radius:10px; margin-bottom: 20px; border: 1px dashed #E50914;">
                 <p style="font-size: 1.2rem; font-weight: bold;">R$ 4,99</p>
             </div>
