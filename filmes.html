@@ -29,7 +29,29 @@
         <h1>Filmesflix</h1>
     </header>
     
-    <!-- (Mantive seu catálogo aqui - omisso para economizar espaço) -->
+    <h2>Filme recente</h2>
+    <div class="catalogo">
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div><div class="titulo-filme">Na Mira do Atirador</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/D8cNBvhw/566b4cd6-2e64-4e3c-8984-261a6d7bb559-m.jpg');"></div><div class="titulo-filme">Alerta Apocalipse</div></div>
+    </div>
+
+    <h2>FILMES</h2>
+    <div class="catalogo">
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div><div class="titulo-filme">Vingadora</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/HVtNBYmD/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg');"></div><div class="titulo-filme">Em Busca de Vingança</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/xcQ7vkwT/97b9b9de-6e01-426e-afeb-6ae1e4f78987-m.jpg');"></div><div class="titulo-filme">Loucos e perigosos</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div><div class="titulo-filme">O Exorcismo</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/CRLQ23MD/cf386fd29dc557801f7a1b68835e2139.jpg');"></div><div class="titulo-filme">CAGED</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div><div class="titulo-filme">Homem Aranha</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div><div class="titulo-filme">Demolidor</div></div>
+        <div class="item"><div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div><div class="titulo-filme">Velozes e Furiosos</div></div>
+    </div>
+
+    <h2>SÉRIES</h2>
+    <div class="catalogo"></div>
 
     <h2>Canais ao vivo (Premium)</h2>
     <div class="catalogo">
@@ -43,27 +65,29 @@
     <div id="modalPremium" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center; text-align:center;">
         <div style="background:#181818; padding:30px; border-radius:10px; border: 2px solid #E50914; width: 85%; max-width: 320px;">
             <h2 style="color:#E50914; margin-bottom:15px;">Acesso Premium</h2>
-            <p>Assine por apenas <strong>R$ 4,99</strong></p>
+            <p>Tenha acesso a todos os canais ao vivo!</p>
+            <p style="font-size:1.3rem; font-weight:bold; margin:20px 0;">Assine por apenas R$ 4,99</p>
             
-            <!-- Botão que gera o PIX -->
             <div id="areaBotaoPix">
-                <button onclick="exibirChavePix()" style="margin-top:20px; padding:15px; width:100%; background:#E50914; border:none; color:#fff; font-weight:bold; border-radius:4px; cursor:pointer;">Pagar com Pix</button>
+                <button onclick="exibirChavePix()" style="padding:15px; width:100%; background:#E50914; border:none; color:#fff; font-weight:bold; border-radius:4px; cursor:pointer;">Pagar com Pix</button>
             </div>
 
-            <!-- Área oculta que só aparece depois do clique -->
             <div id="areaChavePix" style="display:none; margin-top:20px; background:#000; padding:15px; border-radius:8px;">
-                <p style="font-size: 0.8rem; color: #ccc; margin-bottom: 5px;">Copie a chave abaixo:</p>
-                <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" readonly style="width:100%; text-align:center; background:transparent; color:#0f0; border:1px solid #444; padding:5px; margin-bottom:10px;">
-                <button onclick="copiarPix()" style="padding:8px; width:100%; background:#28a745; border:none; color:#fff; border-radius:4px; cursor:pointer;">Copiar Chave</button>
+                <p style="font-size: 0.9rem; color: #fff; margin-bottom: 10px;">Clique para copiar a chave Pix:</p>
+                <input type="text" value="dfe7ba22-2505-4f4f-a1f9-aec0e440da13" id="chavePix" style="display:none;">
+                <button onclick="copiarPix()" style="padding:12px; width:100%; background:#28a745; border:none; color:#fff; font-weight:bold; border-radius:4px; cursor:pointer;">Copiar Chave Pix</button>
             </div>
             
             <button onclick="fecharModal()" style="margin-top:20px; padding:10px; background:#444; border:none; color:#fff; border-radius:4px; cursor:pointer; width: 100%;">Fechar</button>
         </div>
     </div>
 
+    <button class="btn-sair" onclick="sair()">Sair do App</button>
+
     <script>
+        function sair() { localStorage.removeItem('usuarioLogado'); window.location.href = 'index.html'; }
         function mostrarBloqueio() { 
-            document.getElementById('modalPremium').style.display = 'flex'; 
+            document.getElementById('modalPremium').style.display = 'flex';
             document.getElementById('areaBotaoPix').style.display = 'block';
             document.getElementById('areaChavePix').style.display = 'none';
         }
@@ -74,9 +98,9 @@
         function fecharModal() { document.getElementById('modalPremium').style.display = 'none'; }
         function copiarPix() {
             var copyText = document.getElementById("chavePix");
-            copyText.select();
-            document.execCommand("copy");
-            alert("Chave copiada! Faça o Pix no seu banco.");
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("Chave Pix copiada com sucesso!");
+            });
         }
     </script>
 </body>
