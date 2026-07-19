@@ -7,29 +7,24 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
         body { background: #000; color: #fff; padding-bottom: 50px; }
-        
-        /* Cabeçalho */
         header { display: flex; align-items: center; padding: 20px; }
         .menu-icon { font-size: 1.8rem; cursor: pointer; color: #E50914; margin-right: 15px; }
         h1 { color: #E50914; font-size: 1.5rem; }
         
-        /* Menu Lateral */
         #menuLateral { height: 100%; width: 0; position: fixed; z-index: 2000; top: 0; left: 0; background-color: #111; overflow-x: hidden; transition: 0.3s; padding-top: 60px; }
         #menuLateral a { padding: 15px 25px; text-decoration: none; font-size: 1.2rem; color: #fff; display: block; }
         #menuLateral .fechar-btn { position: absolute; top: 10px; right: 25px; font-size: 36px; cursor: pointer; }
 
-        /* Catálogo */
         h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
         .catalogo { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 200px; }
         .item { min-width: 110px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .filme { width: 110px; height: 160px; background-color: #333; border-radius: 4px; background-size: cover; background-position: center; flex-shrink: 0; }
         .titulo-filme { margin-top: 8px; font-size: 0.75rem; text-align: center; color: #ccc; width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Modais */
         #modalDetalhes { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000; z-index:3000; overflow-y:auto; }
         .video-container { width: 100%; height: 250px; background: #000; }
         .info-filme { padding: 20px; }
-        .btn-acao { display:block; width: 100%; padding: 15px; background: #E50914; color: #fff; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-decoration: none; }
+        .btn-acao { display:block; width: 100%; padding: 15px; background: #fff; color: #000; text-align: center; font-weight: bold; border-radius: 4px; margin-bottom: 10px; text-decoration: none; }
         
         #modalPremium { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:4000; justify-content:center; align-items:center; text-align:center; }
     </style>
@@ -50,16 +45,21 @@
     
     <h2>Filme recente</h2>
     <div class="catalogo">
+        <!-- Apenas o Rosário com o trailer ativo -->
         <div class="item" onclick="abrirDetalhes('Rosário', 'el_c_8bkgRo')"><div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div><div class="titulo-filme">Rosário</div></div>
+        <div class="item" onclick="abrirDetalhes('O Corvo', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div><div class="titulo-filme">O Corvo</div></div>
+        <div class="item" onclick="abrirDetalhes('Na Mira do Atirador', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div><div class="titulo-filme">Na Mira</div></div>
     </div>
 
     <h2>FILMES</h2>
     <div class="catalogo">
-        <div class="item" onclick="abrirDetalhes('Zero D.C.', 'ID_AQUI')"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
+        <div class="item" onclick="abrirDetalhes('Zero D.C.', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div><div class="titulo-filme">Zero D.C.</div></div>
+        <div class="item" onclick="abrirDetalhes('Vingadora', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div><div class="titulo-filme">Vingadora</div></div>
+        <div class="item" onclick="abrirDetalhes('O Exorcismo', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div><div class="titulo-filme">Exorcismo</div></div>
+        <div class="item" onclick="abrirDetalhes('Homem Aranha', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div><div class="titulo-filme">Spider-Man</div></div>
+        <div class="item" onclick="abrirDetalhes('Demolidor', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div><div class="titulo-filme">Demolidor</div></div>
+        <div class="item" onclick="abrirDetalhes('Velozes e Furiosos', '')"><div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div><div class="titulo-filme">Velozes</div></div>
     </div>
-
-    <h2>SÉRIES</h2>
-    <div class="catalogo"></div>
 
     <h2>Canais ao vivo (Premium)</h2>
     <div class="catalogo">
@@ -70,8 +70,8 @@
     <div id="modalDetalhes">
         <div id="videoTrailer" class="video-container"></div>
         <div class="info-filme">
-            <h2 id="tituloFilme" style="margin-bottom: 20px;">Filme</h2>
-            <a href="#" class="btn-acao">▶ Assistir Filme Completo</a>
+            <h2 id="tituloFilme" style="font-size: 2rem; margin-bottom: 20px;">Filme</h2>
+            <a href="#" class="btn-acao">▶ Assistir Agora</a>
             <button onclick="fecharDetalhes()" style="padding:15px; width:100%; background:#333; color:#fff; border:none; border-radius:4px;">Voltar</button>
         </div>
     </div>
@@ -93,13 +93,17 @@
         function abrirMenu() { document.getElementById("menuLateral").style.width = "250px"; }
         function fecharMenu() { document.getElementById("menuLateral").style.width = "0"; }
         
-        function abrirDetalhes(t, videoId) {
+        function abrirDetalhes(t, v) {
             document.getElementById('tituloFilme').innerText = t;
-            document.getElementById('videoTrailer').innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            let container = document.getElementById('videoTrailer');
+            if(v !== "") {
+                container.innerHTML = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${v}?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+            } else {
+                container.innerHTML = `<div style="padding:100px; text-align:center;">Trailer indisponível</div>`;
+            }
             document.getElementById('modalDetalhes').style.display = 'block';
         }
         function fecharDetalhes() { document.getElementById('modalDetalhes').style.display = 'none'; document.getElementById('videoTrailer').innerHTML = ''; }
-        
         function mostrarBloqueio() { document.getElementById('modalPremium').style.display = 'flex'; }
         function fecharModal() { document.getElementById('modalPremium').style.display = 'none'; }
         function exibirChavePix() { document.getElementById('areaBotaoPix').style.display = 'none'; document.getElementById('areaChavePix').style.display = 'block'; }
