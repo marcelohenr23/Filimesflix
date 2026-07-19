@@ -10,7 +10,7 @@
         h1 { color: #E50914; padding: 20px; font-size: 1.8rem; }
         h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
         
-        .catalogo { display: flex; gap: 10px; overflow-x: auto; padding: 0 15px; }
+        .catalogo { display: flex; gap: 10px; overflow-x: auto; padding: 0 15px; min-height: 160px; }
         
         .filme { 
             min-width: 110px; 
@@ -40,6 +40,7 @@
     
     <h2>Filme recente</h2>
     <div class="catalogo">
+        <!-- Lançamentos mais atuais -->
         <div class="filme" style="background-image: url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/RNTYXSmz/266cbaf8-15c3-4a47-b81e-7776ae702ef8-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/rK9HQVTk/27a21bc8-3960-4ad1-9b12-40dc6e001546-m.jpg');"></div>
@@ -48,19 +49,21 @@
 
     <h2>FILMES</h2>
     <div class="catalogo">
+        <!-- Filmes clássicos e de início de 2025/2026 -->
         <div class="filme" style="background-image: url('https://i.postimg.cc/ZCLQVbmK/58d9aa9a-f9f9-44c4-bb0a-1623477faf39-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/1fKdJmSm/63bd29b4-91e3-4bc4-86b3-92c5f4a4846f-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/HVtNBYmD/718285cd-6a67-447e-aba0-25bcaa5a3176-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/xcQ7vkwT/97b9b9de-6e01-426e-afeb-6ae1e4f78987-m.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/xcPZtfQV/c78d8546-4f6d-4d6c-9daf-ceced978cb69-m.jpg');"></div>
-    </div>
-
-    <h2>SÉRIES</h2>
-    <div class="catalogo">
         <div class="filme" style="background-image: url('https://i.postimg.cc/dhtxfbQr/ca4b4076643dd71432ece4c1c63d8432.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/CRLQ23MD/cf386fd29dc557801f7a1b68835e2139.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/3kJcqsrF/DP-4690515-TC-1400x2100-DP-4690517-Spiderman-Far-From-Home-2019-ITUNES-2000x3000-BR-thumbnail-xlarge.jpg');"></div>
         <div class="filme" style="background-image: url('https://i.postimg.cc/hf0YpDnd/images-1-15.jpg');"></div>
+    </div>
+
+    <h2>SÉRIES</h2>
+    <div class="catalogo">
+        <!-- Espaço vazio para quando você adicionar séries -->
     </div>
 
     <button class="btn-sair" onclick="sair()">Sair do App</button>
