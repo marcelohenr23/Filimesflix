@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix Premium - Entrar</title>
+    <style>
+        /* Mantendo o padrão Dark Mode do catálogo e cadastro */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f0f13; color: #fff; display: flex; flex-direction: column; min-height: 100vh; }
+        
+        /* Menu Superior */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #000; }
+        .logo { color: #e50914; font-weight: bold; font-size: 1.5rem; text-decoration: none; }
+        .btn-voltar { background: #222; color: #fff; border: none; padding: 8px 16px; border-radius: 20px; font-weight: 600; cursor: pointer; text-decoration: none; font-size: 0.85rem; }
+
+        /* Container Centralizado */
+        .container-login { flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; }
+        .card-login { background: #1c1c24; width: 100%; max-width: 400px; padding: 30px; border-radius: 16px; box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5); border: 1px solid #2d2d3d; }
+        
+        h2 { font-size: 1.6rem; margin-bottom: 25px; color: #fff; border-left: 4px solid #e50914; padding-left: 10px; }
+
+        /* Estilização dos Inputs */
+        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group label { display: block; font-size: 0.85rem; color: #b3b3b3; margin-bottom: 8px; font-weight: 600; }
+        .form-group input[type="email"], .form-group input[type="password"] { width: 100%; background-color: #0f0f13; border: 1px solid #3a3a4a; color: #fff; padding: 12px 16px; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
+        
+        .form-group input:focus { border-color: #e50914; }
+
+        /* Links Úteis dentro do Form */
+        .recuperar-senha { display: block; text-align: right; font-size: 0.8rem; color: #b3b3b3; text-decoration: none; margin-top: 6px; transition: color 0.2s; }
+        .recuperar-senha:hover { color: #e50914; text-decoration: underline; }
+
+        /* Checkbox de Atualizações Estilizado */
+        .checkbox-group { display: flex; align-items: flex-start; margin-bottom: 20px; cursor: pointer; }
+        .checkbox-group input { margin-top: 3px; margin-right: 10px; accent-color: #e50914; min-width: 16px; min-height: 16px; }
+        .checkbox-group label { font-size: 0.8rem; color: #b3b3b3; line-height: 1.3; cursor: pointer; }
+
+        /* Botão Entrar */
+        .btn-entrar { width: 100%; background: #e50914; color: #fff; border: none; padding: 14px; border-radius: 8px; font-size: 1rem; font-weight: bold; cursor: pointer; margin-top: 5px; transition: background 0.2s, transform 0.1s; }
+        .btn-entrar:hover { background: #b80710; }
+        .btn-entrar:active { transform: scale(0.98); }
+
+        /* Links de rodapé do card */
+        .footer-links { text-align: center; margin-top: 25px; font-size: 0.85rem; color: #b3b3b3; border-top: 1px solid #2d2d3d; padding-top: 15px; }
+        .footer-links p { margin-bottom: 8px; }
+        .footer-links a { color: #e50914; text-decoration: none; font-weight: bold; }
+        .footer-links a:hover { text-decoration: underline; }
+        
+        .ajuda-link { display: inline-block; margin-top: 10px; font-size: 0.8rem; color: #8a2be2; text-decoration: none; font-weight: 600; }
+        .ajuda-link:hover { text-decoration: underline; color: #a046f5; }
+    </style>
+</head>
+<body>
+
+    <!-- Menu -->
+    <header>
+        <a href="index.html" class="logo">CINEFLIX</a>
+        <a href="index.html" class="btn-voltar">Voltar</a>
+    </header>
+
+    <!-- Área de Login -->
+    <main class="container-login">
+        <div class="card-login">
+            <h2>Entrar</h2>
+            
+            <form id="formLogin">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="Sua senha" required>
+                    <a href="#" class="recuperar-senha" id="btnRecuperar">Esqueceu a senha?</a>
+                </div>
+
+                <!-- Recurso para receber atualizações do app -->
+                <div class="checkbox-group">
+                    <input type="checkbox" id="atualizacoes" checked>
+                    <label for="atualizacoes">Quero receber notificações de lançamentos e atualizações do CineFlix Premium por e-mail.</label>
+                </div>
+
+                <button type="submit" class="btn-entrar">Entrar</button>
+            </form>
+
+            <!-- Links para criar conta e ajuda -->
+            <div class="footer-links">
+                <p>Novo por aqui? <a href="cadastro.html">Criar uma conta</a></p>
+                <a href="#" class="ajuda-link" id="btnAjuda">Precisa de ajuda? Central de Suporte</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Ação ao tentar Entrar
+        document.getElementById('formLogin').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const receberUpdates = document.getElementById('atualizacoes').checked;
+
+            if(receberUpdates) {
+                alert(`Login efetuado! Você receberá as últimas atualizações do app em: ${email}`);
+            } else {
+                alert('Login efetuado com sucesso!');
+            }
+            
+            // Redireciona para o catálogo (index.html)
+            window.location.href = 'index.html';
+        });
+
+        // Simulação do recurso de recuperar conta
+        document.getElementById('btnRecuperar').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Digite seu e-mail cadastrado para enviarmos as instruções de recuperação:');
+            if (email) {
+                alert(`Enviamos um link de redefinição de senha para o e-mail: ${email}`);
+            }
+        });
+
+        // Simulação da Central de Ajuda
+        document.getElementById('btnAjuda').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Direcionando para a Central de Ajuda CineFlix...\n\nSuporte Técnico 24h via chat ativo.');
+        });
+    </script>
+
+</body>
+</html>
+
