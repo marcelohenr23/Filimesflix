@@ -3,99 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmesflix - Premium</title>
+    <title>CineFlix Premium</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: #000; color: #fff; padding-bottom: 50px; }
+        /* Estilo Dark Mode Profissional */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f0f13; color: #fff; padding-bottom: 100px; }
         
-        /* Menu 3 traços */
-        .header { display: flex; justify-content: space-between; padding: 20px; align-items: center; }
-        .menu-icon { font-size: 25px; cursor: pointer; color: #E50914; }
-        
-        h1 { color: #E50914; padding: 0 20px; font-size: 1.8rem; }
-        h2 { font-size: 1.2rem; margin: 25px 0 10px 15px; color: #fff; border-left: 4px solid #E50914; padding-left: 10px; }
-        
-        .row { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 180px; }
-        .card { min-width: 110px; cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: scale(1.05); }
-        .poster { width: 110px; height: 160px; background-size: cover; background-position: center; border-radius: 6px; background-color: #222; }
-        .label { font-size: 0.75rem; text-align: center; margin-top: 8px; color: #ccc; }
+        /* Menu Superior */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px; background: #000; sticky: top; }
+        .logo { color: #e50914; font-weight: bold; font-size: 1.5rem; }
+        nav button { background: #222; color: #fff; border: none; padding: 8px 16px; margin-left: 5px; border-radius: 20px; font-weight: 600; cursor: pointer; }
+        nav button.active { background: #e50914; }
 
-        .overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index: 9999; justify-content:center; align-items:center; }
-        .box { background:linear-gradient(180deg, #1c1c1c 0%, #000 100%); padding:25px; border-radius:15px; width:90%; max-width:450px; text-align:center; border:1px solid #333; position:relative; }
-        .btn-main { width:100%; padding:12px; background:#E50914; color:#fff; border:none; font-weight:bold; cursor:pointer; border-radius:8px; margin-top:10px; }
+        /* Seções do Catálogo */
+        section { padding: 20px; }
+        h2 { font-size: 1.3rem; margin-bottom: 15px; color: #fff; border-left: 4px solid #e50914; padding-left: 8px; }
         
-        /* Estilo Comentários */
-        .tab-btn { background: #333; color: #fff; border: none; padding: 8px 12px; margin: 0 5px 15px 5px; cursor: pointer; border-radius: 5px; font-size: 0.8rem; }
-        textarea { width: 100%; height: 60px; background: #222; color: #fff; border: 1px solid #444; border-radius: 5px; padding: 10px; margin-bottom: 5px; }
+        /* Grid de Filmes Adaptável para Celular */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 25px; }
+        .card { background: #1c1c24; border-radius: 8px; overflow: hidden; position: relative; aspect-ratio: 2/3; display: flex; align-items: flex-end; padding: 10px; background-size: cover; background-position: center; }
+        .card span { font-size: 0.8rem; font-weight: bold; text-shadow: 2px 2px 4px #000; }
+        
+        /* Badges de Lançamento */
+        .badge { position: absolute; top: 5px; left: 5px; background: #e50914; font-size: 0.6rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+
+        /* Overlay do Anúncio Premium Estiloso */
+        .overlay-premium { position: fixed; bottom: 20px; left: 5%; right: 5%; background: linear-gradient(135deg, #1e1e2f 0%, #0f0f19 100%); border: 2px solid #8a2be2; border-radius: 16px; padding: 15px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0px 0px 20px rgba(138, 43, 226, 0.5); z-index: 1000; animation: pulse 2s infinite; }
+        .overlay-text h3 { font-size: 1rem; color: #fff; margin-bottom: 2px; }
+        .overlay-text p { font-size: 0.75rem; color: #b3b3b3; }
+        .overlay-text span { color: #00ffcc; font-weight: bold; }
+        .btn-premium { background: linear-gradient(90deg, #8a2be2, #4a00e0); color: #fff; border: none; padding: 10px 16px; border-radius: 25px; font-weight: bold; font-size: 0.85rem; cursor: pointer; white-space: nowrap; }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 10px rgba(138, 43, 226, 0.4); }
+            50% { box-shadow: 0 0 20px rgba(138, 43, 226, 0.7); }
+            100% { box-shadow: 0 0 10px rgba(138, 43, 226, 0.4); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Filmesflix</h1>
-        <div class="menu-icon" onclick="alert('Menu Aberto!')">☰</div>
-    </div>
+    <!-- Menu -->
+    <header>
+        <div class="logo">CINEFLIX</div>
+        <nav>
+            <button class="active">Filmes</button>
+            <button>Séries</button>
+        </nav>
+    </header>
 
-    <!-- Mantenha seu catálogo de filmes aqui -->
-    <h2>Lançamentos</h2>
-    <div class="row">
-        <div class="card" onclick="playMovie('Rosário', 'el_c_8bkgRo', '#')"><div class="poster" style="background-image:url('https://i.postimg.cc/SJGPDS4q/18335a8f-c7e0-4a49-8c7d-3a93fecf32d8-m.jpg')"></div><div class="label">Rosário</div></div>
-    </div>
-
-    <!-- MODAL PLAYER UNIFICADO -->
-    <div id="modalPlayer" class="overlay">
-        <div class="box">
-            <button onclick="closeModal('modalPlayer')" style="position:absolute; right:15px; top:15px; color:#fff; background:none; border:none; font-size:20px;">✕</button>
-            <h3 id="mTitle" style="margin-bottom:15px;">Filme</h3>
-            
-            <div id="tabContainer">
-                <button class="tab-btn" onclick="showTab('trailer')">Trailer</button>
-                <button class="tab-btn" onclick="showTab('comentarios')">Comentários</button>
+    <!-- Lançamentos -->
+    <section>
+        <h2>🔥 Filmes Lançamento</h2>
+        <div class="grid">
+            <!-- Nota: Substitua o background-image pelos links das suas capas se quiser -->
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=1');">
+                <div class="badge">NOVO</div>
+                <span>Avatar 3</span>
             </div>
-
-            <div id="areaTrailer">
-                <div id="mContent" style="height:200px; background:#000; border-radius:8px;"></div>
-                <button class="btn-main" style="background:#28a745;" onclick="assistirFilme()">▶ Assistir ao Filme</button>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=2');">
+                <div class="badge">NOVO</div>
+                <span>Miranha 4</span>
             </div>
-
-            <div id="areaComentarios" style="display:none; text-align:left;">
-                <textarea id="textoComentario" placeholder="Deixe sua opinião..."></textarea>
-                <button class="btn-main" onclick="postarComentario()">Enviar</button>
-                <div id="listaComentarios" style="margin-top:10px; font-size:0.8rem; color:#aaa; max-height:80px; overflow-y:auto;"></div>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=3');">
+                <div class="badge">NOVO</div>
+                <span>Batman 2</span>
             </div>
         </div>
+    </section>
+
+    <!-- Filmes Populares -->
+    <section>
+        <h2>🎬 Filmes Recomendados</h2>
+        <div class="grid">
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=4');"><span>Interestelar</span></div>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=5');"><span>Gladiador</span></div>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=6');"><span>Matrix</span></div>
+        </div>
+    </section>
+
+    <!-- Séries -->
+    <section>
+        <h2>📺 Séries em Alta</h2>
+        <div class="grid">
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=7');"><span>Stranger Things</span></div>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=8');"><span>The Last of Us</span></div>
+            <div class="card" style="background-image: linear-gradient(transparent, #000), url('https://picsum.photos/200/300?random=9');"><span>Breaking Bad</span></div>
+        </div>
+    </section>
+
+    <!-- Overlay de Anúncio Premium Fixo no Rodapé -->
+    <div class="overlay-premium">
+        <div class="overlay-text">
+            <h3>Navegue Sem Anúncios 🍿</h3>
+            <p>Assista em 4K por apenas <span>R$ 3,99/mês</span></p>
+        </div>
+        <button class="btn-premium">Usar sem Anúncios</button>
     </div>
 
-    <script>
-        let linkAtual = "";
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
-        
-        function showTab(tab) {
-            document.getElementById('areaTrailer').style.display = (tab === 'trailer') ? 'block' : 'none';
-            document.getElementById('areaComentarios').style.display = (tab === 'comentarios') ? 'block' : 'none';
-        }
-
-        function playMovie(t, id, link) {
-            document.getElementById('mTitle').innerText = t;
-            linkAtual = link;
-            document.getElementById('mContent').innerHTML = id ? `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/${id}?autoplay=1"></iframe>` : "Trailer indisponível.";
-            showTab('trailer');
-            openModal('modalPlayer');
-        }
-
-        function assistirFilme() { linkAtual !== '#' ? window.open(linkAtual, '_blank') : alert("Link indisponível."); }
-        
-        function postarComentario() {
-            let texto = document.getElementById('textoComentario').value;
-            if(texto) {
-                let div = document.createElement('div');
-                div.innerHTML = "💬 " + texto;
-                document.getElementById('listaComentarios').appendChild(div);
-                document.getElementById('textoComentario').value = '';
-            }
-        }
-    </script>
 </body>
 </html>
