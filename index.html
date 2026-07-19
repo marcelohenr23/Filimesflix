@@ -24,16 +24,15 @@
         <button onclick="fazerLogin()">Entrar</button>
         <div class="options">
             <label><input type="checkbox" checked> Lembrar de mim</label>
-            <!-- AQUI ESTÁ O LINK QUE VAI PRA RECUPERAÇÃO -->
             <a href="recuperar.html">Ajuda?</a>
         </div>
         <div class="signup">Novo por aqui? <a href="cadastro.html">Assine agora.</a></div>
     </div>
 
     <script>
-        if (localStorage.getItem('usuarioLogado') === 'true' && localStorage.getItem('contaCriada') === 'true') {
-            window.location.href = 'perfis.html';
-        }
+        // MUDANÇA AQUI: Removi o redirecionamento automático para você conseguir ver a tela!
+        // Se quiser que volte a entrar sozinho, depois a gente coloca de volta.
+        
         function fazerLogin() {
             if (localStorage.getItem('contaCriada') !== 'true') {
                 alert("Você ainda não tem uma conta! Por favor, cadastre-se primeiro.");
