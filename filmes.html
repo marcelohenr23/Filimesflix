@@ -11,16 +11,11 @@
         h2 { font-size: 1.2rem; margin: 20px 0 10px 15px; color: #fff; }
         
         .catalogo { display: flex; gap: 15px; overflow-x: auto; padding: 0 15px; min-height: 200px; }
-        .item { min-width: 110px; display: flex; flex-direction: column; align-items: center; }
+        .item { min-width: 110px; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         
         .filme { 
-            width: 110px; 
-            height: 160px; 
-            background-color: #333; 
-            border-radius: 4px; 
-            background-size: cover; 
-            background-position: center;
-            flex-shrink: 0;
+            width: 110px; height: 160px; background-color: #333; border-radius: 4px; 
+            background-size: cover; background-position: center; flex-shrink: 0;
         }
 
         .titulo-filme { 
@@ -59,7 +54,30 @@
     <h2>SÉRIES</h2>
     <div class="catalogo"></div>
 
+    <h2>Canais ao vivo (Premium)</h2>
+    <div class="catalogo">
+        <div class="item" onclick="mostrarBloqueio()">
+            <div class="filme" style="background-color: #E50914; display:flex; justify-content:center; align-items:center;">TV</div>
+            <div class="titulo-filme">Canal Premium</div>
+        </div>
+    </div>
+
+    <!-- Modal Premium -->
+    <div id="modalPremium" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; justify-content:center; align-items:center; text-align:center;">
+        <div style="background:#181818; padding:30px; border-radius:10px; border: 2px solid #E50914; width: 80%; max-width: 300px;">
+            <h2 style="color:#E50914; margin-bottom:15px;">Acesso Premium</h2>
+            <p style="margin-bottom:10px;">Tenha acesso a todos os canais ao vivo!</p>
+            <p style="font-size:1.3rem; font-weight:bold; margin:20px 0;">Assine por apenas R$ 5,00</p>
+            <button onclick="fecharModal()" style="padding:10px 20px; background:#E50914; border:none; color:#fff; border-radius:4px; cursor:pointer; width: 100%;">Fechar</button>
+        </div>
+    </div>
+
     <button class="btn-sair" onclick="sair()">Sair do App</button>
-    <script>function sair() { localStorage.removeItem('usuarioLogado'); window.location.href = 'index.html'; }</script>
+
+    <script>
+        function sair() { localStorage.removeItem('usuarioLogado'); window.location.href = 'index.html'; }
+        function mostrarBloqueio() { document.getElementById('modalPremium').style.display = 'flex'; }
+        function fecharModal() { document.getElementById('modalPremium').style.display = 'none'; }
+    </script>
 </body>
 </html>
