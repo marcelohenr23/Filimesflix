@@ -2,32 +2,165 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Filmesflix - Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineFlix - Login</title>
     <style>
-        body { background: #000; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .box { width: 92%; max-width: 400px; }
-        .logo { color: #E50914; font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 20px; }
-        input { width: 100%; padding: 15px; margin: 10px 0; background: #333; border: none; color: #fff; border-radius: 4px; font-size: 16px; }
-        button { width: 100%; padding: 15px; background: #E50914; border: none; color: #fff; font-weight: bold; margin-top: 10px; cursor: pointer; border-radius: 4px; }
+        /* Reset e Base (Combinando com o Catálogo) */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { 
+            background: radial-gradient(circle at top, #1e1e2f 0%, #0f0f13 100%); 
+            color: #fff; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Logo flutuante no topo */
+        .logo { 
+            color: #e50914; 
+            font-weight: bold; 
+            font-size: 2rem; 
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Container do Formulário */
+        .login-container {
+            background: rgba(28, 28, 36, 0.85);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* Inputs e Labels */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 16px;
+            background: #2b2b36;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Efeito de foco profissional */
+        .input-group input:focus {
+            border-color: #e50914;
+            background: #1c1c24;
+        }
+
+        /* Botão de Entrar */
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: #e50914;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s ease;
+        }
+
+        .btn-login:hover {
+            background: #b80710;
+        }
+
+        /* Links Úteis e Opções */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #b3b3b3;
+        }
+
+        .options a {
+            color: #b3b3b3;
+            text-decoration: none;
+        }
+
+        .options a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rodapé para criar conta */
+        .footer-text {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #737373;
+        }
+
+        .footer-text a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .footer-text a:hover {
+            text-shadow: 0 0 10px rgba(255,255,255,0.4);
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <div class="logo">Filmesflix</div>
-        <h2>Criar sua conta</h2>
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="senha" placeholder="Senha">
-        <button onclick="cadastrar()">Cadastrar</button>
+
+    <!-- Logo da sua marca -->
+    <div class="logo">CINEFLIX</div>
+
+    <!-- Caixa de Login -->
+    <div class="login-container">
+        <h2>Entrar</h2>
+        
+        <form action="index.html"> <!-- Redireciona direto para o seu catálogo ao clicar -->
+            
+            <div class="input-group">
+                <input type="email" placeholder="Email ou número de telefone" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" placeholder="Senha" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Entrar</button>
+            
+            <div class="options">
+                <label style="display: flex; align-items: center; gap: 5px;">
+                    <input type="checkbox" style="accent-color: #e50914;"> Lembrar de mim
+                </label>
+                <a href="#">Precisa de ajuda?</a>
+            </div>
+            
+        </form>
+
+        <div class="footer-text">
+            Novo por aqui? <a href="#">Assine agora.</a>
+        </div>
     </div>
 
-    <script>
-        function cadastrar() {
-            // Salva que o usuário já criou conta
-            localStorage.setItem('contaCriada', 'true');
-            alert("Conta criada com sucesso!");
-            window.location.href = 'index.html';
-        }
-    </script>
 </body>
 </html>
